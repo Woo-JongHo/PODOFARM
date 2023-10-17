@@ -1,0 +1,14 @@
+html {
+  font-size: 14px;
+  font-family: Poppins;
+  font-style: normal;
+}
+
+body {
+  width: 100vw;
+  margin: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
