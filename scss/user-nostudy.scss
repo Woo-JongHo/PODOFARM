@@ -1,0 +1,83 @@
+@import "../scss/style.scss";
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+body{
+
+}
+header {
+
+    .logo-bar {
+        display: flex;
+        height: 5.0625rem;
+        padding: 0.8125rem 0rem;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625rem;
+
+        .link {
+            display: flex;
+            padding: 0.3125rem 3.75rem 0rem 0.3125rem;
+            align-items: flex-end;
+            cursor: pointer;
+
+            .logo{
+                width :3rem;
+            }
+
+            
+            .logo img {
+                width: 2.75rem;
+                height: 3.125rem;
+            }
+
+            .title {
+                display: flex;
+                width: 10.125rem;
+                height: 3rem;
+                flex-direction: column;
+                justify-content: center;
+                color: #533777;
+                font-family: BM HANNA_TTF;
+                font-size: 1.875rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 3.6875rem; /* 196.667% */
+            }
+        }
+    }
+}
+
+
+.nostudy-text{
+    display: flex;
+    height: 11.125rem;
+    padding: 2.3125rem 0rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    color: #FFF;
+    text-align: center;
+    font-family: BM HANNA_TTF;
+    font-size: 3.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 5rem; /* 160% */
+    background-color: black;
+}
+
+.button-area{
+    gap : 6.25rem;
+    display: flex;
+    padding: 0.9375rem 2.6875rem;
+    justify-content: center;
+    align-items: center;
+    gap: 6.25rem;
+    --bs-btn-color: var(--bs-white);
+
+}

@@ -1,0 +1,62 @@
+@charset "UTF-8";
+html {
+  font-size: 14px;
+  font-family: Poppins;
+  font-style: normal;
+}
+
+body {
+  width: 100vw;
+  margin: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  height: 8rem;
+  padding: 0.625rem;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: beige;
+  max-width: 120rem; /*반응형 위해서 설정 */
+}
+
+main {
+  display: flex;
+  width: 120rem;
+  height: 61.1875rem;
+  align-items: flex-start;
+  gap: 0.0625rem;
+  flex-shrink: 0;
+}
+
+container {
+  display: flex;
+  padding: 1.25rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 1 0 0;
+  align-self: stretch;
+  background-color: blue;
+}
+
+side {
+  display: flex;
+  width: 14.375rem;
+  padding: 9.75rem 0rem;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  align-self: stretch;
+  background-color: red;
+}

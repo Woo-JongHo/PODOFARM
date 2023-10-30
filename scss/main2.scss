@@ -1,0 +1,96 @@
+
+@import url("../scss/style.scss");
+
+
+//전체항목 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+/* Define your custom styles */
+body {
+    background-color: #f0f0f0; /* Background color for the body */
+    font-family: Arial, sans-serif; /* Use a preferred font */
+}
+
+.header {
+    background-color: #333; /* Background color for the header */
+    color: white; /* Text color for the header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    .header-logo {
+        .logo {
+            max-width: 100px; /* Adjust the logo size */
+        }
+    }
+
+    .header-loginbutton {
+        button {
+            background-color: #007bff; /* Button background color */
+            color: white; /* Button text color */
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #0056b3; /* Button background color on hover */
+            }
+        }
+
+        .modal {
+            .modal-dialog {
+                .modal-content {
+                    .modal-title {
+                        font-size: 1.5rem; /* Adjust the modal title font size */
+                    }
+                }
+            }
+        }
+    }
+}
+
+.carousel {
+    margin: 20px 0;
+    max-width: 800px; /* Adjust the carousel width */
+
+    .carousel-inner {
+        .carousel-item {
+            img {
+                max-width: 100%; /* Make images responsive within the carousel */
+            }
+        }
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        background: rgba(0, 0, 0, 0.5); /* Adjust the background color of carousel controls */
+    }
+
+    .carousel-indicators {
+        button {
+            background: #007bff; /* Indicator button background color */
+
+            &.active {
+                background: #0056b3; /* Active indicator button background color */
+            }
+        }
+    }
+}
+
+/* Define your custom styles for the main content and footer as needed */
+main2 {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
