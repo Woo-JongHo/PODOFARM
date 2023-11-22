@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "포도팜(PODOFARM)",
+    "description": "프로그래머스를 통한 자바 알고리즘 스터디 동기화",
+    "version": "1.0",
+    "author": "flaxinger",
+    "action": {
+      "default_icon": "assets/default.png",
+      "default_popup": "popup.html"
+    }
+}
