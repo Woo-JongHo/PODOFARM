@@ -28,9 +28,9 @@
 
     </environments>
     <mappers>
-        <mapper resource="com/example/podofarm/mapper/UserMapper.xml" />
-        <mapper resource="com/example/podofarm/mapper/CodeMapper.xml" />
-        <mapper resource="com/example/podofarm/mapper/StudyMapper.xml" />
+        <mapper resource="com/example/podofarm/mapper/userMapper.xml" />
+        <mapper resource="com/example/podofarm/mapper/codeMapper.xml" />
+        <mapper resource="com/example/podofarm/mapper/studyMapper.xml" />
 
     </mappers>
 </configuration>

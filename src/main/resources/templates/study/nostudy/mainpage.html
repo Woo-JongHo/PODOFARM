@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+  <!-- css 영역-->
+  <link rel="stylesheet" href="../css/user-nostudy.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- js 영역-->
+
+
+</head>
+
+<body>
+<header>
+  <div class = "logo-bar">
+    <div class = "link" href = "#">
+      <div class="logo">
+        <img src="../images/logo.png" alt>
+      </div>
+
+      <div class="title">
+        포 도 팜
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <side>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
+
+      <a href="#" class="list-group-item list-group-item-action list-group-item-primary">내 스터디</a>
+      <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">스 터 디</a>
+      <a href="#" class="list-group-item list-group-item-action list-group-item-dark">내 공간</a>
+    </div>
+  </side>
+  <container>
+    <div class = "nostudy-text">
+      <h1> 우종호님은 현재 스터디가 없어요!</h1>
+    </div>
+    <div class = "button-area">
+      <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">스터디 만들기</button>
+      <button type="button" class="btn btn-outline-warning" >스터디 찾기</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </container>
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+</body>
+
+</html>

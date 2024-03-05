@@ -4,6 +4,13 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+    <insert id = "insertStudy" parameterType="studyVO">
+        INSERT INTO STUDY (S_NO, USERNO, S_CODE, S_NAME, S_START, S_END)
+        VALUES (:sNo, (SELECT USERNO FROM USER WHERE USERNAME = :currentUsername), :sCode, :sName, TO_DATE(:sStart, 'YYYY-MM-DD'), TO_DATE(:sEnd, 'YYYY-MM-DD'));
+    </insert>
 
+    <update id = "createStudy">
+        UPDATE USER SET STUDY = 1, LEADER = 1 WHERE USERNO = #{userNo}
+    </update>
 
 </mapper>

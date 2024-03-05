@@ -14,7 +14,6 @@ public class StudyVO {
     private String s_name;
     private Date s_start;
     private Date s_end;
-    private int s_member;
 
     public int getS_no() {
         return s_no;
@@ -64,11 +63,5 @@ public class StudyVO {
         this.s_end = s_end;
     }
 
-    public int getS_member() {
-        return s_member;
-    }
 
-    public void setS_member(int s_member) {
-        this.s_member = s_member;
-    }
 }

@@ -11,7 +11,7 @@ public class UserVO {
     private String phone;
     private String study;
     private int solved;
-    private String leader;
+    private int leader;
 
     public int getUserNo() {
         return userNo;
@@ -76,11 +76,11 @@ public class UserVO {
         this.solved = solved;
     }
 
-    public String getLeader() {
+    public int getLeader() {
         return leader;
     }
 
-    public void setLeader(String leader) {
+    public void setLeader(int leader) {
         this.leader = leader;
     }
 }
