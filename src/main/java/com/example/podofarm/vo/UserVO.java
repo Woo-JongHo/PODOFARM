@@ -2,20 +2,22 @@ package com.example.podofarm.vo;
 
 
 
+
 public class UserVO {
     private int userNo;
     private String id;
-    private String password;
     private String name;
     private String gender;
     private String phone;
     private String study;
     private int solved;
     private int leader;
+    private String email;
 
     public int getUserNo() {
         return userNo;
     }
+
     public void setUserNo(int userNo) {
         this.userNo = userNo;
     }
@@ -26,14 +28,6 @@ public class UserVO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -83,4 +77,15 @@ public class UserVO {
     public void setLeader(int leader) {
         this.leader = leader;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+
 }

@@ -4,12 +4,20 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+
+    <!-- 구글로그인으로 기존 회원인지 검색 -->
+    <select id="checkUser" resultType="java.lang.String">
+        select id from USERS where id = #{id}
+    </select>
+
+    <select id="checkStudy"  resultType="java.lang.String">
+        select study from USERS where id = #{id}
+    </select>
+
     <!-- 구글로그인으로 로그인 했을 때 회원 테이블 생성-->
-    <insert id="insertUser" parameterType="userVO">
-        INSERT INTO USER (USERNO, ID, PASSWORD, NAME, GENDER, PHONE, STUDY, STUDY_NAME, SOLVED, LEADER)
-        VALUES (USERNO_SEQUENCE.NEXTVAL, #{googleId}, #{encryptedPassword}, #{googleName}, #{googleGender}, #{googlePhone}, 0, '', 0, 0, 0)
+    <insert id="insertUser">
+        INSERT INTO USERS (USERNO, ID, NAME, GENDER, PHONE, STUDY, SOLVED, LEADER, EMAIL)
+        VALUES (USERNO_SEQ.NEXTVAL, #{id}, #{name}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{email})
     </insert>
-
-
 
 </mapper>
