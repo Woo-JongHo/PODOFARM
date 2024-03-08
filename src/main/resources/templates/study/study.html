@@ -12,7 +12,7 @@
     <!-- css 공간-->
     <link rel="stylesheet" href="/css/study/style-ver2.css">
     <link rel="stylesheet" href="/css/study/header-ver2.css">
-    <link rel="stylesheet" href="/css/study/container-ver2.css">
+    <link rel="stylesheet" href="/css/study/main-ver2.css">
     <link rel="stylesheet" href="/css/study/side-ver2.css">
 
     <!-- 구글폰트 -->
@@ -23,10 +23,10 @@
 </head>
 <body>
     <header><div th:include="/study/header/header-ver2.html"></div> </header>
-    <main>
-        <side><div th:include="/study/side/side-ver2.html"></div> </side>
-        <container><div th:include="/study/container/container-mainpage-ver2.html"></div></container>
-    </main>
+    <div class = "container-xxl-study">
+        <aside><div th:include="/study/side/side-ver2.html"></div> </aside>
+        <main><div th:include="/study/main/main-mainpage.html"></div></main>
+    </div>
     <!-- script 공간-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
