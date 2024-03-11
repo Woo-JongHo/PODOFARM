@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,12 +29,12 @@ public class MainController {
     private StudyService studyService;
 
 
+    //스터디가 없을 때 컨트롤러
     @GetMapping("/ns")
     public String main(){
 
         return "study/mainpage-study";
     }
-
 
     @PostMapping("/createStudy")
     public String createStudy(@RequestBody Map<String, String> data, Model model, HttpSession session){
@@ -89,4 +90,30 @@ public class MainController {
         return studycode.toString();
     }
 
+
+    //스터디가 있을 때 컨트롤러
+    @GetMapping("/{s_code}")
+    public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session){
+        String id = (String) session.getAttribute("id");
+        System.out.println("세션값 확인" + " id 는 " + id + " 스터디 코드는 " + s_code);
+
+
+        //01 만약 s_code가 없는 url이면 에러 페이지를 뜬다.
+        int findStudyCode = studyService.findStudyCode(s_code);
+
+        if(findStudyCode == -1){
+            // 페이지 에러로 다시 home/home 경로로
+            return "redirect:/home/home";
+        }
+
+
+        //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
+        model.addAttribute("");
+
+        return "/study/mainpage-study";
+    }
+
+
+
 }
+

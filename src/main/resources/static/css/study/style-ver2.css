@@ -67,7 +67,7 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
-    background-color: black;
+    background-color: #0d1117;
     max-width: 1320px; /*반응형 위해서 설정 */
 }
 
@@ -76,7 +76,7 @@ header {
     grid-template-areas: "sidebar main";
     grid-template-columns: 1fr 5fr;
     gap: 1.5rem;
-    background-color: blue;
+    background-color: #0d1117;
     height:2000px;
     --bs-gutter-x: 3rem;
     margin-bottom: 1.5rem!important;
@@ -97,7 +97,7 @@ header {
 .main-mystudypage {
     display: grid;
     grid-template-areas: "main sidebar";
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 4fr 1fr;
     gap: 1.5rem;
     background-color: #565c64;
     height: 2000px;

@@ -16,4 +16,12 @@ public class StudyRepository {
     public int updateStudyLeader(String id) {
         return StudyDBManger.updateStudyLeader(id);
     }
+
+    public String checkStudycode(String id) {
+        return StudyDBManger.checkStudyCode(id);
+    }
+
+    public int findStudyCode(String s_code) {
+        return StudyDBManger.findStudyCode(s_code);
+    }
 }

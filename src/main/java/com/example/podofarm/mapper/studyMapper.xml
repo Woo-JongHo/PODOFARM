@@ -13,4 +13,15 @@
         UPDATE USERS SET STUDY = 1, LEADER = 1 WHERE ID = #{id}
     </update>
 
+    <select id = "checkStudyCode" resultType = "java.lang.String">
+        SELECT S_CODE FROM STUDY WHERE ID = #{id}
+    </select>
+
+    <!-- 스터디 명 -->
+    <!-- 스터디 코드 유무 확인-->
+    <select id="findStudyCode"  resultType="java.lang.String">
+        select s_code from STUDY where s_code = #{s_code}
+    </select>
+    <!-- 스터디 인원 -->
+    <!-- 스터디 남은 일 수 -->
 </mapper>
