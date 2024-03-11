@@ -14,4 +14,13 @@ public class StudyDBManger extends DBManager{
         return re;
 
     }
+
+    public static int updateStudyLeader(String id) {
+        int re = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+        re = session.insert("updateStudyLeader", id);
+        session.commit();
+        session.close();
+        return re;
+    }
 }

@@ -8,15 +8,17 @@ public class StudyVO {
 
 
     private int s_no;
-    private int userNo;
+
+
+    private String id;
 
     private String s_code;
 
 
     private String s_password;
     private String s_name;
-    private Date s_start;
-    private Date s_end;
+    private String s_start;
+    private String s_end;
 
     public int getS_no() {
         return s_no;
@@ -26,13 +28,14 @@ public class StudyVO {
         this.s_no = s_no;
     }
 
-    public int getUserNo() {
-        return userNo;
+    public String getId() {
+        return id;
     }
 
-    public void setUserNo(int userNo) {
-        this.userNo = userNo;
+    public void setId(String id) {
+        this.id = id;
     }
+
 
     public String getS_code() {
         return s_code;
@@ -57,19 +60,19 @@ public class StudyVO {
         this.s_name = s_name;
     }
 
-    public Date getS_start() {
+    public String getS_start() {
         return s_start;
     }
 
-    public void setS_start(Date s_start) {
+    public void setS_start(String s_start) {
         this.s_start = s_start;
     }
 
-    public Date getS_end() {
+    public String getS_end() {
         return s_end;
     }
 
-    public void setS_end(Date s_end) {
+    public void setS_end(String s_end) {
         this.s_end = s_end;
     }
 

@@ -46,22 +46,33 @@ public class MainController {
 
         StudyVO study = new StudyVO();
 
+        String id = "123456";
+    //  String id = (String)session.getAttribute("id");
 
-        String id = (String)session.getAttribute("id");
 
-        StudyCode();
+        String StudyCode = StudyCode();
         data.get("s_name");
         data.get("s_password");
         data.get("s_start");
         data.get("s_end");
+
+        System.out.println("스터디 코드 생성확인 " +StudyCode);
+
+        study.setId(id);
+        study.setS_name(data.get("s_name"));
+        study.setS_password(data.get("s_password"));
+        study.setS_start(data.get("s_start"));
+        study.setS_end(data.get("s_end"));
+        study.setS_code(StudyCode);
+
 
         System.out.println("스터디 생성 컨트롤러 작동");
 
 
         //스터디를 추가하는 SQL문과, 서비스가 필요합니다.
         int createStudy = studyService.creteStudy(study);
-
-        return "";
+        int updateStudyLeader = studyService.updateStudyLeader(id);
+        return "study/study";
     }
 
     public String StudyCode() {
@@ -78,9 +89,10 @@ public class MainController {
         StringBuilder studycode = new StringBuilder();
         for (int i = 0; i < 5; i++) {
             int index = random.nextInt(36);
-            code[i] = password[index];
+            studycode.append(password[index]);
         }
 
+        System.out.println(studycode.toString() + "코드생성값은?");
         return studycode.toString();
     }
 

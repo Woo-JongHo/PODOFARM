@@ -12,4 +12,8 @@ public class StudyRepository {
 
         return StudyDBManger.createStudy(s);
     }
+
+    public int updateStudyLeader(String id) {
+        return StudyDBManger.updateStudyLeader(id);
+    }
 }

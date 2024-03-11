@@ -34,11 +34,8 @@ public class QueryTest {
         try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
             // 값 설정
             statement.setInt(1, study.getS_no());
-            statement.setInt(2, study.getUserNo());
             statement.setString(3, study.getS_code());
             statement.setString(4, study.getS_name());
-            statement.setDate(5, (Date) study.getS_start());
-            statement.setDate(6, (Date) study.getS_end());
 
             // 쿼리 실행
             statement.executeUpdate();
@@ -52,11 +49,8 @@ public class QueryTest {
             // 테스트 데이터
             StudyVO study = new StudyVO();
             study.setS_no(1);
-            study.setUserNo(1);
             study.setS_code("4X321D");
             study.setS_name("포도팜 잘해보자");
-            study.setS_start(new Date(System.currentTimeMillis())); // 여기에 적절한 날짜를 설정
-            study.setS_end(new Date(System.currentTimeMillis()));   // 여기에 적절한 날짜를 설정
 
             // 테스트 실행
             test.insertStudy(study);

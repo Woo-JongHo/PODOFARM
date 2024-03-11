@@ -17,4 +17,8 @@ public class StudyService {
     public int creteStudy(StudyVO s) {
         return repository.createStudy(s);
     }
+
+    public int updateStudyLeader(String id) {
+        return repository.updateStudyLeader(id);
+    }
 }
