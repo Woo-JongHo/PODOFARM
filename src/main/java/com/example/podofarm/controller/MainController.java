@@ -51,8 +51,11 @@ public class MainController {
 
         StudyCode();
         data.get("s_name");
+        data.get("s_password");
         data.get("s_start");
         data.get("s_end");
+
+        System.out.println("스터디 생성 컨트롤러 작동");
 
 
         //스터디를 추가하는 SQL문과, 서비스가 필요합니다.

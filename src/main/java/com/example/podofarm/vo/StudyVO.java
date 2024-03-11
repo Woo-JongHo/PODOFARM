@@ -11,6 +11,9 @@ public class StudyVO {
     private int userNo;
 
     private String s_code;
+
+
+    private String s_password;
     private String s_name;
     private Date s_start;
     private Date s_end;
@@ -39,6 +42,13 @@ public class StudyVO {
         this.s_code = s_code;
     }
 
+    public String getS_password() {
+        return s_password;
+    }
+
+    public void setS_password(String s_password) {
+        this.s_password = s_password;
+    }
     public String getS_name() {
         return s_name;
     }
