@@ -31,15 +31,9 @@ public class MainController {
     @GetMapping("/ns")
     public String main(){
 
-        return "/study/study";
+        return "study/mainpage-study";
     }
 
-    //01 스터디 광장입니다
-    // 스터디가 있다면, 스터디가 있는 Url로넘어가고 없으면 스터디 없음을 메인 광장으로 설정하여 기능을 구현합니다.
-
-
-    //02 스터디 생성에 관한 코드
-    //생성하기를 눌렀을 때 DB에 넣어줄 랜덤 생성코드를 만들어줄 로직을 간단히 구현합니다 6자리
 
     @PostMapping("/createStudy")
     public String createStudy(@RequestBody Map<String, String> data, Model model, HttpSession session){
@@ -69,10 +63,9 @@ public class MainController {
         System.out.println("스터디 생성 컨트롤러 작동");
 
 
-        //스터디를 추가하는 SQL문과, 서비스가 필요합니다.
         int createStudy = studyService.creteStudy(study);
         int updateStudyLeader = studyService.updateStudyLeader(id);
-        return "study/study";
+        return "mainpage-nostudy";
     }
 
     public String StudyCode() {

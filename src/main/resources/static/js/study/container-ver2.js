@@ -33,3 +33,29 @@ document.getElementById("createStudy-button").addEventListener("click", function
 
 })
 
+document.getElementById("search-button").addEventListener("click", function(){
+    const s_code = document.getElementById("studyCode-input-search").value;
+    const s_password = document.getElementById("studyPassword-input-search").value;
+    const data ={
+        s_code : s_code,
+        s_password : s_password
+    };
+
+    fetch('searchStudy',{
+        method : 'POST',
+        header: {
+            'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data =>{
+            console.log("success");
+            console.log(s_code + " s_code 는");
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+})
+

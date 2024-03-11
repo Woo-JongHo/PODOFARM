@@ -94,3 +94,16 @@ header {
 .study-main{
     background-color: #6edff6;
 }
+.main-mystudypage {
+    display: grid;
+    grid-template-areas: "main sidebar";
+    grid-template-columns: 5fr 1fr;
+    gap: 1.5rem;
+    background-color: #565c64;
+    height: 2000px;
+    --bs-gutter-x: 3rem;
+    margin-bottom: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-left: auto;
+    margin-right: auto;
+}
