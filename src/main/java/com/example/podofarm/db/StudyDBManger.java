@@ -45,4 +45,38 @@ public class StudyDBManger extends DBManager{
         session.close();
         return re;
     }
+
+    public static String getStudyName(String s_code) {
+        String n = "";
+        SqlSession session = sqlSessionFactory.openSession();
+        n = session.selectOne("study.getStudyName");
+        session.close();
+        return n;
+    }
+
+    public static Object getStudyMember(String s_code) {
+        String n = "";
+        SqlSession session = sqlSessionFactory.openSession();
+        n = session.selectOne("study.getStudyName");
+        session.close();
+        return n;
+    }
+
+    public static int getTotalMember(String s_code) {
+        int re = -1; // 기본값 설정
+        SqlSession session = sqlSessionFactory.openSession();
+        String result = session.selectOne("study.getTotalMember", s_code); //
+        System.out.println(result);
+        session.close();
+        return re;
+    }
+
+    public static int getDday(String s_code) {
+        int re = -1; // 기본값 설정
+        SqlSession session = sqlSessionFactory.openSession();
+        String result = session.selectOne("study.getDday", s_code); //
+        System.out.println(result);
+        session.close();
+        return re;
+    }
 }

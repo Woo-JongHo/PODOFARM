@@ -28,4 +28,20 @@ public class StudyService {
     public String checkStudyCode(String id) {
         return repository.checkStudycode(id);
     }
+
+    public String getStudyName(String s_code) {
+        return repository.getStudyName(s_code);
+    }
+
+    public Object getStudyMember(String s_code) {
+        return repository.getStudyMember(s_code);
+    }
+
+    public int getTotalMember(String s_code) {
+        return repository.getTotalMember(s_code);
+    }
+
+    public Object getDday(String s_code) {
+        return repository.getDday(s_code);
+    }
 }

@@ -24,4 +24,20 @@ public class StudyRepository {
     public int findStudyCode(String s_code) {
         return StudyDBManger.findStudyCode(s_code);
     }
+
+    public String getStudyName(String s_code) {
+        return StudyDBManger.getStudyName(s_code);
+    }
+
+    public Object getStudyMember(String s_code) {
+        return StudyDBManger.getStudyMember(s_code);
+    }
+
+    public int getTotalMember(String s_code) {
+        return StudyDBManger.getTotalMember(s_code);
+    }
+
+    public Object getDday(String s_code) {
+        return StudyDBManger.getDday(s_code);
+    }
 }

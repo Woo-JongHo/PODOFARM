@@ -4,6 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="study">
+
     <insert id = "createStudy">
         INSERT INTO STUDY (S_NO, ID, S_CODE, S_NAME, S_START, S_END, S_PASSWORD)
         VALUES (STUDYNO_SEQ.NEXTVAL, #{id}, #{s_code}, #{s_name}, #{s_start}, #{s_end}, #{s_password})
@@ -17,11 +18,28 @@
         SELECT S_CODE FROM STUDY WHERE ID = #{id}
     </select>
 
-    <!-- 스터디 명 -->
+
     <!-- 스터디 코드 유무 확인-->
     <select id="findStudyCode"  resultType="java.lang.String">
         select s_code from STUDY where s_code = #{s_code}
     </select>
+
+
+    <!-- 메인페이지 스터디 데이터 값 -->
+    <!-- 스터디 명 -->
+    <select id = "getStudyName" resultType="java.lang.String">
+        select s_name from study where s_code = #{s_code}
+    </select>
     <!-- 스터디 인원 -->
+    <select id = "getTotalMember" resultType ="java.lang.Integer">
+        select count(*) from study where s_code = #{s_code}
+    </select>
     <!-- 스터디 남은 일 수 -->
+    <select id = "getDday" resultType ="java.lang.Integer">
+        SELECT
+        (s_end - SYSDATE) AS d_day
+        FROM
+        study
+        WHERE s_code = #{s_code}
+    </select>
 </mapper>
