@@ -21,8 +21,10 @@ async function parseData() {
       // .filter((x) => !x.includes('코딩테스트'))
       .map((x) => convertSingleCharToDoubleChar(x))
       .reduce((a, b) => `${a}/${b}`);
-    const title = document.querySelector('#tab > li.algorithm-title').textContent.replace(/\\n/g, '').trim();
-    const problem_description = document.querySelector('div.guide-section-description > div.markdown').innerHTML;
+
+      //title 기존 코드는 인식 못해서 변경
+      const title = document.querySelector('.nav-item.algorithm-nav-link.algorithm-title.active .challenge-title').textContent.trim();
+      const problem_description = document.querySelector('div.guide-section-description > div.markdown').innerHTML;
     const language_extension = document.querySelector('div.editor > ul > li.nav-item > a').innerText.split('.')[1];
     const code = document.querySelector('textarea#code').value;
     const result_message =
@@ -37,6 +39,18 @@ async function parseData() {
       .reduce((x, y) => (Number(x[0]) > Number(y[0]) ? x : y), ['0.00ms', '0.0MB'])
       .map((x) => x.replace(/(?<=[0-9])(?=[A-Za-z])/, ' '));
   
+    console.log("link Data + " + link );
+    console.log("ProblemId Data + " + problemId );
+    console.log("level + " + level );
+    console.log("title + " + title );
+    console.log("problem_description + " + problem_description );
+    console.log("division + " + division );
+    console.log("language_extension + " + language_extension );
+    console.log("code + " + code );
+    console.log("result_message + " + result_message );
+    console.log("runtime + " + runtime);
+    console.log("memory + " + memory);
+
     return makeData({ link, problemId, level, title, problem_description, division, language_extension, code, result_message, runtime, memory });
   }
   
