@@ -24,6 +24,8 @@ async function parseData() {
       .reduce((x, y) => (Number(x[0]) > Number(y[0]) ? x : y), ['0.00ms', '0.0MB'])
       .map((x) => x.replace(/(?<=[0-9])(?=[A-Za-z])/, ' '));
 
+
+  const userId = await getUserId();
   console.log("link Data + " + link);
   console.log("ProblemId Data + " + problemId);
   console.log("level + " + level);
@@ -35,6 +37,23 @@ async function parseData() {
   console.log("result_message + " + result_message);
   console.log("runtime + " + runtime);
   console.log("memory + " + memory);
+
+  console.log("고유 구글아이디" + userId )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return makeData({ link, problemId, level, title, problem_description, division, language_extension, code, result_message, runtime, memory });
 }
@@ -59,4 +78,15 @@ async function makeData(origin) {
       + `${problem_description}\n\n`
       + `> 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges`;
   return { problemId, directory, message, fileName, readme, code };
+}
+
+
+async function getUserId() {
+  // 사용자의 구글 ID를 가져오는 비동기 함수
+  // 예시로 사용자의 이메일 주소를 가져온 후, 이메일에서 고유한 ID 부분만 추출하는 방식을 사용합니다.
+  // 실제 구글 API를 호출하여 사용자의 ID를 가져와야 합니다.
+
+  // 여기에 구글 API를 호출하여 사용자의 ID를 가져오는 코드를 작성합니다.
+  // 이 예시에서는 임의의 ID인 'exampleUserId'를 반환합니다.
+  return 'exampleUserId';
 }

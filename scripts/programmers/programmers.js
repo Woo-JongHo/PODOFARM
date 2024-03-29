@@ -17,18 +17,22 @@ function startLoader() {
     console.log("포도팜 익스텐션 실행중입니다");
 
 
-    const enable = await checkEnable();
+    //const enable = await checkEnable();
 
     if(!enable) stopLoader();
-    // 기능 Off시 작동하지 않도록 함, 현재 구현안되어있으므로 꺼놓음
-    //const enable = await checkEnable();
-    //if (!enable) stopLoader();
-    // 제출 후 채점하기 결과가 성공적으로 나왔다면 코드를 파싱하고, 업로드를 시작한다
     else if (getSolvedResult().includes('정답')) {
       console.log('포도팜 정답이 나왔습니다. 업로드를 시작합니다.');
       try {
         const PodoData = await parseData();
         await beginUpload(PodoData);
+      
+        //사용자정보만 가져오는지 확인
+      
+      
+      
+      
+      
+      
       } catch (error) {
         console.log(error);
       }
