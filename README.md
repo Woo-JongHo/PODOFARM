@@ -23,3 +23,17 @@ textContent가 null이였음.
 
 const title = document.querySelector('.nav-item.algorithm-nav-link.algorithm-title.active .challenge-title').textContent.trim();
 로 변경, c
+
+## SQL
+
+### STUDY 
+``` 
+    SQL문 종류
+    1. 스터디 생성
+    2. 스터디 방장 권한 부여
+    3. 유저의 스터디 유무 확인 (접속 시)
+    4. 스터디 코드 불러오기
+    5. 스터디 명 불러오기
+    6. 스터디 총 인원 불러오기
+    7. 스터디 남은 일 수 불러오기
+

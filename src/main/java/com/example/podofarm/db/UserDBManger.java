@@ -5,6 +5,16 @@ import org.apache.ibatis.session.SqlSession;
 
 public class UserDBManger extends DBManager{
 
+    /*SQL 목록
+    1. 회원가입 유무 확인
+    2. 스터디 유무 확인
+    3. 회원가입하기
+    */
+
+    /*추가 SQL 목록
+    *
+    *  */
+
     public static int checkUser(String id){
         System.out.print("디비매니저도착확인");
         int re = -1; // 기본값 설정

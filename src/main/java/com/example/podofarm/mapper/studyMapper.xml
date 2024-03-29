@@ -19,7 +19,7 @@
     </select>
 
 
-    <!-- 스터디 코드 유무 확인-->
+    <!-- 스터디 코드 확인-->
     <select id="findStudyCode"  resultType="java.lang.String">
         select s_code from STUDY where s_code = #{s_code}
     </select>
