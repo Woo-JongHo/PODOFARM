@@ -51,7 +51,9 @@
           "scripts/programmers/programmers.js",
           "scripts/programmers/util.js",
           "library/sha1.min.js",
-          "scripts/util.js"
+          "scripts/util.js",
+          "scripts/enable.js",
+          "scripts/storage.js"
         ],
         "run_at": "document_idle"
     }
