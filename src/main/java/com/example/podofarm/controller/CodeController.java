@@ -36,8 +36,10 @@ public class CodeController {
             String id = jsonNode.get("id").asText();
             String studyCode = jsonNode.get("studyCode").asText();
 
+
             // DB에 데이터가 있는지 확인
             String getStudyCode = studyService.getStudyCode(id);
+
             if (getStudyCode.equals(studyCode)){
                 return ResponseEntity.ok("success");
             }else{

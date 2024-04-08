@@ -90,9 +90,13 @@ public class StudyDBManger extends DBManager{
     }
 
     public static String getStudyCode(String id) {
-        String n = "";
+        System.out.println("getStudyCodeDB" + id);
+        String n = "id";
         SqlSession session = sqlSessionFactory.openSession();
-        n = session.selectOne("study.getStudyCode");
+        n = session.selectOne("study.getStudyCode", id);
+        if (n == null){
+            n = "id";
+        }
         session.close();
         return n;
     }
