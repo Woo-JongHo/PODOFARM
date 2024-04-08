@@ -63,7 +63,6 @@ public class MainController {
 
         System.out.println("스터디 생성 컨트롤러 작동");
 
-
         int createStudy = studyService.creteStudy(study);
         int updateStudyLeader = studyService.updateStudyLeader(id);
         return "mainpage-nostudy";

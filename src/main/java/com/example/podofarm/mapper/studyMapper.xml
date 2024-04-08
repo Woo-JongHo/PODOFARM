@@ -42,4 +42,10 @@
         study
         WHERE s_code = #{s_code}
     </select>
+
+
+    <!-- 익스텐션 -->
+    <select id = "getStudyCode" resultType="java.lang.String">
+        select s_code from study where id = #{id}
+    </select>
 </mapper>

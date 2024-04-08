@@ -26,7 +26,7 @@ public class StudyService {
     }
 
     public String checkStudyCode(String id) {
-        return repository.checkStudycode(id);
+        return repository.checkStudyCode(id);
     }
 
     public String getStudyName(String s_code) {
@@ -43,5 +43,9 @@ public class StudyService {
 
     public Object getDday(String s_code) {
         return repository.getDday(s_code);
+    }
+
+    public String getStudyCode(String id) {
+        return repository.getStudyCode(id);
     }
 }

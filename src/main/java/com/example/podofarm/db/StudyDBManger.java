@@ -88,4 +88,12 @@ public class StudyDBManger extends DBManager{
         session.close();
         return re;
     }
+
+    public static String getStudyCode(String id) {
+        String n = "";
+        SqlSession session = sqlSessionFactory.openSession();
+        n = session.selectOne("study.getStudyCode");
+        session.close();
+        return n;
+    }
 }
