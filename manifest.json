@@ -13,12 +13,14 @@
       "unlimitedStorage",
       "storage",
       "declarativeNetRequest",
-      "declarativeNetRequestWithHostAccess"
+      "declarativeNetRequestWithHostAccess",
+      "http://localhost:8080/*"
     ],
 
     "host_permission":[
       "https://school.programmers.co.kr/",
-      "https://podofarm.net"
+      "https://podofarm.net",
+      "https://localhost:8080/*"
     ],
 
     "web_accessible_resources": [

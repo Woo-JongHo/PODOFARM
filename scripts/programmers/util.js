@@ -2,6 +2,7 @@
  * 로딩 버튼 추가
  */
 function startUpload() {
+  /*
     let elem = document.getElementById('BaekjoonHub_progress_anchor_element');
     if (elem !== undefined) {
       elem = document.createElement('span');
@@ -16,6 +17,7 @@ function startUpload() {
     }
     // start the countdown
     startUploadCountDown();
+ */
   }
   
   /**

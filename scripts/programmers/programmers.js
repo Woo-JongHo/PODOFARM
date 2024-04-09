@@ -9,15 +9,15 @@ let loader;
 
 const currentUrl = window.location.href;
 
+
 // 프로그래머스 연습 문제 주소임을 확인하고, 맞다면 로더를 실행
 if (currentUrl.includes('/learn/courses/30') && currentUrl.includes('lessons')) startLoader();
 
 function startLoader() {
   loader = setInterval(async () => {
     console.log("포도팜 익스텐션 실행중입니다");
+    const enable = await checkEnable();
 
-
-    //const enable = await checkEnable();
 
     if(!enable) stopLoader();
     else if (getSolvedResult().includes('정답')) {
@@ -25,13 +25,6 @@ function startLoader() {
       try {
         const PodoData = await parseData();
         await beginUpload(PodoData);
-      
-        //사용자정보만 가져오는지 확인
-      
-      
-      
-      
-      
       
       } catch (error) {
         console.log(error);
@@ -53,17 +46,18 @@ function getSolvedResult() {
 /* 파싱 직후 실행되는 함수 */
 async function beginUpload(PodoData) {
   log('PodaData입니다.', PodoData);
+
   if (isNotEmpty(PodoData)) {
     startUpload();
 
-    //const stats = await getStats();
-    //const hook = await getHook();
 
+    /*
     const currentVersion = stats.version;
-    /* 버전 차이가 발생하거나, 해당 hook에 대한 데이터가 없는 경우 localstorage의 Stats 값을 업데이트하고, version을 최신으로 변경한다 */
+     버전 차이가 발생하거나, 해당 hook에 대한 데이터가 없는 경우 localstorage의 Stats 값을 업데이트하고, version을 최신으로 변경한다 
     if (isNull(currentVersion) || currentVersion !== getVersion() || isNull(await getStatsSHAfromPath(hook))) {
       await versionUpdate();
     }
+    */
 
     /* 현재 제출하려는 소스코드가 기존 업로드한 내용과 같다면 중지 */
     cachedSHA = await getStatsSHAfromPath(`${hook}/${PodoData.directory}/${PodoData.fileName}`)
@@ -74,6 +68,8 @@ async function beginUpload(PodoData) {
       console.log(`현재 제출번호를 업로드한 기록이 있습니다. problemIdID ${PodoData.problemId}`);
       return;
     }
+
+
     /* 신규 제출 번호라면 새롭게 커밋  */
     await uploadOneSolveProblemOnPodo(PodoData, markUploadedCSS);
   }
