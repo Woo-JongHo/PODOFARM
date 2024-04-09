@@ -9,7 +9,7 @@
       "default_popup": "popup.html"
     },
 
-    "permission":[
+    "permissions":[
       "unlimitedStorage",
       "storage",
       "declarativeNetRequest",
@@ -17,7 +17,7 @@
       "http://localhost:8080/*"
     ],
 
-    "host_permission":[
+    "host_permissions":[
       "https://school.programmers.co.kr/",
       "https://podofarm.net",
       "https://localhost:8080/*"
