@@ -15,9 +15,8 @@ if (currentUrl.includes('/learn/courses/30') && currentUrl.includes('lessons')) 
 
 function startLoader() {
   loader = setInterval(async () => {
-    console.log("포도팜 익스텐션 실행중입니다");
-    const enable = await checkEnable();
 
+    //const enable = await checkEnable();
 
     if(!enable) stopLoader();
     else if (getSolvedResult().includes('정답')) {

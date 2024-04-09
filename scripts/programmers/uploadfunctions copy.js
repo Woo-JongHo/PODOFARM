@@ -8,16 +8,14 @@
  * @param {function} cb - 콜백 함수 (ex. 업로드 후 로딩 아이콘 처리 등)
  * @returns {Promise<void>}
  */
-
-
-async function uploadOneSolveProblemOnPodo(PodoData, cb) {
-  const id = await getId();
-  const studyCode = await getStudyCode();
-  if (isNull(id) || isNull(studyCode)) {
-    console.error('token or hook is null', id, StudyCode);
+async function uploadOneSolveProblemOnPodo(bojData, cb) {
+  const token = await getToken();
+  const hook = await getHook();
+  if (isNull(token) || isNull(hook)) {
+    console.error('token or hook is null', token, hook);
     return;
   }
-  return upload(id, studyCode, PodoData.code, PodoData.readme, PodoData.directory, PodoData.fileName, PodoData.message, cb);
+  return upload(token, hook, bojData.code, bojData.readme, bojData.directory, bojData.fileName, bojData.message, cb);
 }
 
 /** Github api를 사용하여 업로드를 합니다.
