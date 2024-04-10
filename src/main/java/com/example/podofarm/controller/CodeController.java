@@ -75,6 +75,13 @@ public class CodeController {
             String commitMessage = convertData.get("commitMessage").asText();
 
 
+            /*
+            * sourceText - 답안
+            * readme - 문제설명
+            * filename - 문제명
+            * commitMessage - 시간초 매모리.
+            * */
+
             System.out.println("sourceText는 다음과 같습니다 : " + sourceText);
             System.out.println("readme는 다음과 같습니다 : " + readmeText);
             System.out.println("filename는 다음과 같습니다 : " + filename);
