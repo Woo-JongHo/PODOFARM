@@ -7,21 +7,24 @@
  * @param {string} commitMessage - 커밋 메시지
  * @param {function} cb - 콜백 함수 (ex. 업로드 후 로딩 아이콘 처리 등)
  * @returns {Promise<void>}
+ * 
+ * 현재 CB가 없어서  주석
  */
 
 
-async function uploadOneSolveProblemOnPodo(PodoData, cb) {
+async function uploadOneSolveProblemOnPodo(PodoData) {
   const id = await getId();
   const studyCode = await getStudyCode();
   if (isNull(id) || isNull(studyCode)) {
-    console.error('token or hook is null', id, StudyCode);
+    console.error('id, studtyCode Null', id, studyCode);
     return;
   }
-  return upload(id, studyCode, PodoData.code, PodoData.readme, PodoData.directory, PodoData.fileName, PodoData.message, cb);
+
+  //cb 삭제 
+  return upload(id, studyCode, PodoData.code, PodoData.readme, PodoData.fileName, PodoData.message);
 }
 
-/** Github api를 사용하여 업로드를 합니다.
- * @see https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
+/*
  * @param {string} token - github api 토큰
  * @param {string} hook - github api hook
  * @param {string} sourceText - 업로드할 소스코드
@@ -31,28 +34,34 @@ async function uploadOneSolveProblemOnPodo(PodoData, cb) {
  * @param {string} commitMessage - 커밋 메시지
  * @param {function} cb - 콜백 함수 (ex. 업로드 후 로딩 아이콘 처리 등)
  */
-async function upload(token, hook, sourceText, readmeText, directory, filename, commitMessage, cb) {
-  /* 업로드 후 커밋 */
-  const git = new GitHub(hook, token);
-  const stats = await getStats();
-  let default_branch = stats.branches[hook];
-  if (isNull(default_branch)) {
-    default_branch = await git.getDefaultBranchOnRepo();
-    stats.branches[hook] = default_branch;
-  }
-  const { refSHA, ref } = await git.getReference(default_branch);
-  const source = await git.createBlob(sourceText, `${directory}/${filename}`); // 소스코드 파일
-  const readme = await git.createBlob(readmeText, `${directory}/README.md`); // readme 파일
-  const treeSHA = await git.createTree(refSHA, [source, readme]);
-  const commitSHA = await git.createCommit(commitMessage, treeSHA, refSHA);
-  await git.updateHead(ref, commitSHA);
 
-  /* stats의 값을 갱신합니다. */
-  updateObjectDatafromPath(stats.submission, `${hook}/${source.path}`, source.sha);
-  updateObjectDatafromPath(stats.submission, `${hook}/${readme.path}`, readme.sha);
-  await saveStats(stats);
-  // 콜백 함수 실행
-  if (typeof cb === 'function') {
-    cb(stats.branches, directory);
+async function upload(id, studyCode, sourceText, readmeText, filename, commitMessage, cb) {
+  try {
+    /* 업로드 후 서버로 보내기 */
+    const response = await fetch('http://localhost:8080/receive-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: id,
+        studyCode: studyCode,
+        sourceText: sourceText,
+        readmeText: readmeText,
+        filename: filename,
+        commitMessage: commitMessage
+      })
+    });
+
+    const data = await response.text();
+
+    /* 보내고 스토리지에 문제번호 저장하기 */
+
+    /* 콜백 함수 실행 */
+    if (typeof cb === 'function') {
+      cb(data); // 콜백 함수에 서버로부터 받은 데이터를 전달
+    }
+  } catch (error) {
+    console.error('Error uploading:', error);
   }
 }

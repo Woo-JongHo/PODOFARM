@@ -12,7 +12,7 @@ document.getElementById("connectButton").addEventListener("click", function() {
     const studyCode = document.getElementById('studyCodeInput').value;
 
     // 서버로 데이터 전송
-    fetch('http://localhost:8080/receive-code', {
+    fetch('http://localhost:8080/receive-sync', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -52,3 +52,5 @@ document.getElementById("connectButton").addEventListener("click", function() {
         // 오류 처리
     });
 });
+
+

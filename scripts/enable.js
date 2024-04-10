@@ -3,7 +3,14 @@
     가독성을 위해 따로 파일 분리함
 */
 async function checkEnable() {
-    const enable = await getObjectFromLocalStorage('podoEnable');
+    
+  //버튼연결
+  //const enable = await getObjectFromLocalStorage('podoEnable');
+
+    
+
+  const enable = true;
+  
     if (!enable) writeEnableMsgOnLog();
     return enable;
   }

@@ -22,10 +22,18 @@ async function getObjectFromLocalStorage(key) {
     return new Promise((resolve, reject) => {
       try {
         chrome.storage.local.get(key, function(value) {
+          
+
+
           resolve(value[key]);
         
-        // 현재,  enable은 on/off 스위치에 연결되어있는걸로 보임, enable은 필요없고, get 방식으로 필요
-          console.log("getObjectFromStorage 시도 중 ");
+        /* 현재,  enable은 popup.js의 버튼과 연결되어있음
+        버튼이 없으므로 그냥 가능하다고 일단 작업
+        */
+        
+    
+        
+        console.log("getObjectFromStorage 시도 중 ");
         console.log(value[key]);
 
 
@@ -37,13 +45,12 @@ async function getObjectFromLocalStorage(key) {
   }
 
 
-
   async function getId() {
     return await getObjectFromLocalStorage('id');
   }
   
   async function getStudyCode() {
-    return await getObjectFromLocalStorage('StudyCode');
+    return await getObjectFromLocalStorage('studyCode');
   }
   
   async function getProblemId() {

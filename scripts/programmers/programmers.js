@@ -16,13 +16,15 @@ if (currentUrl.includes('/learn/courses/30') && currentUrl.includes('lessons')) 
 function startLoader() {
   loader = setInterval(async () => {
 
-    //const enable = await checkEnable();
+    const enable = await checkEnable();
 
     if(!enable) stopLoader();
     else if (getSolvedResult().includes('정답')) {
       console.log('포도팜 정답이 나왔습니다. 업로드를 시작합니다.');
       try {
         const PodoData = await parseData();
+
+        console.log("PodoData 스타트로더에서 확인 " + PodoData);
         await beginUpload(PodoData);
       
       } catch (error) {
@@ -49,7 +51,6 @@ async function beginUpload(PodoData) {
   if (isNotEmpty(PodoData)) {
     startUpload();
 
-
     /*
     const currentVersion = stats.version;
      버전 차이가 발생하거나, 해당 hook에 대한 데이터가 없는 경우 localstorage의 Stats 값을 업데이트하고, version을 최신으로 변경한다 
@@ -58,7 +59,8 @@ async function beginUpload(PodoData) {
     }
     */
 
-    /* 현재 제출하려는 소스코드가 기존 업로드한 내용과 같다면 중지 */
+
+    /* 현재 제출하려는 소스코드가 기존 업로드한 내용과 같다면 중지 -> 추후 작업할 것
     cachedSHA = await getStatsSHAfromPath(`${hook}/${PodoData.directory}/${PodoData.fileName}`)
     calcSHA = calculateBlobSHA(PodoData.code)
     log('cachedSHA', cachedSHA, 'calcSHA', calcSHA)
@@ -67,10 +69,14 @@ async function beginUpload(PodoData) {
       console.log(`현재 제출번호를 업로드한 기록이 있습니다. problemIdID ${PodoData.problemId}`);
       return;
     }
+    */
 
 
     /* 신규 제출 번호라면 새롭게 커밋  */
-    await uploadOneSolveProblemOnPodo(PodoData, markUploadedCSS);
+    //markUploadedCSS 없기 때문에 삭제 -> cb로 반환
+    await uploadOneSolveProblemOnPodo(PodoData);
+
+    stopLoader();
   }
 }
 
