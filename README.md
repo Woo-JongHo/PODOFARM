@@ -58,6 +58,8 @@ ResponseEntity 이용,  ResponseEntity는 HttpEntity의 상속클래스, 데이�
 4. CODE 테이블에 데이터가 다 된다면 이제, 잔디심기 구현 및 CSS 작업 다시 시작할 것 
 
 
+figma. 디자인 작업 중 
+
 ## 완료
 -----------------
 1.익스텐션창에 고유번호, 스터디코드 입력란 생성
