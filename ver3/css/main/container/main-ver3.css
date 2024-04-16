@@ -1,0 +1,75 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background: #0D1117;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.content {
+    width: 1320px;
+    height: 1058px;
+    padding: 10px;
+    background: #0D1117;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    display: inline-flex;
+}
+
+.message {
+    align-self: stretch;
+    padding: 2px;
+    background: #0D1117;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.message-content {
+    padding: 0 269px;
+    text-align: center;
+    color: #E6EDF3;
+    font-size: 100px;
+    font-family: 'BM HANNA_TTF', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.button-group {
+    align-self: stretch;
+    padding: 23px 193px;
+    background: #0D1117;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    display: inline-flex;
+}
+
+.button {
+    padding: 15px 40px;
+    background: #21262D;
+    border-radius: 20px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
+
+.button div {
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    margin: auto; /* 대신 이렇게 수정해주세요 */
+    color: white;
+    font-size: 20px;
+    font-family: 'BM HANNA_TTF', sans-serif;
+    font-weight: 300;
+    word-wrap: break-word;
+}

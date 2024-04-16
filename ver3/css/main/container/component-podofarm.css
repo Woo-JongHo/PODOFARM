@@ -1,0 +1,183 @@
+.dashboard-podofarm {
+    display: flex;
+    width: 1208px;
+    padding: 28px 33px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    font-family: 'BM HANNA_TTF', sans-serif;
+    color: #E6EDF3;
+
+    border-radius: 20px;
+    border: 3px solid #30363D;
+    background: #0D1117;
+}
+
+.dashboard-podofarm-title {
+    display: flex;
+    padding: 10px 0px;
+    align-items: center;
+    gap: 12px;
+
+    /* 원하는 색상으로 지정 */
+
+}
+
+.dashboard-podofarm-title-text {
+    display: flex;
+    padding: 7px 0px;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 5px;
+    border: 1px solid #30363D;
+    background: #0F0F0F;
+}
+
+.dashboard-podofarm-title-members {
+    display: flex;
+    padding: 7px 0px;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 5px;
+    border: 1px solid #30363D;
+    background: #0F0F0F;
+}
+
+
+.dashboard-podofarm-main-title {
+    display: flex;
+    height: 55px;
+    padding: 4px 0px 4px 2px;
+    align-items: flex-end;
+    gap: 2px;
+    align-self: stretch;
+
+    background: #0D1117;
+}
+
+.dashboard-podofarm-main-title-months {
+    display: flex;
+    width: 160px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
+    font-size: 30px;
+    line-height: 0.5;
+    /* 텍스트의 기준선을 조정하여 아래로 정렬 다른방법 있으면 찾아볼 것*/
+
+}
+
+.dashboard-podofarm-main-title-days {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.dashboard-podofarm-main-grass {
+    display: flex;
+    padding: 4px 0px 4px 2px;
+    align-items: center;
+    gap: 2px;
+    align-self: stretch;
+}
+
+.dashboard-podofarm-grass-member {
+    display: flex;
+    width: 160px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard-podofarm-grass-days {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+
+    /*
+    color source
+    #161B22;
+    #201751;
+    #21145F;
+    #7474C1;
+    #B1B0F4;
+    */
+}
+
+.dashboard-podofarm-main-count {
+    display: flex;
+    padding-left:50px;
+    justify-content: flex-end;
+    gap : 2px;
+    flex: 1 0 0;
+}
+
+.dashboard-podofarm-main-count-grass0 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.dashboard-podofarm-main-count-grass1 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #351c75;
+    ;
+}
+
+.dashboard-podofarm-main-count-grass2 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #674ea7;
+}
+
+.dashboard-podofarm-main-count-grass3 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #8e7cc3;
+}
+
+.dashboard-podofarm-main-count-grass4 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background:  #b4a7d6;
+    
+}

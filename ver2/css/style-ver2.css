@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+html {
+  /* 여기에 HTML에 대한 스타일을 추가하세요. */
+}
+
+[data-bs-theme="dark"] {
+  --base02: #3e4451;
+  --base03: #868e96;
+  --base04: #868e96;
+  --base05: #abb2bf;
+  --base06: #b6bdca;
+  --base07: #feb272;
+  --base08: #6edff6;
+  --base09: #feb272;
+  --base0A: #ffe69c;
+  --base0B: #79dfc1;
+  --base0C: #79dfc1;
+  --base0D: #6ea8fe;
+  --base0E: #c29ffa;
+  --base0F: #ea868f;
+}
+
+[data-bs-theme="light"] {
+  --base02: #c8c8fa;
+  --base03: #565c64;
+  --base04: #666;
+  --base05: #333;
+  --base06: #fff;
+  --base07: #13795b;
+  --base08: #c6303e;
+  --base09: #087990;
+  --base0A: #6f42c1;
+  --base0B: #084298;
+  --base0C: #084298;
+  --base0D: #6f42c1;
+  --base0E: #ab296a;
+  --base0F: #333;
+}
+
+:root {
+  --bs-breakpoint-xs: 0;
+  --bs-breakpoint-sm: 576px;
+  --bs-breakpoint-md: 768px;
+  --bs-breakpoint-lg: 992px;
+  --bs-breakpoint-xl: 1200px;
+  --bs-breakpoint-xxl: 1400px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: var(--bs-body-bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+
+  display: block;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  height: 8rem;
+  padding: 0.625rem;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: black;
+  max-width: 1320px; /* 반응형 위해서 설정 */
+}
+
+.container-xxl-study {
+  display: grid;
+  grid-template-areas: "sidebar main";
+  grid-template-columns: 1fr 5fr;
+  gap: 1.5rem;
+  background-color: blue;
+  height: 2000px;
+  font-size: 100px;
+  --bs-gutter-x: 3rem;
+  margin-bottom: 1.5rem!important;
+  margin-top: 1.5rem!important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1320px;
+}
+
+.study-sidebar {
+  background-color: green;
+}
+
+.study-main {
+  background-color: #6edff6;
+}
+
+.podofarm-calender {
+  background-color: rgb(22, 27, 34);
+  border-collapse: separate;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  color: rgb(240, 246, 252);
+  color-scheme: dark;
+  display: table;
+  width: 340px; /* 각 셀의 너비(10px) * 31일 = 310px, border와 padding 고려하여 340px로 설정 */
+  border-spacing: 5px;
+}
+
+.podofarm-calender td {
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  line-height: 21px;
+  outline-color: rgba(27, 31, 35, 0.06);
+  outline-offset: -1px;
+  outline-style: solid;
+  outline-width: 0.8px;
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.tooltip {
+  visibility: hidden; /* 초기에는 보이지 않도록 설정 */
+  position: absolute; /* 절대 위치 설정 */
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1; /* 다른 요소 위에 표시되도록 설정 */
+  bottom: 100%; /* 아래로 표시되도록 설정 */
+  left: 50
+}

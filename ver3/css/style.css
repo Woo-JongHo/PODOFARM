@@ -1,0 +1,65 @@
+/* 
+폰트 : 30px, 20px, 16px
+<link href="https://fonts.googleapis.com/css?family=BM+HANNA_TTF&display=swap" rel="stylesheet">
+
+색상 : 깃허브 참조
+
+*/
+
+@font-face {
+    font-family: 'BM HANNA_TTF'; /* 폰트 이름 지정 */
+    src: url('../fonts/BM-HANNA.ttf') format('truetype'); /* 폰트 파일 경로 지정 */
+}
+
+[data-bs-theme="podofarm"] {
+    --base01: #010409;
+    --base02: #0D1117;
+    --base03: #21262D;
+
+    --text01: #E6EDF3;
+    --text02: #848D97;
+
+    --border01: #30363d;
+
+    --blue01: #4493F8;
+
+    --grass01: #161b22;
+    --grass02: #201751;
+    --grass03: #21145F;
+    --grass04: #7474C1;
+    --grass05: #9695D3;
+
+}
+
+.body{
+
+    background-color: var(--base01);
+    font-family: "BM HANNA_TTF";
+}
+
+:root {
+
+    --font-size-large: 30px;
+    --font-size-medium: 20px;
+    --font-size-small: 16px;
+
+    --min-width: 1920px;
+
+    --base01: #010409;
+    --base02: #0D1117;
+    --base03: #21262D;
+
+    --text01: #E6EDF3;
+    --text02: #848D97;
+
+    --border01: #30363d;
+
+    --blue01: #4493F8;
+
+    --grass01: #161b22;
+    --grass02: #201751;
+    --grass03: #21145F;
+    --grass04: #7474C1;
+    --grass05: #9695D3;
+
+}

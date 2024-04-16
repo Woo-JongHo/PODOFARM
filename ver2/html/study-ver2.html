@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    <!-- css 영역-->
+    <link rel="stylesheet" href="../css/style-ver2.css">
+    <!-- js 영역-->
+
+    <style>
+        /* 이름(span)의 폰트 크기를 작게 설정 */
+        span {
+          font-size: 12px; /* 원하는 크기로 조정하세요 */
+        }
+      </style>
+
+</head>
+
+<body>
+    <header>
+        Test
+    </header>
+
+    <div class ="container-xxl-study">
+        <aside class = "study-sidebar">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
+              
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">내 스터디</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">스 터 디</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-dark">내 공간</a>
+              </div>
+        </aside>
+        <main class ="study-main">
+    
+        </side>
+        <container>
+            <div class = "nostudy-text">
+                <h1> 우종호님은 현재 스터디가 없어요!</h1>
+            </div>
+
+
+            <div class = "button-area">
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#createStudy">스터디 만들기</button>
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#searchStudy" >스터디 찾기</button>
+            </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="createStudy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="studyName" class="form-label">스터디명</label>
+                                <input type="text" class="form-control" id="studyNameInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studyPassword" class="form-label">스터디 비밀번호</label>
+                                <input type="password" class="form-control" id="studyPasswordInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="startDate" class="form-label">스터디 생성일</label>
+                                <input type="date" class="form-control" id="startDateInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endDate" class="form-label">스터디 마감일</label>
+                                <input type="date" class="form-control" id="endDateInput" required>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="createStudy-button">생성</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+              
+        <!-- Modal -->
+        <div class="modal fade" id="searchStudy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="studyName" class="form-label">스터디 코드</label>
+                                <input type="text" class="form-control" id="studyName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studyPassword" class="form-label">스터디 비밀번호</label>
+                                <input type="password" class="form-control" id="studyPassword" required>
+                            </div>
+
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">입장</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- 테이블은 github의 td를 가지고 오자. td는 level에 따라 fill 색을 바꾼다-->
+     
+        
+        </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
