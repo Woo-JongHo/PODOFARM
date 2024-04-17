@@ -1,71 +1,21 @@
-/* 
-폰트 : 30px, 20px, 16px
-<link href="https://fonts.googleapis.com/css?family=BM+HANNA_TTF&display=swap" rel="stylesheet">
-
-색상 : 깃허브 참조
-
-*/
-
-@font-face {
-    font-family: 'BM HANNA_TTF';
-    /* 폰트 이름 지정 */
-    src: url('../fonts/BM-HANNA.ttf') format('truetype');
-    /* 폰트 파일 경로 지정 */
-}
-
-[data-bs-theme="podofarm"] {
-    --base01: #010409;
-    --base02: #0D1117;
-    --base03: #21262D;
-
-    --text01: #E6EDF3;
-    --text02: #848D97;
-
-    --border01: #30363d;
-
-    --blue01: #4493F8;
-
-    --grass01: #161b22;
-    --grass02: #201751;
-    --grass03: #21145F;
-    --grass04: #7474C1;
-    --grass05: #9695D3;
-
-}
-
 body {
     display: flex;
-    width: 1920px;
-    padding: 10px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     flex-shrink: 0;
 
     background: #010409;
-}
+    overflow-x: hidden;
+    /* 가로 스크롤바를 숨김 */
 
-/*HEADER 영역
-1. globalbar
-2. localbar
-3. globalbar + localbar
-*/
-
-.header {
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 
-/* header-globalbar 영역*/
-
-header {
+/*dashboard.html 영역*/
+.dashboard-header {
     display: flex;
-    min-width: 1920px;
+    width: 100vw;
     padding: 16px;
     justify-content: space-between;
     align-items: center;
@@ -73,7 +23,7 @@ header {
 }
 
 .globalbar-container {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     padding: 16px;
     background: var(--base01);
@@ -81,6 +31,9 @@ header {
     align-items: center;
     display: inline-flex;
     align-self: stretch;
+    border-bottom: 0.5px solid #30363D;
+    /* 하단에 테두리 생성 */
+
 }
 
 .left-section {
@@ -131,7 +84,7 @@ header {
     width: 32px;
     height: 32px;
     padding: 10px;
-    background: var(--base01);
+    background: #010409;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -142,7 +95,6 @@ header {
     width: 32px;
     height: 32px;
 }
-
 
 
 /*localbar 영역*/
@@ -224,30 +176,21 @@ header {
     word-wrap: break-word;
 }
 
+/*main의 영역*/
 
-/*main css*/
-
-.main {
+.dashboard-main {
     display: flex;
-    height: 2505px;
-    max-width: 1920px;
-    padding: 10px;
-    justify-content: center;
+    width: 100vw;
     align-items: flex-start;
     gap: 10px;
-    align-self: stretch;
-
-    background: #010409;
-
+    flex-shrink: 0;
 }
 
-
-/*sidebar*/
+/*sidebar 영역*/
 
 .dashboard-sidebar {
     display: flex;
-    width: 335px;
-    height: 1117px;
+    height: 100vh;
     padding: 10px;
     flex-direction: column;
     align-items: center;
@@ -259,12 +202,15 @@ header {
 
     font-family: "BM HANNA_TTF";
 
+    border-right: 0.5px solid #30363D;
+    /* 하단에 테두리 생성 */
+
 
 }
 
 .dashboard-sidebar-navbar {
     display: flex;
-    width: 335px;
+    width: 300px;
     padding: 32px 2px;
     flex-direction: column;
     align-items: center;
@@ -294,7 +240,7 @@ header {
 
 .dashboard-sidebar-recentactionbar {
     display: flex;
-    width: 331px;
+    width: 300px;
     padding: 32px 0px;
     flex-direction: column;
     align-items: center;
@@ -303,7 +249,7 @@ header {
 
 .dashboard-sidebar-recentactionbar-title {
     display: flex;
-    width: 331px;
+    width: 300px;
     padding: 0px 189px 4px 3px;
     align-items: center;
 
@@ -346,97 +292,29 @@ header {
     line-height: normal;
 }
 
-/*container*/
 
-.container {
+/*container main 영역*/
+
+.dashboard-container {
+    width: 100vw;
     display: flex;
-    padding: 0px 12px;
+    padding: 10px 12px;
     justify-content: center;
     align-items: flex-start;
     flex: 1 0 0;
-}
-
-.body {
-    display: flex;
-    width: 1555px;
-    justify-content: center;
-    align-items: flex-start;
 
 
-}
 
-.container-dashboard {
-    display: flex;
-    min-height: 1020px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    flex: 1 0 0;
-    font-family: 'BM HANNA_TTF', sans-serif;
-    color: #E6EDF3;
-    background: #010409;
-}
-
-.container-dashboard-title {
-    display: flex;
-    padding: 12px 0px;
-    align-items: center;
-    gap: 50px;
-    align-self: stretch;
-}
-
-.container-dashboard-title-studyname {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container-dashboard-title-userinfo {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
-    flex: 1 0 0;
-}
-
-.dashboard-podofarm-title-text {
-    display: flex;
-    padding: 11px 6px;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-
-    border-radius: 10px;
-    border: 1px solid #30363D;
-    background: #21262D;
-}
-
-.dashboard-podofarm-title-members {
-    display: flex;
-    width: 247px;
-    padding: 11px 6px 11px 0px;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 10px;
-    border: 1px solid #30363D;
-    background: #21262D;
-}
-
-.dashboard-podofarm {
-    display: flex;
-    width: 1208px;
-    padding: 28px 33px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-
-    font-family: 'BM HANNA_TTF', sans-serif;
-    color: #E6EDF3;
-
-    border-radius: 20px;
-    border: 3px solid #30363D;
-    background: #0D1117;
+    .dashboard-podofarm {
+        display: flex;
+        padding: 28px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: 20px;
+        border: 3px solid #30363D;
+        background: #0D1117;
+    }
 }
 
 .dashboard-podofarm-title {
@@ -444,24 +322,33 @@ header {
     padding: 10px 0px;
     align-items: center;
     gap: 12px;
-
-    /* 원하는 색상으로 지정 */
-
+    background: #0D1117;
 }
 
 .dashboard-podofarm-title-text {
     display: flex;
     padding: 7px 0px;
-    
     align-items: center;
     gap: 10px;
 
     border-radius: 5px;
     border: 1px solid #30363D;
     background: #0F0F0F;
+
+    color: #FFF;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #30363D;
+    font-family: "BM HANNA_TTF";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.dashboard-podofarm-title-members {
+.dashboard-podofarm-title-users {
     display: flex;
     padding: 7px 0px;
     align-items: center;
@@ -470,88 +357,35 @@ header {
     border-radius: 5px;
     border: 1px solid #30363D;
     background: #0F0F0F;
-}
 
-
-.dashboard-podofarm-main-title {
-    display: flex;
-    height: 55px;
-    padding: 4px 0px 4px 2px;
-    align-items: flex-end;
-    gap: 2px;
-    align-self: stretch;
-
-    background: #0D1117;
-}
-
-.dashboard-podofarm-main-title-months {
-    display: flex;
-    width: 160px;
-    justify-content: flex-start;
-    align-items: flex-end;
-    gap: 10px;
-    font-size: 30px;
-    line-height: 0.5;
-    /* 텍스트의 기준선을 조정하여 아래로 정렬 다른방법 있으면 찾아볼 것*/
-
-}
-
-.dashboard-podofarm-main-title-days {
-    display: flex;
-    width: 20px;
-    height: 20px;
-    justify-content: center;
-    gap: 10px;
-
-    border-radius: 2px;
-    background: #161B22;
-}
-
-.dashboard-podofarm-main-grass {
-    display: flex;
-    padding: 4px 0px 4px 2px;
-    align-items: center;
-    gap: 2px;
-    align-self: stretch;
-}
-
-.dashboard-podofarm-grass-member {
-    display: flex;
-    width: 160px;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-}
-
-.dashboard-podofarm-grass-days {
-    display: flex;
-    width: 20px;
-    height: 20px;
-    justify-content: center;
-    gap: 10px;
-
-    border-radius: 2px;
-    background: #161B22;
-
-    /*
-    color source
-    #161B22;
-    #201751;
-    #21145F;
-    #7474C1;
-    #B1B0F4;
-    */
+    color: #FFF;
+    font-family: "BM HANNA_TTF";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .dashboard-podofarm-main-count {
     display: flex;
-    padding-left:50px;
     justify-content: flex-end;
-    gap : 2px;
-    flex: 1 0 0;
+    align-items: center;
+    gap: 6px;
+    align-self: stretch;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-family: "BM HANNA_TTF";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
-.dashboard-podofarm-main-count-grass0 {
+.dashboard-podofarm-main-count-grape0 {
     display: flex;
     width: 20px;
     height: 20px;
@@ -562,7 +396,7 @@ header {
     background: #161B22;
 }
 
-.dashboard-podofarm-main-count-grass1 {
+.dashboard-podofarm-main-count-grape1 {
     display: flex;
     width: 20px;
     height: 20px;
@@ -574,7 +408,7 @@ header {
     ;
 }
 
-.dashboard-podofarm-main-count-grass2 {
+.dashboard-podofarm-main-count-grape2 {
     display: flex;
     width: 20px;
     height: 20px;
@@ -585,7 +419,7 @@ header {
     background: #674ea7;
 }
 
-.dashboard-podofarm-main-count-grass3 {
+.dashboard-podofarm-main-count-grape3 {
     display: flex;
     width: 20px;
     height: 20px;
@@ -596,7 +430,7 @@ header {
     background: #8e7cc3;
 }
 
-.dashboard-podofarm-main-count-grass4 {
+.dashboard-podofarm-main-count-grape4 {
     display: flex;
     width: 20px;
     height: 20px;
@@ -604,92 +438,109 @@ header {
     gap: 10px;
 
     border-radius: 2px;
-    background:  #b4a7d6;
-    
+    background: #b4a7d6;
+
 }
 
 
-/*container side*/
-
-.dashboard-container-aside {
-    display: inline-flex;
-    padding: 20px 49px;
+.dashboard-podofarm-grape {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
-    background: #000;
-    color: #E6EDF3;
-    font-family: 'BM HANNA_TTF';
+    gap: 2px;
 
-}
-
-/*가장 많이 푼사람
-    1. 랭킹 표시를 고민해볼 것, 문제수 공간을 따로 쓰게끔 해야할까?
-    아님 문제수를 다른곳에서 표시해줄까
-*/
-
-.dashboard-container-aside-totalranking {
-    display: flex;
-    width: 249px;
-    padding: 14px 0px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    border-radius: 10px;
-    border: 1px solid #30363D;
     background: #0D1117;
 }
 
-
-.dashboard-container-aside-totalranking-title {
-
+.dashboard-podofarm-grape-title {
     display: flex;
-    padding: 4px 7px;
-    padding-top: 7px;
-    /*글씨체 중앙정렬이 안됨*/
+    height: 55px;
+    padding: 4px 0px 4px 2px;
+    align-items: flex-end;
+    gap: 2px;
+    align-self: stretch;
+    background: #0D1117;
+}
 
-    justify-content: center;
-    align-items: flex-start;
+.dashboard-podofarm-grape-title-month {
+    display: flex;
+    width: 160px;
+    align-items: center;
     gap: 10px;
 
     color: #E6EDF3;
+    font-family: "BM HANNA_TTF";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.dashboard-podofarm-grape-title-days {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    color: #FFF;
     text-align: center;
+    font-family: "BM HANNA_TTF";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.dashboard-podofarm-grape-month {
+    display: flex;
+    padding: 4px 0px 4px 2px;
+    align-items: center;
+    gap: 2px;
+    align-self: stretch;
+}
+
+.dashboard-podofarm-grape-user {
+    display: flex;
+    width: 160px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    padding-right: 10px;
+    color: #E6EDF3;
+    font-family: "BM HANNA_TTF";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1;
-
-    border-radius: 5px;
-    background: #30363D;
+    line-height: normal;
 }
 
-
-.dashboard-container-aside-totalranking-area {
+.dashbaord-podofarm-grape-days {
     display: flex;
-    flex-direction: column;
+    width: 20px;
+    height: 20px;
     justify-content: center;
-    align-items: flex-start;
-    gap: 4px;
-    align-self: stretch;
-
-}
-
-.dashboard-container-aside-totalranking-area-members {
-    display: flex;
-    height: 26px;
-    padding: 4px 0px;
-    align-items: center;
     gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
 }
 
-/*이번 달 순위
-가장 많이 푼 사람과 같은 CSS 나중에 바뀔 것을 고려하여 묶지 않음
-*/
+.dashboard-ranking {
+    display: flex;
+    padding: 10x 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
 
+    border-radius: 2px;
+    background: #161B22;
+}
 
-.dashboard-container-aside-monthranking {
+.dashboard-ranking-toprank {
     display: flex;
     width: 249px;
     padding: 14px 0px;
@@ -703,13 +554,16 @@ header {
     background: #0D1117;
 }
 
-.dashboard-container-aside-monthranking-title {
+.dashboard-ranking-toprank-title {
     display: flex;
     padding: 4px 7px;
     padding-top: 7px;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+
+    border-radius: 5px;
+    background: #30363D;
 
     color: #E6EDF3;
     text-align: center;
@@ -718,25 +572,31 @@ header {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
-    border-radius: 5px;
-    background: #30363D;
 }
 
-.dashboard-container-aside-monthranking-area {
+.dashboard-ranking-toprank-area {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 4px;
     align-self: stretch;
+
+    background: #0D1117;
 }
 
-.dashboard-container-aside-monthranking-area-members {
+.dashboard-ranking-toprank-member {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 4px;
-    align-self: stretch;
+    height: 26px;
+    padding: 4px 0px;
+    align-items: center;
+    gap: 10px;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-family: "BM HANNA_TTF";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
