@@ -1,0 +1,742 @@
+/* 
+폰트 : 30px, 20px, 16px
+<link href="https://fonts.googleapis.com/css?family=BM+HANNA_TTF&display=swap" rel="stylesheet">
+
+색상 : 깃허브 참조
+
+*/
+
+@font-face {
+    font-family: 'BM HANNA_TTF';
+    /* 폰트 이름 지정 */
+    src: url('../fonts/BM-HANNA.ttf') format('truetype');
+    /* 폰트 파일 경로 지정 */
+}
+
+[data-bs-theme="podofarm"] {
+    --base01: #010409;
+    --base02: #0D1117;
+    --base03: #21262D;
+
+    --text01: #E6EDF3;
+    --text02: #848D97;
+
+    --border01: #30363d;
+
+    --blue01: #4493F8;
+
+    --grass01: #161b22;
+    --grass02: #201751;
+    --grass03: #21145F;
+    --grass04: #7474C1;
+    --grass05: #9695D3;
+
+}
+
+body {
+    display: flex;
+    width: 1920px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    background: #010409;
+}
+
+/*HEADER 영역
+1. globalbar
+2. localbar
+3. globalbar + localbar
+*/
+
+.header {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* header-globalbar 영역*/
+
+header {
+    display: flex;
+    min-width: 1920px;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.globalbar-container {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background: var(--base01);
+    justify-content: space-between;
+    align-items: center;
+    display: inline-flex;
+    align-self: stretch;
+}
+
+.left-section {
+    padding-right: 16px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: flex;
+}
+
+.logo,
+.title {
+    background: var(--base01);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
+
+.logo img {
+    width: 30px;
+    height: 34.09px;
+}
+
+.title div {
+    width: 233px;
+    color: #E6EDF3;
+    font-size: 20px;
+    font-family: BM HANNA_TTF;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.right-section {
+    height: 32px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 151px;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.user-icon {
+    width: 32px;
+    height: 32px;
+    padding: 10px;
+    background: var(--base01);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.user-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+
+
+/*localbar 영역*/
+
+.localbar-container {
+    width: 100%;
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    background: #010409;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.item {
+    background: #848D97;
+    border-radius: 5px;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    display: flex;
+}
+
+.icon-container {
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    background: #848D97;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.icon {
+    flex: 1 1 0;
+    align-self: stretch;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.inner-icon {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+}
+
+.circle {
+    width: 16px;
+    height: 16px;
+}
+
+.circle img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.text {
+    padding-right: 10px;
+    background: #848D97;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    text-align: center;
+    color: #E6EDF3;
+    font-size: 16px;
+    font-family: BM HANNA_TTF;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+
+/*main css*/
+
+.main {
+    display: flex;
+    height: 2505px;
+    max-width: 1920px;
+    padding: 10px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+
+    background: #010409;
+
+}
+
+
+/*sidebar*/
+
+.dashboard-sidebar {
+    display: flex;
+    width: 335px;
+    height: 1117px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+
+    background: #0D1117;
+    color: #E6EDF3;
+
+    font-family: "BM HANNA_TTF";
+
+
+}
+
+.dashboard-sidebar-navbar {
+    display: flex;
+    width: 335px;
+    padding: 32px 2px;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: #0D1117;
+}
+
+.dashboard-sidbar-navbar-title {
+    display: flex;
+    padding: 5px 2px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    font-size: 20px;
+
+}
+
+
+.dashboard-sidbar-navbar-members {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+    font-size: 12px;
+}
+
+
+.dashboard-sidebar-recentactionbar {
+    display: flex;
+    width: 331px;
+    padding: 32px 0px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.dashboard-sidebar-recentactionbar-title {
+    display: flex;
+    width: 331px;
+    padding: 0px 189px 4px 3px;
+    align-items: center;
+
+    font-size: 20px;
+}
+
+.dashboard-sidebar-recentactionbar-main {
+    display: flex;
+    padding: 3px 2px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    align-self: stretch;
+}
+
+.dashboard-sidebar-recentactionbar-alaram {
+    display: flex;
+    padding: 6px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.dashboard-sidebar-recentactionbar-alaram-time {
+    color: #848D97;
+    font-family: "BM HANNA_TTF";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.dashboard-sidebar-recentactionbar-alaram-content {
+    color: #E6EDF3;
+    font-family: "BM HANNA_TTF";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/*container*/
+
+.container {
+    display: flex;
+    padding: 0px 12px;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.body {
+    display: flex;
+    width: 1555px;
+    justify-content: center;
+    align-items: flex-start;
+
+
+}
+
+.container-dashboard {
+    display: flex;
+    min-height: 1020px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1 0 0;
+    font-family: 'BM HANNA_TTF', sans-serif;
+    color: #E6EDF3;
+    background: #010409;
+}
+
+.container-dashboard-title {
+    display: flex;
+    padding: 12px 0px;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.container-dashboard-title-studyname {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-dashboard-title-userinfo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+}
+
+.dashboard-podofarm-title-text {
+    display: flex;
+    padding: 11px 6px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #21262D;
+}
+
+.dashboard-podofarm-title-members {
+    display: flex;
+    width: 247px;
+    padding: 11px 6px 11px 0px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #21262D;
+}
+
+.dashboard-podofarm {
+    display: flex;
+    width: 1208px;
+    padding: 28px 33px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    font-family: 'BM HANNA_TTF', sans-serif;
+    color: #E6EDF3;
+
+    border-radius: 20px;
+    border: 3px solid #30363D;
+    background: #0D1117;
+}
+
+.dashboard-podofarm-title {
+    display: flex;
+    padding: 10px 0px;
+    align-items: center;
+    gap: 12px;
+
+    /* 원하는 색상으로 지정 */
+
+}
+
+.dashboard-podofarm-title-text {
+    display: flex;
+    padding: 7px 0px;
+    
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 5px;
+    border: 1px solid #30363D;
+    background: #0F0F0F;
+}
+
+.dashboard-podofarm-title-members {
+    display: flex;
+    padding: 7px 0px;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 5px;
+    border: 1px solid #30363D;
+    background: #0F0F0F;
+}
+
+
+.dashboard-podofarm-main-title {
+    display: flex;
+    height: 55px;
+    padding: 4px 0px 4px 2px;
+    align-items: flex-end;
+    gap: 2px;
+    align-self: stretch;
+
+    background: #0D1117;
+}
+
+.dashboard-podofarm-main-title-months {
+    display: flex;
+    width: 160px;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
+    font-size: 30px;
+    line-height: 0.5;
+    /* 텍스트의 기준선을 조정하여 아래로 정렬 다른방법 있으면 찾아볼 것*/
+
+}
+
+.dashboard-podofarm-main-title-days {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.dashboard-podofarm-main-grass {
+    display: flex;
+    padding: 4px 0px 4px 2px;
+    align-items: center;
+    gap: 2px;
+    align-self: stretch;
+}
+
+.dashboard-podofarm-grass-member {
+    display: flex;
+    width: 160px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard-podofarm-grass-days {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+
+    /*
+    color source
+    #161B22;
+    #201751;
+    #21145F;
+    #7474C1;
+    #B1B0F4;
+    */
+}
+
+.dashboard-podofarm-main-count {
+    display: flex;
+    padding-left:50px;
+    justify-content: flex-end;
+    gap : 2px;
+    flex: 1 0 0;
+}
+
+.dashboard-podofarm-main-count-grass0 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.dashboard-podofarm-main-count-grass1 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #351c75;
+    ;
+}
+
+.dashboard-podofarm-main-count-grass2 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #674ea7;
+}
+
+.dashboard-podofarm-main-count-grass3 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #8e7cc3;
+}
+
+.dashboard-podofarm-main-count-grass4 {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background:  #b4a7d6;
+    
+}
+
+
+/*container side*/
+
+.dashboard-container-aside {
+    display: inline-flex;
+    padding: 20px 49px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    background: #000;
+    color: #E6EDF3;
+    font-family: 'BM HANNA_TTF';
+
+}
+
+/*가장 많이 푼사람
+    1. 랭킹 표시를 고민해볼 것, 문제수 공간을 따로 쓰게끔 해야할까?
+    아님 문제수를 다른곳에서 표시해줄까
+*/
+
+.dashboard-container-aside-totalranking {
+    display: flex;
+    width: 249px;
+    padding: 14px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #0D1117;
+}
+
+
+.dashboard-container-aside-totalranking-title {
+
+    display: flex;
+    padding: 4px 7px;
+    padding-top: 7px;
+    /*글씨체 중앙정렬이 안됨*/
+
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+
+    border-radius: 5px;
+    background: #30363D;
+}
+
+
+.dashboard-container-aside-totalranking-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+
+}
+
+.dashboard-container-aside-totalranking-area-members {
+    display: flex;
+    height: 26px;
+    padding: 4px 0px;
+    align-items: center;
+    gap: 10px;
+}
+
+/*이번 달 순위
+가장 많이 푼 사람과 같은 CSS 나중에 바뀔 것을 고려하여 묶지 않음
+*/
+
+
+.dashboard-container-aside-monthranking {
+    display: flex;
+    width: 249px;
+    padding: 14px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #0D1117;
+}
+
+.dashboard-container-aside-monthranking-title {
+    display: flex;
+    padding: 4px 7px;
+    padding-top: 7px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-family: "BM HANNA_TTF";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 5px;
+    background: #30363D;
+}
+
+.dashboard-container-aside-monthranking-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.dashboard-container-aside-monthranking-area-members {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
