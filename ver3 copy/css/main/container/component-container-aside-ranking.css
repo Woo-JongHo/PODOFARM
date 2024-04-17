@@ -1,0 +1,129 @@
+.dashboard-container-aside {
+    display: inline-flex;
+    padding: 20px 49px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    background: #000;
+    color: #E6EDF3;
+    font-family: 'BM HANNA_TTF';
+
+}
+
+/*가장 많이 푼사람
+    1. 랭킹 표시를 고민해볼 것, 문제수 공간을 따로 쓰게끔 해야할까?
+    아님 문제수를 다른곳에서 표시해줄까
+*/
+
+.dashboard-container-aside-totalranking {
+    display: flex;
+    width: 249px;
+    padding: 14px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #0D1117;
+}
+
+
+.dashboard-container-aside-totalranking-title {
+
+    display: flex;
+    padding: 4px 7px;
+    padding-top: 7px;
+    /*글씨체 중앙정렬이 안됨*/
+
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+
+    border-radius: 5px;
+    background: #30363D;
+}
+
+
+.dashboard-container-aside-totalranking-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+
+}
+
+.dashboard-container-aside-totalranking-area-members {
+    display: flex;
+    height: 26px;
+    padding: 4px 0px;
+    align-items: center;
+    gap: 10px;
+}
+
+/*이번 달 순위
+가장 많이 푼 사람과 같은 CSS 나중에 바뀔 것을 고려하여 묶지 않음
+*/
+
+
+.dashboard-container-aside-monthranking {
+    display: flex;
+    width: 249px;
+    padding: 14px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 10px;
+    border: 1px solid #30363D;
+    background: #0D1117;
+}
+
+.dashboard-container-aside-monthranking-title {
+    display: flex;
+    padding: 4px 7px;
+    padding-top: 7px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #E6EDF3;
+    text-align: center;
+    font-family: "BM HANNA_TTF";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 5px;
+    background: #30363D;
+}
+
+.dashboard-container-aside-monthranking-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
+
+.dashboard-container-aside-monthranking-area-members {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}
