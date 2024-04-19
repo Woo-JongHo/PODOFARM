@@ -59,7 +59,7 @@ ResponseEntity 이용,  ResponseEntity는 HttpEntity의 상속클래스, 데이�
 
 
 figma. 디자인 작업 중 개인공간 장소 작업 중 
-
+![image](https://github.com/Woo-JongHo/Algorithm/assets/117367145/96edc9a7-f6b3-42e1-9998-01175a3962aa)
 ## 완료
 -----------------
 1.익스텐션창에 고유번호, 스터디코드 입력란 생성
