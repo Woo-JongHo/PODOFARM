@@ -58,8 +58,10 @@ ResponseEntity 이용,  ResponseEntity는 HttpEntity의 상속클래스, 데이�
 4. CODE 테이블에 데이터가 다 된다면 이제, 잔디심기 구현 및 CSS 작업 다시 시작할 것 
 
 
-figma. 디자인 작업 중 개인공간 장소 작업 중 
+figma. 디자인 작업 중 개인공간 장소 작업 중  : 컴포넌트 작업 
 ![image](https://github.com/Woo-JongHo/Algorithm/assets/117367145/96edc9a7-f6b3-42e1-9998-01175a3962aa)
+![image](https://github.com/Woo-JongHo/PODOFARM/assets/117367145/a6b0e0c7-3f5f-4aad-970a-c372794ab7d2)
+
 ## 완료
 -----------------
 1.익스텐션창에 고유번호, 스터디코드 입력란 생성
