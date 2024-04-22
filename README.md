@@ -36,7 +36,7 @@
  - 이메일주소 쓰기 구현
 
 
-
+   
 <span style="color:yellow">  -> 작업완료 받는 것은 json, fetch API로 이용하였고 리턴되는 데이터는
 ResponseEntity 이용,  ResponseEntity는 HttpEntity의 상속클래스, 데이터를 넘길때 사용
 </span>
