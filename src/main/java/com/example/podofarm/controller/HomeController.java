@@ -27,10 +27,12 @@ public class HomeController {
     //02 없으면 DB 생성 후 nostudy로 넘어가기
     //03 DB가 있으면 study 유무에 따라 study nostudy로 넘기기
 
-    @GetMapping("main")
+    
+    //podofarm 으로 도메인 변경할 것
+    @GetMapping("1")
     public String main(){
-
-        return "home/home";
+         
+        return "ver4/home";
     }
 
     @PostMapping("/login")
