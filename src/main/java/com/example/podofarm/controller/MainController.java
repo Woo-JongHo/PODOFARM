@@ -109,6 +109,7 @@ public class MainController {
             return "redirect:/pf";
         }
 
+        /*
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
@@ -118,8 +119,8 @@ public class MainController {
         //03 스터디 남은 일 수 계산기
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
-
-        return "/study/mainpage-study";
+        */
+        return "ver4/sample.html";
     }
 
 

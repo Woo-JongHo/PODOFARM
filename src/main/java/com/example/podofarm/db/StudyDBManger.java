@@ -95,7 +95,7 @@ public class StudyDBManger extends DBManager{
         String n = "id";
         SqlSession session = sqlSessionFactory.openSession();
         n = session.selectOne("study.getStudyCode", id);
-        if (n == null){
+        if (n.equals(null)){
             n = "id";
         }
         session.close();

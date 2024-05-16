@@ -27,19 +27,26 @@ public class HomeController {
     //02 없으면 DB 생성 후 nostudy로 넘어가기
     //03 DB가 있으면 study 유무에 따라 study nostudy로 넘기기
 
-    
+
+
     //podofarm 으로 도메인 변경할 것
     @GetMapping("/pf")
     public String home(HttpSession session){
 
         String id = (String)session.getAttribute("id");
 
-        System.out.println(id);
-        if(id == null)
+        if (id == null)
             return "ver4/home";
+        else{
+            String s_code = studyService.getStudyCode(id);
 
-        return "redirect:/main";
+            if (s_code.equals("id"))
+                return "redirect:/main";
+            else
+                return "redirect:/"+s_code;
+        }
     }
+
 
 
     @PostMapping("/login")
@@ -60,13 +67,11 @@ public class HomeController {
         int checkUser = userService.checkUser(id);
         int checkStudy = userService.checkStudy(id);
 
-
         if(checkUser == 1){
             //DB를 생성할 필요가 없으니 스터디 유무를 확인합니다.
-            System.out.println(checkStudy + "스터디의 값은 다음과 같습니다");
             if(checkStudy == 1){
                 session.setAttribute("s_code",s_code);
-                return "redirect:{s_code}";
+                return "redirect:/pf";
             }else{
                 return "redirect:/main";
             }
@@ -75,7 +80,7 @@ public class HomeController {
             user.setName(data.get("name"));
             user.setGender("N");
             user.setPhone("N");
-            user.setStudy("0");
+            user.setStudy("1");
             user.setSolved(0);
             user.setLeader(0);
             user.setEmail(data.get("email"));
