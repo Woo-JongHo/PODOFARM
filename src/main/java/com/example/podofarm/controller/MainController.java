@@ -30,10 +30,12 @@ public class MainController {
 
 
     //스터디가 없을 때 컨트롤러
-    @GetMapping("/main")
-    public String main(){
 
-        return "study/mainpage-study";
+    @GetMapping("/main")
+    public String main(HttpSession session){
+        String id = (String) session.getAttribute("id");
+
+        return "ver4/main";
     }
 
     @PostMapping("/createStudy")

@@ -29,11 +29,18 @@ public class HomeController {
 
     
     //podofarm 으로 도메인 변경할 것
-    @GetMapping("pf")
-    public String main(){
-         
-        return "ver4/home";
+    @GetMapping("/pf")
+    public String home(HttpSession session){
+
+        String id = (String)session.getAttribute("id");
+
+        System.out.println(id);
+        if(id == null)
+            return "ver4/home";
+
+        return "redirect:/main";
     }
+
 
     @PostMapping("/login")
     public String checkUser(@RequestBody Map<String, String> data, HttpSession session) {
@@ -59,9 +66,9 @@ public class HomeController {
             System.out.println(checkStudy + "스터디의 값은 다음과 같습니다");
             if(checkStudy == 1){
                 session.setAttribute("s_code",s_code);
-                return "ver4/main.html";
+                return "redirect:{s_code}";
             }else{
-                return "ver4/main.html";
+                return "redirect:/main";
             }
         }else{
             user.setId(data.get("id"));
