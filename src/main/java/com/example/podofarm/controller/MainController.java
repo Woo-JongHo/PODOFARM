@@ -30,7 +30,7 @@ public class MainController {
 
 
     //스터디가 없을 때 컨트롤러
-    @GetMapping("/ns")
+    @GetMapping("/main")
     public String main(){
 
         return "study/mainpage-study";
@@ -94,6 +94,8 @@ public class MainController {
     @GetMapping("/{s_code}")
     public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session){
         String id = (String) session.getAttribute("id");
+
+        id = "104539211393038791047";
         System.out.println("세션값 확인" + " id 는 " + id + " 스터디 코드는 " + s_code);
 
 
@@ -101,8 +103,8 @@ public class MainController {
         int findStudyCode = studyService.findStudyCode(s_code);
 
         if(findStudyCode == -1){
-            // 페이지 에러로 다시 home/home 경로로
-            return "redirect:/home/home";
+            // 페이지 에러로 다시 home으로
+            return "redirect:/pf";
         }
 
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
@@ -114,8 +116,6 @@ public class MainController {
         //03 스터디 남은 일 수 계산기
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
-
-
 
         return "/study/mainpage-study";
     }

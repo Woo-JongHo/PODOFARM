@@ -33,7 +33,7 @@ public class UserDBManger extends DBManager{
         SqlSession session = sqlSessionFactory.openSession();
         String result = session.selectOne("user.checkStudy", id); // Integer로 받기
         System.out.println(result);
-        if (result != null) { // null 체크
+        if (result != "0") { // null 체크
             return 1;
         }
         session.close();

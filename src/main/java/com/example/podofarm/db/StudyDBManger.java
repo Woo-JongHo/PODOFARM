@@ -45,8 +45,9 @@ public class StudyDBManger extends DBManager{
 
     public static int findStudyCode(String s_code) {
         int re = -1; // 기본값 설정
+
         SqlSession session = sqlSessionFactory.openSession();
-        String result = session.selectOne("study.findStudyCode", s_code); //
+        String result = (String)session.selectOne("study.findStudyCode", s_code); //
         System.out.println(result);
         if (result != null) { // null 체크
             return 1;

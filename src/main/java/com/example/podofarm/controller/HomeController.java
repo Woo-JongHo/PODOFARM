@@ -29,7 +29,7 @@ public class HomeController {
 
     
     //podofarm 으로 도메인 변경할 것
-    @GetMapping("1")
+    @GetMapping("pf")
     public String main(){
          
         return "ver4/home";
@@ -42,7 +42,6 @@ public class HomeController {
 
         // DATA의 값을 DB와 비교합니다
         // 회원이 등록되어있는지, 스터디가 있는지에 따라 login 화면을 다르게 합니다.
-        System.out.print("data 값 : " + data);
 
         //세션에 저장할 유저정보
         String id = data.get("id");
@@ -50,7 +49,6 @@ public class HomeController {
         session.setAttribute("id", id);
         session.setAttribute("s_code", s_code);
 
-        System.out.println("s_code 의 값은? : " + s_code);
 
         int checkUser = userService.checkUser(id);
         int checkStudy = userService.checkStudy(id);
@@ -62,10 +60,10 @@ public class HomeController {
             if(checkStudy ==1){
                 System.out.println("스터디가 존재하므로 다음 스터디 값으로 이동합니다");
                 session.setAttribute("s_code",s_code);
-                return "redirect:/" + s_code ;
+                return "ver4/main.html";
             }else{
                 System.out.println("스터디가 존재하지 않으므로 스터디 구하는 mainpage로 넘어갑니다");
-                return "/nostudy/nostudy-mainpage";
+                return "ver4/main.html";
             }
         }else{
             user.setId(data.get("id"));
@@ -77,11 +75,11 @@ public class HomeController {
             user.setLeader(0);
             user.setEmail(data.get("email"));
             int insertUser = userService.insertUser(user);
-            return "redirect:/nostudy/nostudy-mainpage";
+            System.out.println("회원등록완료");
+            return "";
         }
 
     }
-
     //회원 등록
 
 }
