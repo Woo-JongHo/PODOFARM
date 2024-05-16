@@ -58,11 +58,9 @@ public class HomeController {
             //DB를 생성할 필요가 없으니 스터디 유무를 확인합니다.
             System.out.println(checkStudy + "스터디의 값은 다음과 같습니다");
             if(checkStudy == 1){
-                System.out.println("스터디가 존재하므로 다음 스터디 값으로 이동합니다");
                 session.setAttribute("s_code",s_code);
                 return "ver4/main.html";
             }else{
-                System.out.println("스터디가 존재하지 않으므로 스터디 구하는 mainpage로 넘어갑니다");
                 return "ver4/main.html";
             }
         }else{
