@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+import java.util.Map;
 
 
 @Controller
@@ -156,15 +160,23 @@ public class MainController {
             System.out.println("DB값 가져온것 같이 확인, 날짜별 푼 문제" + codeService.getSolvedByDayCurrentMonth(memberID.get(i)));
 
             //solved 값만 가져온다
-            ArrayList<String> fillPodofarm = new ArrayList<>();
+            //1. DayCheck만큼 배열을 생성합니다.
+            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+
+            int [] solvedMonth = new int[DayCheck];
+
+
             for (Map<String, String> map : solvedList) {
+                String dataDay = (String) map.get("C_DATE");
+                int day = Integer.parseInt(dataDay.substring(3,5));
                 String solved = String.valueOf(map.get("SOLVED"));
-                fillPodofarm.add(solved);
+
+                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
+
             }
-            System.out.println("SOLVED 값 리스트: " + fillPodofarm);
-
-
-
+            for (int j = 0; j < solvedMonth.length; j++) {
+                System.out.println("Day " + (j + 1) + ": " + solvedMonth[j]);
+            }
         }
 
 

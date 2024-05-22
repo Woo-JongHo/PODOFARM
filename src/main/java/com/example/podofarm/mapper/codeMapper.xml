@@ -15,10 +15,15 @@
 
     <!-- 날짜별 푼 문제 -->
     <select id="getSolvedByDayCurrentMonth" resultType="java.util.Map" parameterType="java.lang.String">
-        SELECT TO_CHAR(C_DATE, 'MM-DD HH24:MI:SS') AS C_DATE, COUNT(ID) AS SOLVED
+        WITH DATE_COUNT AS (
+        SELECT TO_CHAR(C_DATE, 'MM-DD') AS C_DATE, COUNT(ID) AS SOLVED
         FROM CODE
         WHERE ID = #{id}
         AND TO_CHAR(C_DATE, 'MM') = TO_CHAR(SYSDATE, 'MM')
+        GROUP BY TO_CHAR(C_DATE, 'MM-DD')
+        )
+        SELECT C_DATE, SUM(SOLVED) AS SOLVED
+        FROM DATE_COUNT
         GROUP BY C_DATE
         ORDER BY C_DATE ASC
     </select>
