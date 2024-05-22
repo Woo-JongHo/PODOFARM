@@ -27,14 +27,13 @@
 
                 <div class="dashboard-sidebar-navbar">
                     <div class="dashboard-sidbar-navbar-title">포도 농사원</div>
-                    <div class="dashboard-sidbar-navbar-members">
+                    <a th:each="member, index: ${getStudyMember}" th:href="@{'/member/' + ${index}}" class="dashboard-sidbar-navbar-members">
                         <div class="dashboard-sidbar-navbar-members-icon">
                             <img src="../images/person-circle.svg">
                         </div>
-                        <div class="dashboard-sidbar-navbar-members-name">
-                            링크 걸어야함
+                        <div th:text ="${member}" class="dashboard-sidbar-navbar-members-name">
                         </div>
-                    </div>
+                    </a>
 
 
                 </div>

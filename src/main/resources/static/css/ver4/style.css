@@ -242,7 +242,7 @@ body {
 
 .text {
     padding-right: 10px;
-    background: #848D97;ㅜ
+    background: #848D97;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
@@ -310,6 +310,17 @@ body {
 
 
 .dashboard-sidbar-navbar-members {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+    font-size: 12px;
+
+    text-decoration:none;
+
+}
+
+.dashboard-sidbar-navbar-members-name {
     display: flex;
     align-items: flex-start;
     gap: 4px;
