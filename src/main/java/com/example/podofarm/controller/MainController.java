@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.Map;
 import java.util.Random;
 
@@ -92,7 +94,7 @@ public class MainController {
     }
 
 
-    //스터디가 있을 때 컨트롤러
+    //스터디가 있을 때 컨트롤러 MainPage와 연동
     @GetMapping("/{s_code}")
     public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session){
         String id = (String) session.getAttribute("id");
@@ -109,20 +111,43 @@ public class MainController {
             return "redirect:/pf";
         }
 
-        /*
+        //불러오는 데이터 목록
+
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
         model.addAttribute("getDday",studyService.getDday(s_code));
 
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
+
         //03 스터디 남은 일 수 계산기
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
-        */
-        return "ver4/sample.html";
+
+
+
+        //포도농사 칸
+
+        //
+
+        int DayCheck = DayCheck();
+        System.out.println("이번달" + DayCheck);
+        model.addAttribute("DayCheck", DayCheck);
+
+        return "ver4/main";
     }
 
+
+        //날짜 입력란. 이번달의 일수를 확인
+        public int DayCheck(){
+            LocalDate currentDate = LocalDate.now();
+            YearMonth yearMonth = YearMonth.of(currentDate.getYear(), currentDate.getMonth());
+            int daysInMonth = yearMonth.lengthOfMonth();
+
+            System.out.println("현재 " + currentDate.getMonthValue() + "월은 " + daysInMonth + "일입니다.");
+
+            return daysInMonth;
+        }
 
 
 }

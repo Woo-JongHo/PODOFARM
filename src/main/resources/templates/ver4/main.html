@@ -11,18 +11,94 @@
     <link rel="stylesheet" href="/css/ver4/style.css">
 
 </head>
+
 <body>
     <header><div th:include="/ver4/header/header-globalbar-ver4.html"></div> </header>
 
     <main>
+        <!--
         <div class ="makestudy-main">
-            <div th:include="/ver4/side/side.html"></div>
+            <div th:include="/ver4/side/left-side.html"></div>
             <div id = "noStudy" th:include="/ver4/main/main-makestudy.html"></div>
         </div>
+        -->
+        <div class="dashboard-main">
+            <div class="dashboard-sidebar">
 
-        <div class ="#">
-            <div th:include="/ver4/side/side.html"></div>
-            <div id = "getStudy"th:include="/ver4/main/main-dashboard.html"></div>
+                <div class="dashboard-sidebar-navbar">
+                    <div class="dashboard-sidbar-navbar-title">포도 농사원</div>
+                    <div class="dashboard-sidbar-navbar-members">
+                        <div class="dashboard-sidbar-navbar-members-icon">
+                            <img src="../images/person-circle.svg">
+                        </div>
+                        <div class="dashboard-sidbar-navbar-members-name">
+                            링크 걸어야함
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="dashboard-sidebar-recentactionbar">
+                    <div class="dashboard-sidebar-recentactionbar-title">최근활동</div>
+                    <div class="dashboard-sidebar-recentactionbar-main">
+                        <div class="dashboard-sidebar-recentactionbar-alaram">
+                            <div class="dashboard-sidebar-recentactionbar-alaram-time">2 hours ago</div>
+                            <div class="dashboard-sidebar-recentactionbar-alaram-content">> 우종호님이 숫자 구하기 문제를 풀었습니다!</div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 메인보드 -->
+            <div class="dashboard-container">
+                <div class="dashboard-podofarm">
+                    <div class="dashboard-podofarm-title">
+                        <div class="dashboard-podofarm-title-text">이번 달 포도농사</div>
+                        <div class="dashboard-podofarm-title-users">포도농사원 : 김경선, 우종호 </div>
+                    </div>
+                    <div class="dashboard-podofarm-main-count">
+                        <div>less</div>
+                        <div class="dashboard-podofarm-main-count-grape0"></div>
+                        <div class="dashboard-podofarm-main-count-grape1"></div>
+                        <div class="dashboard-podofarm-main-count-grape2"></div>
+                        <div class="dashboard-podofarm-main-count-grape3"></div>
+                        <div class="dashboard-podofarm-main-count-grape4"></div>
+                        <div>more</div>
+                    </div>
+
+                    <div class="dashboard-podofarm-grape">
+                        <div class="dashboard-podofarm-grape-title">
+                            <div class="dashboard-podofarm-grape-title-month">
+                                DECEMBER
+                            </div>
+                            <div th:each="day:${#numbers.sequence(1,DayCheck)}"class="dashboard-podofarm-grape-title-days">
+                                <span th:text="${day}">1</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-podofarm-grape-month">
+                            <div class="dashboard-podofarm-grape-user">이름짱짱맨</div>
+                            <div th:each="day:${#numbers.sequence(1,DayCheck)}"class="dashboard-podofarm-grape-title-days"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right-side-->
+
+            <div class="dashboard-ranking">
+                <div class="dashboard-ranking-toprank">
+                    <div class="dashboard-ranking-toprank-title">가장 많이 푼 사람</div>
+                    <div class="dashboard-ranking-toprank-area">
+                        <div class="dashboard-ranking-toprank-member">1. 누구게</div>
+                    </div>
+                </div>
+                <div class="dashboard-ranking-monthrank"></div>
+
+            </div>
+
         </div>
     </main>
 </body>

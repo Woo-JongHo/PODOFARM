@@ -59,7 +59,7 @@ public class StudyDBManger extends DBManager{
     public static String getStudyName(String s_code) {
         String n = "";
         SqlSession session = sqlSessionFactory.openSession();
-        n = session.selectOne("study.getStudyName");
+        n = (String)session.selectOne("study.getStudyName", s_code);
         session.close();
         return n;
     }
@@ -67,7 +67,7 @@ public class StudyDBManger extends DBManager{
     public static Object getStudyMember(String s_code) {
         String n = "";
         SqlSession session = sqlSessionFactory.openSession();
-        n = session.selectOne("study.getStudyName");
+        n = session.selectOne("study.getStudyName", s_code);
         session.close();
         return n;
     }
@@ -75,8 +75,8 @@ public class StudyDBManger extends DBManager{
     public static int getTotalMember(String s_code) {
         int re = -1; // 기본값 설정
         SqlSession session = sqlSessionFactory.openSession();
-        String result = session.selectOne("study.getTotalMember", s_code); //
-        System.out.println(result);
+        re = session.selectOne("study.getTotalMember", s_code); //
+        System.out.println("스터디 멤버의 수는 : " + re + "입니다 //STUDYDBMANAGER GETTOATALMEMBER" );
         session.close();
         return re;
     }
@@ -84,8 +84,7 @@ public class StudyDBManger extends DBManager{
     public static int getDday(String s_code) {
         int re = -1; // 기본값 설정
         SqlSession session = sqlSessionFactory.openSession();
-        String result = session.selectOne("study.getDday", s_code); //
-        System.out.println(result);
+        re = session.selectOne("study.getDday", s_code); //
         session.close();
         return re;
     }
