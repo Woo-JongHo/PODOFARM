@@ -21,14 +21,14 @@
 
     <!-- 스터디 코드 확인-->
     <select id="findStudyCode"  resultType="java.lang.String">
-        select s_code from STUDY where s_code = #{s_code}
+        select DISTINCT s_code from STUDY where s_code = #{s_code}
     </select>
 
 
     <!-- 메인페이지 스터디 데이터 값 -->
     <!-- 스터디 명 -->
     <select id = "getStudyName" resultType="java.lang.String">
-        select s_name from study where s_code = #{s_code}
+        select DISTINCT s_name from study where s_code = #{s_code}
     </select>
     <!-- 스터디 인원 -->
     <select id = "getTotalMember" resultType ="java.lang.Integer">
@@ -37,13 +37,19 @@
     <!-- 스터디 남은 일 수 -->
     <select id = "getDday" resultType ="java.lang.Integer">
         SELECT
-        (s_end - SYSDATE) AS d_day
+        DISTINCT (s_end - SYSDATE) AS d_day
         FROM
         study
         WHERE s_code = #{s_code}
     </select>
 
-
+    <!--스터디 멤버 이름 -->
+    <select id ="getStudyMember" resultType = "java.lang.String" parameterType="java.lang.String">
+        SELECT u.name
+        FROM users u
+        JOIN study s ON u.id = s.id
+        WHERE s.s_code = #{s_code}
+    </select>
     <!-- 익스텐션 -->
     <select id = "getStudyCode" resultType="java.lang.String">
         select s_code from study where id = #{id}

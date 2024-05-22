@@ -3,6 +3,9 @@ package com.example.podofarm.db;
 import com.example.podofarm.vo.StudyVO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudyDBManger extends DBManager{
 
     /*SQL문 종류
@@ -38,7 +41,6 @@ public class StudyDBManger extends DBManager{
         SqlSession session = sqlSessionFactory.openSession();
         String result = session.selectOne("study.checkStudyCode", id);
         System.out.println(result);
-
         session.close();
         return result;
     }
@@ -47,7 +49,7 @@ public class StudyDBManger extends DBManager{
         int re = -1; // 기본값 설정
 
         SqlSession session = sqlSessionFactory.openSession();
-        String result = (String)session.selectOne("study.findStudyCode", s_code); //
+        String result = session.selectOne("study.findStudyCode", s_code);
         System.out.println(result);
         if (result != null) { // null 체크
             return 1;
@@ -60,23 +62,22 @@ public class StudyDBManger extends DBManager{
         String n = "";
         SqlSession session = sqlSessionFactory.openSession();
         n = (String)session.selectOne("study.getStudyName", s_code);
+        System.out.println("getStudyName" + n);
         session.close();
         return n;
     }
 
-    public static Object getStudyMember(String s_code) {
-        String n = "";
-        SqlSession session = sqlSessionFactory.openSession();
-        n = session.selectOne("study.getStudyName", s_code);
-        session.close();
-        return n;
+    public static List<String> getStudyMember(String s_code) {
+       List<String> names;
+       SqlSession session = sqlSessionFactory.openSession();
+       names = session.selectList("study.getStudyMember", s_code);
+       System.out.println(names + "스터디원이름");
+       return names;
     }
-
     public static int getTotalMember(String s_code) {
         int re = -1; // 기본값 설정
         SqlSession session = sqlSessionFactory.openSession();
         re = session.selectOne("study.getTotalMember", s_code); //
-        System.out.println("스터디 멤버의 수는 : " + re + "입니다 //STUDYDBMANAGER GETTOATALMEMBER" );
         session.close();
         return re;
     }

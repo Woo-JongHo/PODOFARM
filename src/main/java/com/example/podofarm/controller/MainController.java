@@ -100,8 +100,9 @@ public class MainController {
         String id = (String) session.getAttribute("id");
 
         id = "104539211393038791047";
-        System.out.println("세션값 확인" + " id 는 " + id + " 스터디 코드는 " + s_code);
+        s_code = "423XDF";
 
+        System.out.println("세션값 확인" + " id 는 " + id + " 스터디 코드는 " + s_code);
 
         //01 만약 s_code가 없는 url이면 에러 페이지를 뜬다.
         int findStudyCode = studyService.findStudyCode(s_code);
@@ -113,9 +114,12 @@ public class MainController {
 
         //불러오는 데이터 목록
 
+
+
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
+        System.out.println("맴버들의 이름 확인" + studyService.getTotalMember(s_code));
         model.addAttribute("getDday",studyService.getDday(s_code));
 
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
@@ -127,8 +131,6 @@ public class MainController {
 
 
         //포도농사 칸
-
-        //
 
         int DayCheck = DayCheck();
         System.out.println("이번달" + DayCheck);
