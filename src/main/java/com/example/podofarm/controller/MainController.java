@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 
 @Controller
@@ -154,14 +151,21 @@ public class MainController {
         List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code);
         int index = memberID.size();
         for (int i = 0 ; i < index ; i++ ){
-            codeService.getSolvedByDay(memberID.get(i));
-            System.out.println("멤버 하나씩 찍어보기 아이디 " + memberID.get(i));
-            System.out.println("DB값 가져온것 같이 확인, 날짜별 푼 문제" + codeService.getSolvedByDay(memberID.get(i)));
+            ArrayList<Map<String, String>> solvedList;
+            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
+            System.out.println("DB값 가져온것 같이 확인, 날짜별 푼 문제" + codeService.getSolvedByDayCurrentMonth(memberID.get(i)));
+
+            //solved 값만 가져온다
+            ArrayList<String> fillPodofarm = new ArrayList<>();
+            for (Map<String, String> map : solvedList) {
+                String solved = String.valueOf(map.get("SOLVED"));
+                fillPodofarm.add(solved);
+            }
+            System.out.println("SOLVED 값 리스트: " + fillPodofarm);
+
+
+
         }
-
-
-
-
 
 
         return "ver4/main";

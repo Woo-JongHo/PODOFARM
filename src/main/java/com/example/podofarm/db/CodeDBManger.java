@@ -1,7 +1,5 @@
 package com.example.podofarm.db;
 
-import com.example.podofarm.vo.CodeVO;
-import com.example.podofarm.vo.StudyVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
@@ -19,19 +17,20 @@ public class CodeDBManger extends DBManager{
         return re;
     }
 
-
-    public static HashMap<String, String> getSolvedByDay(String id) {
-        Map<String, String> results = new HashMap<>();
+    public static ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
+        ArrayList<Map<String, String>> results = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
-        List<Map<String, String>> rows = session.selectList("code.getSolvedByDay", id);
+        List<Map<String, String>> rows = session.selectList("code.getSolvedByDayCurrentMonth", id);
         session.close();
         for (Map<String, String> row : rows) {
-            String date = row.get("C_DATE");
-            String solved = String.valueOf(row.get("SOLVED"));
-            results.put(date, solved);
+            results.add(row);
         }
-        return (HashMap<String, String>) results;
+        return results;
     }
+
+
+
+
 
 
 }

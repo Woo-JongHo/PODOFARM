@@ -5,8 +5,8 @@ import com.example.podofarm.repository.CodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 @Service
 public class CodeService {
@@ -19,7 +19,7 @@ public class CodeService {
     }
 
 
-    public HashMap<String, String> getSolvedByDay(String id) {
-        return repository.getSolvedByDay(id);
+    public ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
+        return repository.getSolvedByDayCurrentMonth(id);
     }
 }

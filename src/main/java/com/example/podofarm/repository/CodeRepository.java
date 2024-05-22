@@ -3,8 +3,8 @@ package com.example.podofarm.repository;
 import com.example.podofarm.db.CodeDBManger;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 @Repository
 public class CodeRepository {
@@ -13,8 +13,8 @@ public class CodeRepository {
         return CodeDBManger.syncRepo(sCode);
     }
 
-    public HashMap<String, String> getSolvedByDay(String id) {
-        return CodeDBManger.getSolvedByDay(id);
+    public ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
+        return CodeDBManger.getSolvedByDayCurrentMonth(id);
     }
 
 }
