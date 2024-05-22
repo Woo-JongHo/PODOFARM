@@ -44,4 +44,8 @@ public class StudyRepository {
     public Object getDday(String s_code) {
         return StudyDBManger.getDday(s_code);
     }
+
+    public Object getStudyMemberID(String s_code){
+        return StudyDBManger.getStudyMemberID(s_code);
+    }
 }

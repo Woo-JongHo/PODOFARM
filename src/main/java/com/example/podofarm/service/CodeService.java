@@ -2,9 +2,11 @@ package com.example.podofarm.service;
 
 
 import com.example.podofarm.repository.CodeRepository;
-import com.example.podofarm.repository.StudyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class CodeService {
@@ -17,4 +19,7 @@ public class CodeService {
     }
 
 
+    public HashMap<String, String> getSolvedByDay(String id) {
+        return repository.getSolvedByDay(id);
+    }
 }

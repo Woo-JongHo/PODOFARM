@@ -557,6 +557,7 @@ body {
     display: flex;
     width: 160px;
     align-items: center;
+    justify-content: flex-end;
     gap: 10px;
 
     color: #E6EDF3;

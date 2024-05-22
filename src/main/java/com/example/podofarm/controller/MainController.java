@@ -1,6 +1,7 @@
 package com.example.podofarm.controller;
 
 
+import com.example.podofarm.service.CodeService;
 import com.example.podofarm.service.StudyService;
 import com.example.podofarm.service.UserService;
 import com.example.podofarm.vo.StudyVO;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.TextStyle;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -30,6 +34,8 @@ public class MainController {
     @Autowired
     private StudyService studyService;
 
+    @Autowired
+    private CodeService codeService;
 
     //스터디가 없을 때 컨트롤러
 
@@ -120,6 +126,7 @@ public class MainController {
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
+
         model.addAttribute("getDday",studyService.getDday(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
 
@@ -130,9 +137,32 @@ public class MainController {
 
         //포도농사 칸
 
+        //월 표기
+        String getMonthName = getMonthName();
+        model.addAttribute("getMonthName", getMonthName);
+
+        //해당 월 날짜
         int DayCheck = DayCheck();
         System.out.println("이번달" + DayCheck);
         model.addAttribute("DayCheck", DayCheck);
+
+        //날짜마다 문제 푼 갯수 파악
+        //스터디 멤버를 가져오고, 멤버의 id를 가지고 와서
+        //getSolvedList로 가지고 온다
+        model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
+        System.out.println(studyService.getStudyMemberID(s_code));
+        List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code);
+        int index = memberID.size();
+        for (int i = 0 ; i < index ; i++ ){
+            codeService.getSolvedByDay(memberID.get(i));
+            System.out.println("멤버 하나씩 찍어보기 아이디 " + memberID.get(i));
+            System.out.println("DB값 가져온것 같이 확인, 날짜별 푼 문제" + codeService.getSolvedByDay(memberID.get(i)));
+        }
+
+
+
+
+
 
         return "ver4/main";
     }
@@ -149,6 +179,12 @@ public class MainController {
             return daysInMonth;
         }
 
+        public String getMonthName() {
+            LocalDate currentDate = LocalDate.now();
+            YearMonth yearMonth = YearMonth.of(currentDate.getYear(), currentDate.getMonth());
+            String monthName = yearMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
 
+            return monthName;
+        }
 }
 

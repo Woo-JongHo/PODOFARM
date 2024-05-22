@@ -34,8 +34,6 @@
                         <div th:text ="${member}" class="dashboard-sidbar-navbar-members-name">
                         </div>
                     </a>
-
-
                 </div>
 
                 <div class="dashboard-sidebar-recentactionbar">
@@ -44,9 +42,7 @@
                         <div class="dashboard-sidebar-recentactionbar-alaram">
                             <div class="dashboard-sidebar-recentactionbar-alaram-time">2 hours ago</div>
                             <div class="dashboard-sidebar-recentactionbar-alaram-content">> 우종호님이 숫자 구하기 문제를 풀었습니다!</div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -56,7 +52,11 @@
                 <div class="dashboard-podofarm">
                     <div class="dashboard-podofarm-title">
                         <div class="dashboard-podofarm-title-text">이번 달 포도농사</div>
-                        <div class="dashboard-podofarm-title-users">포도농사원 : 김경선, 우종호 </div>
+                        <div class="dashboard-podofarm-title-users">포도농사원 :
+                            <div th:each="member, index: ${getStudyMember}" th:text="${member}">
+                                <div th:if="${!index.last},">, </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="dashboard-podofarm-main-count">
                         <div>less</div>
@@ -70,16 +70,14 @@
 
                     <div class="dashboard-podofarm-grape">
                         <div class="dashboard-podofarm-grape-title">
-                            <div class="dashboard-podofarm-grape-title-month">
-                                DECEMBER
-                            </div>
+                            <div th:text ="${getMonthName}" class="dashboard-podofarm-grape-title-month"></div>
                             <div th:each="day:${#numbers.sequence(1,DayCheck)}"class="dashboard-podofarm-grape-title-days">
                                 <span th:text="${day}">1</span>
                             </div>
                         </div>
-                        <div class="dashboard-podofarm-grape-month">
-                            <div class="dashboard-podofarm-grape-user">이름짱짱맨</div>
-                            <div th:each="day:${#numbers.sequence(1,DayCheck)}"class="dashboard-podofarm-grape-title-days"></div>
+                        <div th:each="member, index : ${getStudyMember}" class="dashboard-podofarm-grape-month">
+                            <div th:text="${member}" class="dashboard-podofarm-grape-user"></div>
+                            <div th:each="day : ${#numbers.sequence(1, DayCheck)}" class="dashboard-podofarm-grape-title-days"></div>
                         </div>
                     </div>
                 </div>

@@ -48,4 +48,8 @@ public class StudyService {
     public String getStudyCode(String id) {
         return repository.getStudyCode(id);
     }
+
+    public Object getStudyMemberID(String s_code) {
+        return repository.getStudyMemberID(s_code);
+    }
 }

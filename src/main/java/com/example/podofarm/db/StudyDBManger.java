@@ -101,4 +101,12 @@ public class StudyDBManger extends DBManager{
         session.close();
         return n;
     }
+
+    public static List<String> getStudyMemberID(String s_code) {
+            List<String> names;
+            SqlSession session = sqlSessionFactory.openSession();
+            names = session.selectList("study.getStudyMemberID", s_code);
+            System.out.println(names + "스터디원아이디");
+            return names;
+    }
 }
