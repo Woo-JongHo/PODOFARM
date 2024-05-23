@@ -5,6 +5,8 @@ import com.example.podofarm.service.CodeService;
 import com.example.podofarm.service.StudyService;
 import com.example.podofarm.service.UserService;
 import com.example.podofarm.vo.StudyVO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +105,7 @@ public class MainController {
 
     //스터디가 있을 때 컨트롤러 MainPage와 연동
     @GetMapping("/{s_code}")
-    public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session){
+    public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session) throws JsonProcessingException {
         String id = (String) session.getAttribute("id");
 
         id = "104539211393038791047";
@@ -147,17 +149,22 @@ public class MainController {
         System.out.println("이번달" + DayCheck);
         model.addAttribute("DayCheck", DayCheck);
 
+
+
         //날짜마다 문제 푼 갯수 파악
         //스터디 멤버를 가져오고, 멤버의 id를 가지고 와서
         //getSolvedList로 가지고 온다
         model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
         System.out.println(studyService.getStudyMemberID(s_code));
         List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code);
+
+
         int index = memberID.size();
+
+
         for (int i = 0 ; i < index ; i++ ){
             ArrayList<Map<String, String>> solvedList;
             solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
-            System.out.println("DB값 가져온것 같이 확인, 날짜별 푼 문제" + codeService.getSolvedByDayCurrentMonth(memberID.get(i)));
 
             //solved 값만 가져온다
             //1. DayCheck만큼 배열을 생성합니다.
@@ -165,23 +172,21 @@ public class MainController {
 
             int [] solvedMonth = new int[DayCheck];
 
-
             for (Map<String, String> map : solvedList) {
-                String dataDay = (String) map.get("C_DATE");
+                String dataDay = map.get("C_DATE");
                 int day = Integer.parseInt(dataDay.substring(3,5));
                 String solved = String.valueOf(map.get("SOLVED"));
-
                 solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
+            }
 
-            }
-            for (int j = 0; j < solvedMonth.length; j++) {
-                System.out.println("Day " + (j + 1) + ": " + solvedMonth[j]);
-            }
+
+            model.addAttribute("solvedMonth", solvedMonth);
         }
 
 
         return "ver4/main";
     }
+
 
 
         //날짜 입력란. 이번달의 일수를 확인
