@@ -149,19 +149,15 @@ public class MainController {
         System.out.println("이번달" + DayCheck);
         model.addAttribute("DayCheck", DayCheck);
 
-
-
         //날짜마다 문제 푼 갯수 파악
         //스터디 멤버를 가져오고, 멤버의 id를 가지고 와서
         //getSolvedList로 가지고 온다
         model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
         System.out.println(studyService.getStudyMemberID(s_code));
         List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code);
-
-
         int index = memberID.size();
-
-
+        
+        //멤버마다 푼 문제를 확인
         for (int i = 0 ; i < index ; i++ ){
             ArrayList<Map<String, String>> solvedList;
             solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
@@ -171,7 +167,6 @@ public class MainController {
             //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
 
             int [] solvedMonth = new int[DayCheck];
-
             for (Map<String, String> map : solvedList) {
                 String dataDay = map.get("C_DATE");
                 int day = Integer.parseInt(dataDay.substring(3,5));
@@ -180,13 +175,37 @@ public class MainController {
             }
 
 
-            model.addAttribute("solvedMonth", solvedMonth);
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String[] solvedDataTypeString = new String[DayCheck];
+            for (int j = 0; j < DayCheck; j++) {
+                switch (solvedMonth[j]) {
+                    case 0:
+                        solvedDataTypeString[j] = "solved-0";
+                        break;
+                    case 1:
+                        solvedDataTypeString[j] = "solved-1";
+                        break;
+                    case 2:
+                        solvedDataTypeString[j] = "solved-2";
+                        break;
+                    case 3:
+                        solvedDataTypeString[j] = "solved-3";
+                        break;
+                    default:
+                        solvedDataTypeString[j] = "solved-4";
+                        break;
+                }
+            }
+
+            String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
+            System.out.println(solvedDataConvertJson + "JSON 변환 확인");
+            model.addAttribute("solvedData",solvedDataTypeString);
         }
 
 
         return "ver4/main";
     }
-
 
 
         //날짜 입력란. 이번달의 일수를 확인

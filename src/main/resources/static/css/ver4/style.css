@@ -585,6 +585,62 @@ body {
     background: #161B22;
 }
 
+.solved-0{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #161B22;
+}
+
+.solved-1{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #351c75;
+}
+
+.solved-2{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #674ea7;
+}
+
+.solved-3{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #8e7cc3;
+}
+
+.solved-4{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 2px;
+    background: #b4a7d6;
+}
+
+
 .dashboard-podofarm-grape-month {
     display: flex;
     padding: 4px 0px 4px 2px;
