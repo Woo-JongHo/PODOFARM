@@ -79,10 +79,8 @@
                     </div>
                     <div th:each="member, index : ${getStudyMember}" class="dashboard-podofarm-grape-month">
                         <div th:text="${member}" class="dashboard-podofarm-grape-user"></div>
-                        <div th:each="memberIdx : ${#numbers.sequence(1, memberSize)}">
-                            <div th:each="day, idx : ${#numbers.sequence(1, DayCheck)}"
-                                 th:class="${'solvedData' + ${memberIdx} + '[' + ${idx.index} + ']'}"></div>
-                        </div>
+                        <div th:each="day, idx : ${#numbers.sequence(1, DayCheck)}"
+                             th:class="${solvedData[idx.index]}"></div>
                     </div>
                 </div>
             </div>
