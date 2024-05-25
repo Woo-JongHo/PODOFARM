@@ -1,15 +1,15 @@
-body {
+html body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
     margin: 8px;
-    background: #010409;
     overflow-x: hidden;
+    background: #0D1117;
     /* 가로 스크롤바를 숨김 */
-
 }
+
 
 
 /*********************/
@@ -258,7 +258,7 @@ body {
 
 .dashboard-main {
     display: flex;
-    width: 100vw;
+    width: 85vw;
     align-items: flex-start;
     gap: 10px;
     flex-shrink: 0;
@@ -755,6 +755,14 @@ body {
 /* **************************** */
 
 /**Main**/
+
+#personal-main {
+
+    overflow-x: hidden; /* 가로 스크롤바를 숨김 */
+    width: 100vw;
+}
+
+
 .personalpage-main {
     display: flex;
     min-height: 1080px;
