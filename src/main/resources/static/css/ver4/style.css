@@ -4,7 +4,6 @@ html body {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    margin: 8px;
     overflow-x: hidden;
     background: #0D1117;
     /* 가로 스크롤바를 숨김 */
@@ -96,7 +95,7 @@ html body {
     width: 100vw;
     height: 100%;
     padding: 16px;
-    background: #0D1117;
+    background: #010409;
     justify-content: space-between;
     align-items: center;
     display: inline-flex;
@@ -116,7 +115,7 @@ html body {
 
 .logo,
 .title {
-    background: #0D1117;
+    background: #010409;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -314,10 +313,14 @@ html body {
     gap: 4px;
     align-self: stretch;
     font-size: 12px;
-    padding-bottom : 4px;
+    padding-bottom : 8px;
 
     text-decoration:none;
 
+}
+
+.dashboard-sidbar-navbar-members:hover {
+    opacity: 0.8;
 }
 
 .dashboard-sidbar-navbar-members-name {
