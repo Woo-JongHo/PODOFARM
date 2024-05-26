@@ -41,8 +41,13 @@ public class PersonalController {
 
     //personal로 변경할 것
     @GetMapping("/ps")
-    public String personal(HttpSession session){
+    public String personal(Model model, HttpSession session){
         String id = (String) session.getAttribute("id");
+        String s_code = "423XDF";
+
+        model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
+
+
 
         return "ver4/personal";
     }
