@@ -1,0 +1,63 @@
+{
+    "manifest_version": 3,
+    "name": "포도팜(PODOFARM)",
+    "description": "프로그래머스를 통한 자바 알고리즘 스터디 동기화",
+    "version": "1.0",
+    "author": "flaxinger",
+    "action": {
+      "default_icon": "assets/default.png",
+      "default_popup": "popup.html"
+    },
+
+    "permissions":[
+      "unlimitedStorage",
+      "storage",
+      "declarativeNetRequest",
+      "declarativeNetRequestWithHostAccess",
+      "http://localhost:8080/*"
+    ],
+
+    "host_permissions":[
+      "https://school.programmers.co.kr/",
+      "https://podofarm.net",
+      "https://localhost:8080/*"
+    ],
+
+    "web_accessible_resources": [
+      {
+        "matches": [
+          "<all_urls>"
+        ],
+        "resources": [
+          "library/jquery-3.3.1.min.js",
+          "library/semantic.min.js",
+          "popup.html",
+          "popup.js",
+          "welcome.html",
+          "welcome.js"
+        ]
+      }
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+        "https://school.programmers.co.kr/*"
+      ],
+        "css": [
+          //"css/programmers/inject.css"
+        ],
+        "js": [
+          "scripts/programmers/variables.js",
+          "scripts/programmers/parsing.js",
+          "scripts/programmers/uploadfunctions.js",
+          "scripts/programmers/programmers.js",
+          "scripts/programmers/util.js",
+          "library/sha1.min.js",
+          "scripts/util.js",
+          "scripts/enable.js",
+          "scripts/storage.js"
+        ],
+        "run_at": "document_idle"
+    }
+  ]
+}
