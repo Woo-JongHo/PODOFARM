@@ -23,4 +23,8 @@ public class UserService {
         System.out.println(u + "VO값 어떻게 넘어오나 확인");
         return repository.insertUser(u);
     }
+
+    public String getName(String id){
+        return repository.getName(id);
+    }
 }

@@ -20,9 +20,12 @@ public class UserRepository {
         return UserDBManger.checkStudy(id);
     }
 
-
     public int insertUser(UserVO u){
         return UserDBManger.insertUser(u);
+    }
+
+    public String getName(String id){
+        return UserDBManger.getName(id);
     }
 
 }

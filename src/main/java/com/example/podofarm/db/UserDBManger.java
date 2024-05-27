@@ -43,11 +43,19 @@ public class UserDBManger extends DBManager{
     public static int insertUser(UserVO u) {
         int re = -1;
         SqlSession session = sqlSessionFactory.openSession();
-        re = session.insert("insertUser", u);
+        re = session.insert("user.insertUser", u);
         session.commit();
         session.close();
         return re;
+    }
 
+    public static String getName(String id){
+        String n = "";
+        SqlSession session = sqlSessionFactory.openSession();
+        n = (String)session.selectOne("user.getName", id);
+        System.out.println("getStudyName" + n);
+        session.close();
+        return n;
     }
 
 }

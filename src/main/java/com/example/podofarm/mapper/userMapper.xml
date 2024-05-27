@@ -14,6 +14,12 @@
         select study from USERS where id = #{id}
     </select>
 
+
+    <!--회원 이름 가져오기 -->
+    <select id ="getName" resultType="java.lang.String">
+        select name from users where id = #{id}
+    </select>
+
     <!-- 구글로그인으로 로그인 했을 때 회원 테이블 생성-->
     <insert id="insertUser">
         INSERT INTO USERS (USERNO, ID, NAME, GENDER, PHONE, STUDY, SOLVED, LEADER, EMAIL)

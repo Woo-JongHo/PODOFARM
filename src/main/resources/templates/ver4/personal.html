@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <div th:include="/ver4/header/header-globalbar-localbar-ver4.html" class="header-personal"></div>
+    <div th:include="/ver4/header/header-globalbar-localbar-ver4.html" class="personal-header "></div>
 </header>
 
 <main id = "personalpage-main">
@@ -21,11 +21,15 @@
         <div class="personalpage-container">
             <div class="personalpage-container-header">
                 <div class="personalpage-container-header-title">
-                    <div class="personalpage-container-header-title-text">우종호님의 포도농장</div>
+                    <div class="personalpage-container-header-title-text">
+                        <div th:text="${getName} + '님의 포도농사'"></div>
+                    </div>
                 </div>
                 <div class="personalpage-container-header-totalsolved">
                     <div class="personalpage-container-header-totalsolved-text">총 푼 문제수 :</div>
-                    <div class="personalpage-container-header-totalsolved-count">200</div>
+                    <div class="personalpage-container-header-totalsolved-count">
+                        <div th:text ="${getTotalSolvedById}"></div>
+                    </div>
                 </div>
             </div>
 

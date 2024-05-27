@@ -17,4 +17,7 @@ public class CodeRepository {
         return CodeDBManger.getSolvedByDayCurrentMonth(id);
     }
 
+    public int getTotalSolvedById(String id) {
+        return CodeDBManger.getTotalSolvedById(id);
+    }
 }

@@ -28,4 +28,8 @@
         ORDER BY C_DATE ASC
     </select>
 
+    <select id ="getTotalSolvedById" resultType ="java.lang.Integer">
+        select count(*) from code where id = #{id}
+    </select>
+
 </mapper>

@@ -29,7 +29,13 @@ public class CodeDBManger extends DBManager{
     }
 
 
-
+    public static int getTotalSolvedById(String id){
+        int re = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+        re = session.selectOne("code.getTotalSolvedById", id); //
+        session.close();
+        return re;
+    }
 
 
 

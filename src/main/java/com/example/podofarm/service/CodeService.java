@@ -18,8 +18,11 @@ public class CodeService {
         return repository.syncRepo(s_code);
     }
 
-
     public ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
         return repository.getSolvedByDayCurrentMonth(id);
+    }
+
+    public int getTotalSolvedById(String id){
+        return repository.getTotalSolvedById(id);
     }
 }

@@ -42,12 +42,13 @@ public class PersonalController {
     //personal로 변경할 것
     @GetMapping("/ps")
     public String personal(Model model, HttpSession session){
-        String id = (String) session.getAttribute("id");
+        //String id = (String) session.getAttribute("id");
+        String id = "1234";
         String s_code = "423XDF";
 
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
-
-
+        model.addAttribute("getName",userService.getName(id));
+        model.addAttribute("getTotalSolvedById", codeService.getTotalSolvedById(id));
 
         return "ver4/personal";
     }
