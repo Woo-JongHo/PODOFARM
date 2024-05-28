@@ -43,7 +43,8 @@ async function parseData() {
 async function makeData(origin) {
   const { link, problem_description, problemId, level, result_message, division, language_extension, title, runtime, memory, code } = origin;
   //const directory = `프로그래머스/${level}/${problemId}. ${convertSingleCharToDoubleChar(title)}`;
-  const message = `[${level.replace('lv', 'level ')}] Title: ${title}, Time: ${runtime}, Memory: ${memory} -BaekjoonHub`;
+  const message = `[${level.replace('lv', 'level ')}] Title: ${title}, Time: ${runtime}, Memory: ${memory}`;
+  const dateInfo = getDateString(new Date(Date.now()));
   const fileName = `${convertSingleCharToDoubleChar(title)}.${language_extension}`;
   // prettier-ignore
   const readme =
@@ -56,8 +57,10 @@ async function makeData(origin) {
       + `${division.replace('/', ' > ')}\n\n`
       + `### 채점결과\n\n`
       + `${result_message}\n\n`
+      + `### 제출 일자\n\n`
+      + `${dateInfo}\n\n`
       + `### 문제 설명\n\n`
       + `${problem_description}\n\n`
       + `> 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges`;
-  return { problemId, message, fileName, readme, code };
+  return { problemId, message, fileName, readme, code, level, dateInfo};
 }

@@ -9,7 +9,7 @@ chrome.storage.local.get('syncStorage', (data) => {
       });
       chrome.storage.local.set({ isSync: true }, (data) => {
         // if (debug)
-        console.log('BaekjoonHub Synced to local values');
+        console.log('Podofarm Synced to local values');
       });
     } else {
       // console.log('Upload Completed. Local Storage status:', data);
@@ -22,11 +22,7 @@ async function getObjectFromLocalStorage(key) {
     return new Promise((resolve, reject) => {
       try {
         chrome.storage.local.get(key, function(value) {
-          
-
-
           resolve(value[key]);
-        
         /* 현재,  enable은 popup.js의 버튼과 연결되어있음
         버튼이 없으므로 그냥 가능하다고 일단 작업
         */
@@ -35,7 +31,6 @@ async function getObjectFromLocalStorage(key) {
         
         console.log("getObjectFromStorage 시도 중 ");
         console.log(value[key]);
-
 
         });
       } catch (ex) {
