@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
@@ -38,7 +40,6 @@ public class PersonalController {
 
     //스터디코드/이메일로 할 것
 
-
     //personal로 변경할 것
     @CrossOrigin(origins = "https://school.programmers.co.kr")
     @RequestMapping(method = RequestMethod.GET, value = "/ps")
@@ -52,12 +53,65 @@ public class PersonalController {
         model.addAttribute("getTotalSolvedById", codeService.getTotalSolvedById(id));
 
         //익스텐션에서 푼 데이터 가져오기
-
         return "ver4/personal";
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/ps")
+    public ResponseEntity<String> upload(@RequestBody UploadRequest request) throws ParseException {
+        CodeVO code = new CodeVO();
+
+        // 요청에서 필요한 데이터 추출
+        String id = request.getId();
+        String filename = request.getFilename();
+        int filenamelength = filename.length();
+        filename = filename.substring(0,filenamelength-5);
+
+        String sourceText = request.getSourceText();
+        String readmeText = request.getReadmeText();
+        String commitMessage = request.getCommitMessage();
+        String dateInfo = request.getDateInfo();
+
+        System.out.println(dateInfo + " DateInFO");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date Date_KST = dateFormat.parse(dateInfo);
+        // Date 객체를 원하는 형식으로 다시 포맷
+        String Date = dateFormat.format(Date_KST);
+        System.out.println(Date + " DATE나와라");
+
+
+        //CODE 인서트하기
+        code.setId(id);
+        code.setC_filename(filename);
+        code.setC_source(sourceText);
+        code.setC_readme(readmeText);
+        code.setC_like(0);
+        code.setC_date(Date);
+
+
+
+        System.out.println(id);
+        System.out.println("----------------------------------");
+        System.out.println("----------------------------------");
+        System.out.println(sourceText);
+        System.out.println("----------------------------------");
+        System.out.println(readmeText);
+        System.out.println("----------------------------------");
+        System.out.println(filename);
+        System.out.println("----------------------------------");
+        System.out.println(commitMessage);
+        System.out.println("----------------------------------");
+
+        // 요청 처리 로직 추가
+        // 예를 들어, 서비스를 호출하거나 데이터베이스에 저장하는 등의 작업을 수행할 수 있습니다.
+
+        // 응답 생성
+        return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
+    }
+
+    /*오류코드
+    *     @CrossOrigin(origins = "http://localhost:8080")
+    @PostMapping("/ps")
     public ResponseEntity<String> upload(@RequestBody UploadRequest request) {
         // 요청에서 필요한 데이터 추출
         String id = request.getId();
@@ -67,20 +121,12 @@ public class PersonalController {
         String filename = request.getFilename();
         String commitMessage = request.getCommitMessage();
 
-
-        System.out.println(id);
-        System.out.println(studyCode);
-        System.out.println(sourceText);
-        System.out.println(readmeText);
-        System.out.println(filename);
-        System.out.println(commitMessage);
-
         // 요청 처리 로직 추가
         // 예를 들어, 서비스를 호출하거나 데이터베이스에 저장하는 등의 작업을 수행할 수 있습니다.
 
         // 응답 생성
         return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
-    }
+    }*/
 }
 
 

@@ -1,5 +1,7 @@
 package com.example.podofarm.vo;
 
+import java.util.Date;
+
 public class CodeVO {
 
     //CodeVO는 백준허브의 데이터 받는 것을 참조하여 만들었습니다.
@@ -10,24 +12,22 @@ public class CodeVO {
 
 
     private int c_no;
+
     private String id;
 
+    private String c_filename;
 
+    private String c_source;
 
-    private String c_problem_description;
-    private String c_problem_id;
-    private String c_link;
-    private String c_title;
+    private String c_readme;
 
     private String c_level;
-    private String c_code;
-    private String c_result;
-    private String c_runtime;
-    private String c_memory;
+    public Date c_date;
 
     public int getC_no() {
         return c_no;
     }
+
 
     public void setC_no(int c_no) {
         this.c_no = c_no;
@@ -41,36 +41,28 @@ public class CodeVO {
         this.id = id;
     }
 
-    public String getC_problem_description() {
-        return c_problem_description;
+    public String getC_filename() {
+        return c_filename;
     }
 
-    public void setC_problem_description(String c_problem_description) {
-        this.c_problem_description = c_problem_description;
+    public void setC_filename(String c_filename) {
+        this.c_filename = c_filename;
     }
 
-    public String getC_problem_id() {
-        return c_problem_id;
+    public String getC_source() {
+        return c_source;
     }
 
-    public void setC_problem_id(String c_problem_id) {
-        this.c_problem_id = c_problem_id;
+    public void setC_source(String c_source) {
+        this.c_source = c_source;
     }
 
-    public String getC_link() {
-        return c_link;
+    public String getC_readme() {
+        return c_readme;
     }
 
-    public void setC_link(String c_link) {
-        this.c_link = c_link;
-    }
-
-    public String getC_title() {
-        return c_title;
-    }
-
-    public void setC_title(String c_title) {
-        this.c_title = c_title;
+    public void setC_readme(String c_readme) {
+        this.c_readme = c_readme;
     }
 
     public String getC_level() {
@@ -81,36 +73,34 @@ public class CodeVO {
         this.c_level = c_level;
     }
 
-    public String getC_code() {
-        return c_code;
+    public int getC_like() {
+        return c_like;
     }
 
-    public void setC_code(String c_code) {
-        this.c_code = c_code;
+    public void setC_like(int c_like) {
+        this.c_like = c_like;
     }
 
-    public String getC_result() {
-        return c_result;
-    }
-    public void setC_result(String c_result) {
-        this.c_result = c_result;
+    public Date getC_date() {
+        return c_date;
     }
 
-    public String getC_runtime() {
-        return c_runtime;
+    public void setC_date(String c_date) {
+        this.c_date = c_date;
     }
 
-    public void setC_runtime(String c_runtime) {
-        this.c_runtime = c_runtime;
+    public int getC_time() {
+        return c_time;
     }
 
-    public String getC_memory() {
-        return c_memory;
+    public void setC_time(int c_time) {
+        this.c_time = c_time;
     }
 
-    public void setC_memory(String c_memory) {
-        this.c_memory = c_memory;
-    }
+    private int c_like;
 
+
+    //타임 기능 구현시 이용할 것, DB에도 설정안한 상태
+    private int c_time;
 
 }

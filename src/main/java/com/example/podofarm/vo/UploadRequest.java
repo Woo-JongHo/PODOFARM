@@ -7,6 +7,20 @@ public class UploadRequest {
     private String readmeText;
     private String filename;
     private String commitMessage;
+    private String dateInfo;
+
+    public String getDateInfo() {
+        return dateInfo;
+    }
+
+    public void setDateInfo(String dateInfo) {
+        this.dateInfo = dateInfo;
+    }
+
+
+
+
+
 
     // 각 필드에 대한 getter 및 setter 메소드
 

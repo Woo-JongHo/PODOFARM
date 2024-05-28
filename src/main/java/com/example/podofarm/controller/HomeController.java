@@ -63,7 +63,6 @@ public class HomeController {
         session.setAttribute("id", id);
         session.setAttribute("s_code", s_code);
 
-
         int checkUser = userService.checkUser(id);
         int checkStudy = userService.checkStudy(id);
 
@@ -88,7 +87,6 @@ public class HomeController {
             System.out.println("회원등록완료");
             return "";
         }
-
     }
     //회원 등록
 
