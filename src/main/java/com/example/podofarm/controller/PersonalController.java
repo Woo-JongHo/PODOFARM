@@ -72,16 +72,10 @@ public class PersonalController {
         String commitMessage = request.getCommitMessage();
         String dateInfo = request.getDateInfo();
 
-
         System.out.println(dateInfo);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = formatter.parse(dateInfo);
 
-        System.out.println(date + "daya 봐바");
-
-
-
-
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = format.parse(dateInfo);
 
         //CODE 인서트하기
         code.setId(id);
@@ -89,7 +83,7 @@ public class PersonalController {
         code.setC_source(sourceText);
         code.setC_readme(readmeText);
         code.setC_like(0);
-
+        code.setC_date(date);
 
         System.out.println(id);
         System.out.println("----------------------------------");
