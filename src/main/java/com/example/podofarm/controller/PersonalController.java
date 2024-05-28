@@ -72,12 +72,15 @@ public class PersonalController {
         String commitMessage = request.getCommitMessage();
         String dateInfo = request.getDateInfo();
 
-        System.out.println(dateInfo + " DateInFO");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date Date_KST = dateFormat.parse(dateInfo);
-        // Date 객체를 원하는 형식으로 다시 포맷
-        String Date = dateFormat.format(Date_KST);
-        System.out.println(Date + " DATE나와라");
+
+        System.out.println(dateInfo);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = formatter.parse(dateInfo);
+
+        System.out.println(date + "daya 봐바");
+
+
+
 
 
         //CODE 인서트하기
@@ -86,8 +89,6 @@ public class PersonalController {
         code.setC_source(sourceText);
         code.setC_readme(readmeText);
         code.setC_like(0);
-        code.setC_date(Date);
-
 
 
         System.out.println(id);
@@ -101,6 +102,9 @@ public class PersonalController {
         System.out.println("----------------------------------");
         System.out.println(commitMessage);
         System.out.println("----------------------------------");
+        System.out.println(date);
+
+        int insertCode = codeService.insertCode(code);
 
         // 요청 처리 로직 추가
         // 예를 들어, 서비스를 호출하거나 데이터베이스에 저장하는 등의 작업을 수행할 수 있습니다.

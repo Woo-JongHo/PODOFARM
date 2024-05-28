@@ -85,7 +85,7 @@ public class CodeVO {
         return c_date;
     }
 
-    public void setC_date(String c_date) {
+    public void setC_date(Date c_date) {
         this.c_date = c_date;
     }
 

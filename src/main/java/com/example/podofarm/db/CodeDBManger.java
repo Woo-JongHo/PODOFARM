@@ -1,5 +1,6 @@
 package com.example.podofarm.db;
 
+import com.example.podofarm.vo.CodeVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
@@ -38,5 +39,12 @@ public class CodeDBManger extends DBManager{
     }
 
 
-
+    public static int insertCode(CodeVO code) {
+        int re = -1;
+        SqlSession session = sqlSessionFactory.openSession();
+        re = session.insert("code.insertCode", code);
+        session.commit();
+        session.close();
+        return re;
+    }
 }

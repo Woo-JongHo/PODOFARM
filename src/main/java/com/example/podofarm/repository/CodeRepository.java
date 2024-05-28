@@ -1,6 +1,7 @@
 package com.example.podofarm.repository;
 
 import com.example.podofarm.db.CodeDBManger;
+import com.example.podofarm.vo.CodeVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,5 +20,9 @@ public class CodeRepository {
 
     public int getTotalSolvedById(String id) {
         return CodeDBManger.getTotalSolvedById(id);
+    }
+
+    public int insertCode(CodeVO code) {
+        return CodeDBManger.insertCode(code);
     }
 }

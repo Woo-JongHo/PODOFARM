@@ -2,6 +2,7 @@ package com.example.podofarm.service;
 
 
 import com.example.podofarm.repository.CodeRepository;
+import com.example.podofarm.vo.CodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,10 @@ public class CodeService {
 
     public int getTotalSolvedById(String id){
         return repository.getTotalSolvedById(id);
+    }
+
+    public int insertCode(CodeVO code) {
+        System.out.println(code + "CODEVO 확인");
+        return repository.insertCode(code);
     }
 }
