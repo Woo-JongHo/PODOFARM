@@ -51,7 +51,13 @@ public class PersonalController {
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         model.addAttribute("getName", userService.getName(id));
         model.addAttribute("getTotalSolvedById", codeService.getTotalSolvedById(id));
+        model.addAttribute("getSolvedTitle" , codeService.getSolvedTitleDESC(id));
+        //model.addAttribute("getSolvedTitle" , codeService.getSolvedTitleASC(id));
 
+        List<String> solvedTitles = codeService.getSolvedTitleDESC(id);
+        for (String title : solvedTitles) {
+            System.out.println(title);
+        }
         //익스텐션에서 푼 데이터 가져오기
         return "ver4/personal";
     }
@@ -77,6 +83,7 @@ public class PersonalController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = format.parse(dateInfo);
 
+
         //CODE 인서트하기
         code.setId(id);
         code.setC_filename(filename);
@@ -85,18 +92,14 @@ public class PersonalController {
         code.setC_like(0);
         code.setC_date(date);
 
+        /*
         System.out.println(id);
-        System.out.println("----------------------------------");
-        System.out.println("----------------------------------");
         System.out.println(sourceText);
-        System.out.println("----------------------------------");
         System.out.println(readmeText);
-        System.out.println("----------------------------------");
         System.out.println(filename);
-        System.out.println("----------------------------------");
         System.out.println(commitMessage);
-        System.out.println("----------------------------------");
         System.out.println(date);
+        */
 
         int insertCode = codeService.insertCode(code);
 

@@ -37,4 +37,7 @@
         VALUES (C_NO_SEQ.NEXTVAL, #{id}, #{c_filename}, #{c_source}, #{c_readme}, 0, #{c_date})
     </insert>
 
+    <select id = "getTotalSolvedDESC">
+        SELECT C_FILENAME FROM CODE WHERE ID = #{ID}
+    </select>
 </mapper>

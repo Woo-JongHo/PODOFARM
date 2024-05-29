@@ -47,4 +47,12 @@ public class CodeDBManger extends DBManager{
         session.close();
         return re;
     }
+
+    public static List<String> getSolvedTitleDESC(String id) {
+        List<String> arr;
+        SqlSession session = sqlSessionFactory.openSession();
+        arr = session.selectList("study.getStudyMemberID", id);
+        System.out.println(arr + "문제제목");
+        return arr;
+    }
 }
