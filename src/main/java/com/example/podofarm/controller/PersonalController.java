@@ -103,8 +103,9 @@ public class PersonalController {
 
         int insertCode = codeService.insertCode(code);
 
-        // 요청 처리 로직 추가
-        // 예를 들어, 서비스를 호출하거나 데이터베이스에 저장하는 등의 작업을 수행할 수 있습니다.
+
+
+
 
         // 응답 생성
         return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
