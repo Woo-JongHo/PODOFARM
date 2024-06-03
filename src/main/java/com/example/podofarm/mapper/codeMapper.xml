@@ -40,4 +40,5 @@
     <select id = "getSolvedCode" resultType="com.example.podofarm.vo.CodeVO">
         SELECT * FROM CODE WHERE id = #{id} order by c_date desc
     </select>
+
 </mapper>

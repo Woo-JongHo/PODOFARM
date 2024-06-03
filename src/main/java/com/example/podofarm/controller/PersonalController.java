@@ -43,7 +43,7 @@ public class PersonalController {
     //personal로 변경할 것
     @CrossOrigin(origins = "https://school.programmers.co.kr")
     @RequestMapping(method = RequestMethod.GET, value = "/ps")
-    public String personal(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page) {
+    public String personal(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
         //String id = (String) session.getAttribute("id");
         String id = "1234";
         String s_code = "423XDF";
@@ -58,10 +58,6 @@ public class PersonalController {
         int start = page * pageSize;
         int end = Math.min(start + pageSize, getSolvedCode.size());
         List<CodeVO> paginatedCodes = getSolvedCode.subList(start, end);
-
-        for (CodeVO code : paginatedCodes) {
-            System.out.println("Code in Controller: " + code.toString());
-        }
 
         // 모델에 결과 추가
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));

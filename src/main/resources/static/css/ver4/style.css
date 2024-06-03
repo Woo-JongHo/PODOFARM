@@ -908,6 +908,8 @@ localbar-item:hover{
     border-radius: 5px;
     border: 1px solid #30363D;
     background: #0D1117;
+
+
 }
 
 .personalpage-container-list-title {
@@ -965,12 +967,13 @@ localbar-item:hover{
     width: 94px;
 }
 
-.personalpage-container-list-area {
+.personalpage-container-list-area a {
     display: flex;
     padding: 0px 10px;
     justify-content: center;
     align-items: center;
     gap: 10px;
+
 
     background: #0D1117;
     color: #E6EDF3;
@@ -983,7 +986,7 @@ localbar-item:hover{
     transition: background-color 0.3s ease;
 }
 
-.personalpage-container-list-area:hover {
+.personalpage-container-list-area a:hover {
     background-color: #1A1D24;
 }
 

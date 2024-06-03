@@ -54,4 +54,5 @@ public class CodeDBManger extends DBManager{
         arr = session.selectList("code.getSolvedCode", id);
         return arr;
     }
+
 }

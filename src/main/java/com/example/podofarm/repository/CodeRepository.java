@@ -37,4 +37,6 @@ public class CodeRepository {
         totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
         return CodeDBManger.getSolvedCode(id);
     }
+
+
 }
