@@ -48,11 +48,10 @@ public class CodeDBManger extends DBManager{
         return re;
     }
 
-    public static List<String> getSolvedTitleDESC(String id) {
-        List<String> arr;
+    public static List<CodeVO> getSolvedCode(String id) {
+        List<CodeVO> arr;
         SqlSession session = sqlSessionFactory.openSession();
-        arr = session.selectList("study.getStudyMemberID", id);
-        System.out.println(arr + "문제제목");
+        arr = session.selectList("code.getSolvedCode", id);
         return arr;
     }
 }

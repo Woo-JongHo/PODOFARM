@@ -22,7 +22,7 @@ public class CodeVO {
     private String c_readme;
 
     private String c_level;
-    public Date c_date;
+    private  Date c_date;
 
     public int getC_no() {
         return c_no;

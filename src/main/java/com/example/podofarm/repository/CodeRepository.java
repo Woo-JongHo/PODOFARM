@@ -10,6 +10,11 @@ import java.util.Map;
 
 @Repository
 public class CodeRepository {
+
+    public static int pageSize =10;
+    public static int totalRecord;
+    public static int totalPage;
+
     public int syncRepo(String sCode) {
 
         return CodeDBManger.syncRepo(sCode);
@@ -27,7 +32,9 @@ public class CodeRepository {
         return CodeDBManger.insertCode(code);
     }
 
-    public List<String> getSolvedTitleDESC(String id) {
-        return CodeDBManger.getSolvedTitleDESC(id);
+    public List<CodeVO> getSolvedCode(String id) {
+        totalRecord = CodeDBManger.getTotalSolvedById(id);
+        totalPage = (int)Math.ceil(totalRecord / (double)pageSize);
+        return CodeDBManger.getSolvedCode(id);
     }
 }

@@ -37,7 +37,7 @@
         VALUES (C_NO_SEQ.NEXTVAL, #{id}, #{c_filename}, #{c_source}, #{c_readme}, 0, #{c_date})
     </insert>
 
-    <select id = "getTotalSolvedDESC">
-        SELECT C_FILENAME FROM CODE WHERE ID = #{ID}
+    <select id = "getSolvedCode" resultType="com.example.podofarm.vo.CodeVO">
+        SELECT * FROM CODE WHERE id = #{id} order by c_date desc
     </select>
 </mapper>

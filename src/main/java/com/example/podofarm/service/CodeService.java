@@ -13,6 +13,7 @@ import java.util.Map;
 @Service
 public class CodeService {
 
+
     @Autowired
     private CodeRepository repository;
 
@@ -33,7 +34,7 @@ public class CodeService {
         return repository.insertCode(code);
     }
 
-    public List<String> getSolvedTitleDESC(String id) {
-       return repository.getSolvedTitleDESC(id);
+    public List<CodeVO> getSolvedCode(String id) {
+       return repository.getSolvedCode(id);
     }
 }

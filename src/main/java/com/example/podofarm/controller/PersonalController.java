@@ -43,24 +43,39 @@ public class PersonalController {
     //personal로 변경할 것
     @CrossOrigin(origins = "https://school.programmers.co.kr")
     @RequestMapping(method = RequestMethod.GET, value = "/ps")
-    public String personal(Model model, HttpSession session) {
+    public String personal(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page) {
         //String id = (String) session.getAttribute("id");
         String id = "1234";
         String s_code = "423XDF";
 
+        // 페이지당 결과 수
+        int pageSize = 10;
+
+        // 사용자가 해결한 코드 가져오기
+        List<CodeVO> getSolvedCode = codeService.getSolvedCode(id);
+
+        // 페이징을 위한 sublist 계산
+        int start = page * pageSize;
+        int end = Math.min(start + pageSize, getSolvedCode.size());
+        List<CodeVO> paginatedCodes = getSolvedCode.subList(start, end);
+
+        for (CodeVO code : paginatedCodes) {
+            System.out.println("Code in Controller: " + code.toString());
+        }
+
+        // 모델에 결과 추가
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         model.addAttribute("getName", userService.getName(id));
         model.addAttribute("getTotalSolvedById", codeService.getTotalSolvedById(id));
-        model.addAttribute("getSolvedTitle" , codeService.getSolvedTitleDESC(id));
-        //model.addAttribute("getSolvedTitle" , codeService.getSolvedTitleASC(id));
+        model.addAttribute("code", paginatedCodes);
 
-        List<String> solvedTitles = codeService.getSolvedTitleDESC(id);
-        for (String title : solvedTitles) {
-            System.out.println(title);
-        }
-        //익스텐션에서 푼 데이터 가져오기
+        // 현재 페이지와 전체 페이지 수 계산하여 모델에 추가
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", (int) Math.ceil((double) getSolvedCode.size() / pageSize));
+
         return "ver4/personal";
     }
+
 
     @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/ps")
@@ -102,9 +117,6 @@ public class PersonalController {
         */
 
         int insertCode = codeService.insertCode(code);
-
-
-
 
 
         // 응답 생성
