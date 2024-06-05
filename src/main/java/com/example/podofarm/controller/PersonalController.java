@@ -160,8 +160,6 @@ public class PersonalController {
         model.addAttribute("c_readme", MarkdownConverter.markdownToHtml(SOLVED.getC_readme()));
         model.addAttribute("c_date",SOLVED.getC_date());
 
-
-
         return "ver4/solved";
     }
 
