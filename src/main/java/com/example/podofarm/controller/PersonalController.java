@@ -139,6 +139,14 @@ public class PersonalController {
         // 응답 생성
         return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
     }*/
+
+    @GetMapping("/sol")
+    public String main(HttpSession session){
+        String id = (String) session.getAttribute("id");
+
+        return "ver4/solved";
+    }
+
 }
 
 
