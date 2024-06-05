@@ -55,4 +55,10 @@ public class CodeDBManger extends DBManager{
         return arr;
     }
 
+    public static CodeVO getCodeByProblemId(String problemId) {
+        CodeVO cv;
+        SqlSession session = sqlSessionFactory.openSession();
+        cv = session.selectOne("code.getCodeByProblemId", problemId);
+        return cv;
+    }
 }

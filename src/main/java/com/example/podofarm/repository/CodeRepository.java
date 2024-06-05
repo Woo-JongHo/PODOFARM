@@ -39,4 +39,7 @@ public class CodeRepository {
     }
 
 
+    public CodeVO getCodeByProblemId(String problemId) {
+        return CodeDBManger.getCodeByProblemId(problemId);
+    }
 }

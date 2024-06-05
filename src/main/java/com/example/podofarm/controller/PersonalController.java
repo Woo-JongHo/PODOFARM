@@ -4,6 +4,7 @@ package com.example.podofarm.controller;
 import com.example.podofarm.service.CodeService;
 import com.example.podofarm.service.StudyService;
 import com.example.podofarm.service.UserService;
+import com.example.podofarm.utils.MarkdownConverter;
 import com.example.podofarm.vo.CodeVO;
 import com.example.podofarm.vo.StudyVO;
 import com.example.podofarm.vo.UploadRequest;
@@ -16,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -140,9 +144,23 @@ public class PersonalController {
         return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
     }*/
 
-    @GetMapping("/sol")
-    public String main(HttpSession session){
+    @GetMapping("/ps/{problemid}")
+    public String solved(Model model, @PathVariable("problemid") String problemId, HttpSession session){
         String id = (String) session.getAttribute("id");
+        String s_code = "423XDF";
+        model.addAttribute("getStudyMember", model.getAttribute("getStudyMember"));
+
+        System.out.println(problemId + " problemId?");
+        //problemId 에 관한 내용 가져오기 VO로 다가져오자
+        CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
+
+
+        model.addAttribute("c_filename",SOLVED.getC_filename());
+        model.addAttribute("c_source", MarkdownConverter.markdownToHtml(SOLVED.getC_source()));
+        model.addAttribute("c_readme", MarkdownConverter.markdownToHtml(SOLVED.getC_readme()));
+        model.addAttribute("c_date",SOLVED.getC_date());
+
+
 
         return "ver4/solved";
     }

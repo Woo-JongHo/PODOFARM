@@ -41,4 +41,7 @@
         SELECT * FROM CODE WHERE id = #{id} order by c_date desc
     </select>
 
+    <select id = "getCodeByProblemId" resultType="com.example.podofarm.vo.CodeVO">
+        SELECT * FROM CODE WHERE c_problemid = #{problemid}
+    </select>
 </mapper>

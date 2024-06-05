@@ -90,9 +90,13 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>0.18.0</version> <!-- 라이브러리 버전에 맞게 변경 -->
+        </dependency>
     </dependencies>
-
-
 
     <build>
         <plugins>

@@ -27,17 +27,18 @@
                         <img src="../images/person-circle.svg" alt="icon">
                     </button>
                 </div>
-                <div class="solvedpage-title-left-filename">어린동물찾기</div>
+
+                <div th:text="${c_filename}"class="solvedpage-title-left-filename"></div>
                 <div class="solvedpage-title-left-bookmark">
                     <img src="../images/bookmark-frame.svg" alt="icon">
                 </div>
             </div>
-            <div class="solvedpage-title-right">2024-04-09 14:00:22</div>
+            <div th:text="${#dates.format(c_date, 'yyyy-MM-dd HH:mm:ss')}" class="solvedpage-title-right"></div>
         </div>
 
         <div class="solvedpage-main">
-            <div class="solvedpage-main-reademe"></div>
-            <div class="solvedpage-main-source"></div>
+            <div  th:utext = "${c_readme}" class="solvedpage-main-reademe"></div>
+            <div  th:utext = "${c_source}" class="solvedpage-main-source"></div>
         </div>
         <div class="solvedpage-memo"></div>
     </div>
