@@ -33,8 +33,8 @@
     </select>
 
     <insert id = "insertCode">
-        INSERT INTO CODE (C_NO, ID, C_FILENAME, C_SOURCE, C_README, C_LIKE, C_DATE)
-        VALUES (C_NO_SEQ.NEXTVAL, #{id}, #{c_filename}, #{c_source}, #{c_readme}, 0, #{c_date})
+        INSERT INTO CODE (C_NO, ID, C_FILENAME, C_SOURCE, C_README, C_LIKE, C_DATE,C_LEVEL, C_PROBLEMID)
+        VALUES (C_NO_SEQ.NEXTVAL, #{id}, #{c_filename}, #{c_source}, #{c_readme}, 0, #{c_date}, #{c_level}, #{c_problemid})
     </insert>
 
     <select id = "getSolvedCode" resultType="com.example.podofarm.vo.CodeVO">

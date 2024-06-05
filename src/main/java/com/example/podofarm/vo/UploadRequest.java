@@ -8,6 +8,22 @@ public class UploadRequest {
     private String filename;
     private String commitMessage;
     private String dateInfo;
+    private String problemId;
+
+
+    private String level;
+
+
+
+    public String getProblemId() {
+        return problemId;
+    }
+
+    public void setProblemId(String problemId) {
+        this.problemId = problemId;
+    }
+
+
 
     public String getDateInfo() {
         return dateInfo;
@@ -17,10 +33,13 @@ public class UploadRequest {
         this.dateInfo = dateInfo;
     }
 
+    public String getLevel() {
+        return level;
+    }
 
-
-
-
+    public void setLevel(String level) {
+        this.level = level;
+    }
 
     // 각 필드에 대한 getter 및 setter 메소드
 

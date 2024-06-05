@@ -88,6 +88,8 @@ public class PersonalController {
         String readmeText = request.getReadmeText();
         String commitMessage = request.getCommitMessage();
         String dateInfo = request.getDateInfo();
+        String problemId = request.getProblemId();
+        String level = request.getLevel();
 
         System.out.println(dateInfo);
 
@@ -102,6 +104,8 @@ public class PersonalController {
         code.setC_readme(readmeText);
         code.setC_like(0);
         code.setC_date(date);
+        code.setC_problemid(problemId);
+        code.setC_level(level);
 
         /*
         System.out.println(id);
@@ -113,11 +117,9 @@ public class PersonalController {
         */
 
         int insertCode = codeService.insertCode(code);
-
-
-        // 응답 생성
-        return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
+        return ResponseEntity.ok("Upload successful");
     }
+
 
     /*오류코드
     *     @CrossOrigin(origins = "http://localhost:8080")

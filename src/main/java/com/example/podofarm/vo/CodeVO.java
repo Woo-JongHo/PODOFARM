@@ -12,22 +12,15 @@ public class CodeVO {
 
 
     private int c_no;
-
     private String id;
-
     private String c_filename;
-
     private String c_source;
-
     private String c_readme;
-
-    private String c_level;
-    private  Date c_date;
+    private int c_like;
 
     public int getC_no() {
         return c_no;
     }
-
 
     public void setC_no(int c_no) {
         this.c_no = c_no;
@@ -65,14 +58,6 @@ public class CodeVO {
         this.c_readme = c_readme;
     }
 
-    public String getC_level() {
-        return c_level;
-    }
-
-    public void setC_level(String c_level) {
-        this.c_level = c_level;
-    }
-
     public int getC_like() {
         return c_like;
     }
@@ -89,18 +74,33 @@ public class CodeVO {
         this.c_date = c_date;
     }
 
-    public int getC_time() {
+    public String getC_level() {
+        return c_level;
+    }
+
+    public void setC_level(String c_level) {
+        this.c_level = c_level;
+    }
+
+    public String getC_problemid() {
+        return c_problemid;
+    }
+
+    public void setC_problemid(String c_problemid) {
+        this.c_problemid = c_problemid;
+    }
+
+    public String getC_time() {
         return c_time;
     }
 
-    public void setC_time(int c_time) {
+    public void setC_time(String c_time) {
         this.c_time = c_time;
     }
 
-    private int c_like;
-
-
-    //타임 기능 구현시 이용할 것, DB에도 설정안한 상태
-    private int c_time;
+    private Date c_date;
+    private String c_level;
+    private String c_problemid;
+    private String c_time;
 
 }
