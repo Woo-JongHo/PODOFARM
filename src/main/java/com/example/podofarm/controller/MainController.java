@@ -197,11 +197,20 @@ public class MainController {
                         break;
                 }
             }
-
             String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
             System.out.println(solvedDataConvertJson + "JSON 변환 확인");
-            model.addAttribute("solvedData",solvedDataTypeString);
+            model.addAttribute("solvedData_"+i,solvedDataTypeString);
         }
+
+        //배열을 하나 더만들어서 이름을 그냥 동적으로 보내자
+        String [] arr = new String[index];
+
+        for(int k = 0; k < index ; k++)
+            arr[k] = "solvedData_"+k;
+
+
+        model.addAttribute("solvedData",arr);
+
 
         return "ver4/main";
     }

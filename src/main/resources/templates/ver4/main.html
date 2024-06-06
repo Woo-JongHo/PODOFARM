@@ -76,10 +76,19 @@
                             <span th:text="${day}">1</span>
                         </div>
                     </div>
-                    <div th:each="member, index : ${getStudyMember}" class="dashboard-podofarm-grape-month">
-                        <div th:text="${member}" class="dashboard-podofarm-grape-user"></div>
-                        <div th:each="day, idx : ${#numbers.sequence(1, DayCheck)}"
-                             th:class="dashboard-podofarm-grape-title-days "></div>
+                    <!-- 멤버마다 잔디심기를 하려고함-->
+                    <div  class="dashboard-podofarm-grape-month">
+                        <div class = "dashbaord-podofarm-grape-month-user-area">
+                            <div th:each="member, m-index : ${getStudyMember}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
+                        </div>
+                        <div class = "dashbaord-podofarm-grape-days-area">
+                            <div class="test2" th:each="solved, s-index : ${solvedData}">
+                                <div th:each="data, d-index : ${__${solved}__}">
+                                    <div th:class="${data}"></div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
