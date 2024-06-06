@@ -611,6 +611,7 @@ localbar-item:hover{
     width: 20px;
     height: 20px;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 
     color: #FFF;
