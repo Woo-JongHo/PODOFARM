@@ -148,7 +148,8 @@ public class PersonalController {
     public String solved(Model model, @PathVariable("problemid") String problemId, HttpSession session){
         String id = (String) session.getAttribute("id");
         String s_code = "423XDF";
-        model.addAttribute("getStudyMember", model.getAttribute("getStudyMember"));
+        model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
+
 
         System.out.println(problemId + " problemId?");
         //problemId 에 관한 내용 가져오기 VO로 다가져오자

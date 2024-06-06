@@ -9,9 +9,10 @@
         </div>
         <div class="right-section">
             <div class="user-icon">
-                <div class="icon">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                     <img src="../../images/person-circle.svg" alt="icon">
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -32,4 +33,17 @@
             <div th:text ="${member}" class="text"></div>
         </a>
         <!--  여기까지 -->
+    </div>
+
+
+
+    <div class="offcanvas offcanvas-end text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+        </div>
     </div>

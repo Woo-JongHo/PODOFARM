@@ -23,7 +23,7 @@ body {
 }
 
 .globalbar-container {
-    width: 100%;
+    width: calc(100vw - 16px);
     height: 100%;
     padding: 16px;
     background: #010409;
@@ -34,7 +34,6 @@ body {
     border-bottom: 0.5px solid #30363D;
     padding: 0px;
     /* 하단에 테두리 생성 */
-
 }
 
 .left-section {
@@ -77,11 +76,9 @@ body {
 }
 
 .right-section {
-    height: 32px;
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 151px;
-    background: white;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
@@ -90,14 +87,23 @@ body {
 }
 
 .user-icon {
-    width: 32px;
-    height: 32px;
-    padding: 10px;
-    background: #010409;
+    padding-right: 16px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     display: inline-flex;
+}
+
+.btn.btn-primary {
+    padding : 0;
+    background-color: #010409;
+    border-color: #010409;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.btn.btn-primary :hover{
+    opacity: 0.8;
 }
 
 .user-icon img {
@@ -110,6 +116,7 @@ body {
 
 
 .localbar-container {
+    width : 100%;
     height: 100%;
     padding-left: 16px;
     padding-right: 16px;
@@ -184,8 +191,8 @@ localbar-item:hover{
     display: flex;
     text-align: center;
     color: #E6EDF3;
-    font-size: 16px;
-    font-family: BM HANNA_TTF;
+    font-size: 14px;
+    font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-weight: 400;
     word-wrap: break-word;
 }
@@ -230,7 +237,7 @@ localbar-item:hover{
     background: #21262D;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -297,7 +304,7 @@ localbar-item:hover{
     background: #0D1117;
     color: #E6EDF3;
 
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 
     border-right: 0.5px solid #30363D;
     /* 하단에 테두리 생성 */
@@ -350,7 +357,7 @@ localbar-item:hover{
     font-size: 12px;
 
     color: #E6EDF3; !important;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-style: normal;
     font-weight: 400;
     line-height: 18px; /* 수동응로 맞춤 */
@@ -395,7 +402,7 @@ localbar-item:hover{
 
 .dashboard-sidebar-recentactionbar-alaram-time {
     color: #848D97;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -404,7 +411,7 @@ localbar-item:hover{
 
 .dashboard-sidebar-recentactionbar-alaram-content {
     color: #E6EDF3;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -457,7 +464,7 @@ localbar-item:hover{
     color: #FFF;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #30363D;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -478,7 +485,7 @@ localbar-item:hover{
     background: #0F0F0F;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -497,7 +504,7 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -589,7 +596,7 @@ localbar-item:hover{
     gap: 10px;
 
     color: #E6EDF3;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -605,7 +612,7 @@ localbar-item:hover{
 
     color: #FFF;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
@@ -687,7 +694,7 @@ localbar-item:hover{
 
     padding-right: 10px;
     color: #E6EDF3;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -743,7 +750,7 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -770,7 +777,7 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -836,10 +843,10 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
@@ -851,10 +858,10 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
@@ -873,7 +880,7 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -889,10 +896,10 @@ localbar-item:hover{
 
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
@@ -922,10 +929,10 @@ localbar-item:hover{
     background: #21262D;
     color: #E6EDF3;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
@@ -956,7 +963,6 @@ localbar-item:hover{
     padding: 10px;
     align-items: flex-start;
     gap: 10px;
-    width: 60px;
 }
 
 .personalpage-container-list-title-time {
@@ -964,7 +970,6 @@ localbar-item:hover{
     padding: 10px;
     align-items: flex-start;
     gap: 10px;
-    width: 94px;
 }
 
 .personalpage-container-list-area {
@@ -973,11 +978,11 @@ localbar-item:hover{
     justify-content: center;
     align-items: center;
     gap: 10px;
-
+    text-decoration: none;
 
     background: #0D1117;
     color: #E6EDF3;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -1080,7 +1085,7 @@ localbar-item:hover{
     text-align: center;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -1103,7 +1108,7 @@ localbar-item:hover{
 
     color: #848D97;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -1164,7 +1169,7 @@ localbar-item:hover{
     text-align: center;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -1191,7 +1196,7 @@ localbar-item:hover{
 
     color: #848D97;
     text-align: center;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -1274,7 +1279,7 @@ localbar-item:hover{
     gap: 10px;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -1289,7 +1294,7 @@ localbar-item:hover{
     gap: 10px;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -1317,7 +1322,7 @@ localbar-item:hover{
     background: #0D1117;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -1338,7 +1343,7 @@ localbar-item:hover{
     background: #0D1117;
 
     color: #FFF;
-    font-family: "BM HANNA_TTF";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
