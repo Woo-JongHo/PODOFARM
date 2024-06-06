@@ -22,23 +22,16 @@
         <div class="solvedpage-title">
             <div class="solvedpage-title-left">
                 <div class="solvedpage-title-left-bookmark">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                        <img src="../images/person-circle.svg" alt="icon">
-                    </button>
+                    <img src="../../images/bookmark-frame.svg" alt="icon">
                 </div>
-
                 <div th:text="${c_filename}"class="solvedpage-title-left-filename"></div>
-                <div class="solvedpage-title-left-bookmark">
-                    <img src="../images/bookmark-frame.svg" alt="icon">
-                </div>
             </div>
             <div th:text="${#dates.format(c_date, 'yyyy-MM-dd HH:mm:ss')}" class="solvedpage-title-right"></div>
         </div>
 
         <div class="solvedpage-main">
-            <div  th:utext = "${c_readme}" class="solvedpage-main-reademe"></div>
-            <div  th:utext = "${c_source}" class="solvedpage-main-source"></div>
+            <div th:utext = "${c_readme}" class="solvedpage-main-reademe"></div>
+            <div th:inline="none" th:utext="${c_source}" class="solvedpage-main-source"></div>
         </div>
         <div class="solvedpage-memo"></div>
     </div>
