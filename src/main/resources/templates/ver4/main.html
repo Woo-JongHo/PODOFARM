@@ -84,7 +84,7 @@
                         <div class = "dashbaord-podofarm-grape-days-area">
                             <div class="test2" th:each="solved, s-index : ${solvedData}">
                                 <div th:each="data, d-index : ${__${solved}__}">
-                                    <div th:class="${data}"></div>
+                                    <div th:class="${data}" ></div>
                                 </div>
                             </div>
 
@@ -109,9 +109,10 @@
 
     </div>
 </main>
-<script src="/js/ver4/main.js"></script>
-<script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
+<script src="/js/ver4/main.js"></script>
+
 </body>
 </html>
