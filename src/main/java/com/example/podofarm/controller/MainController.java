@@ -46,7 +46,7 @@ public class MainController {
     public String main(HttpSession session){
         String id = (String) session.getAttribute("id");
 
-        return "ver4/main";
+        return "ver4/main2";
     }
 
     @PostMapping("/createStudy")
@@ -72,7 +72,6 @@ public class MainController {
         study.setS_start(data.get("s_start"));
         study.setS_end(data.get("s_end"));
         study.setS_code(StudyCode);
-
 
         System.out.println("스터디 생성 컨트롤러 작동");
 
@@ -123,8 +122,6 @@ public class MainController {
 
         //불러오는 데이터 목록
 
-
-
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
@@ -137,8 +134,12 @@ public class MainController {
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
 
+        //04 최근활동  업데이트
+        model.addAttribute("activity",studyService.getRecentActivity(s_code));
 
         //포도농사 칸
+        model.addAttribute("rank",studyService.getSolvedRank(s_code));
+
 
         //월 표기
         String getMonthName = getMonthName();

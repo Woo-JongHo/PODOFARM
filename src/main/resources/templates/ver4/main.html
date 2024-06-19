@@ -40,9 +40,13 @@
             <div class="dashboard-sidebar-recentactionbar">
                 <div class="dashboard-sidebar-recentactionbar-title">최근활동</div>
                 <div class="dashboard-sidebar-recentactionbar-main">
-                    <div class="dashboard-sidebar-recentactionbar-alaram">
-                        <div class="dashboard-sidebar-recentactionbar-alaram-time">2 hours ago</div>
-                        <div class="dashboard-sidebar-recentactionbar-alaram-content">> 우종호님이 숫자 구하기 문제를 풀었습니다!</div>
+                    <div th:each="activity : ${activity}"class="dashboard-sidebar-recentactionbar-alaram">
+                        <!-- 여기 타임리프 적용할 것-->
+                        <div class="dashboard-sidebar-recentactionbar-alaram-time" th:text ="${activity['TIME_AGO']}"></div>
+                        <div class="dashboard-sidebar-recentactionbar-alaram-content" >
+                            <p th:text="${activity['NAME']} + '님이 '"></p>
+                            <p th:text="${activity['C_FILENAME']} + '문제를 풀었습니다!'"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,6 +56,18 @@
 
 
         <div class="dashboard-container">
+            <div class ="dashboard-titlebar">
+                <div class ="dashboard-titlebar-left">
+                    <div class ="dashboard-titlebar-left-studyname">스터디명 : 진짜 괜히 시작했다</div>
+
+                </div>
+                <div class ="dashboard-titlebar-right">
+                    <div class ="dashboard-titlebar-right-studycode">스터디 코드 : 423XDF</div>
+                    <div class ="dashboard-titlebar-right-id">회원아이디 : 12354358768</div>
+                </div>
+            </div>
+
+            <div class = "dashboard-board"></div>
             <div class="dashboard-podofarm">
                 <div class="dashboard-podofarm-title">
                     <div class="dashboard-podofarm-title-text">이번 달 포도농사</div>
@@ -102,7 +118,8 @@
             <div class="dashboard-ranking-toprank">
                 <div class="dashboard-ranking-toprank-title">가장 많이 푼 사람</div>
                 <div class="dashboard-ranking-toprank-area">
-                    <div class="dashboard-ranking-toprank-member">1. 누구게</div>
+                    <div th:each ="rank : ${rank}"class="dashboard-ranking-toprank-member" th:text="${rank['NAME']}"></div>
+                    <div th:each ="rank : ${rank}"class="dashboard-ranking-toprank-member" th:text="${rank['C_NO_COUNT']}"></div>
                 </div>
             </div>
             <div class="dashboard-ranking-monthrank"></div>

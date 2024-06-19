@@ -37,7 +37,7 @@
         VALUES (C_NO_SEQ.NEXTVAL, #{id}, #{c_filename}, #{c_source}, #{c_readme}, 0, #{c_date}, #{c_level}, #{c_problemid})
     </insert>
 
-    <select id = "getSolvedCode" resultType="com.example.podofarm.vo.CodeVO">
+    <select id = "getSolved Code" resultType="com.example.podofarm.vo.CodeVO">
         SELECT * FROM CODE WHERE id = #{id} order by c_date desc
     </select>
 

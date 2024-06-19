@@ -19,12 +19,12 @@ public class MarkdownConverter {
 
         // 전체를 <pre>와 <code>로 감싸거나 첫 줄만 <p>로 감싸기
         if (isFirstLinePublic) {
-            // 전체 내용을 <pre>와 <code>로 감싸기
-            return "<pre><code>" + htmlContent + "</code></pre>";
+            // 전체 내용을 <pre>와 <code>로 감싸지 않음
+            return htmlContent;
         } else {
-            // 첫 줄만 <p>로 감싸기
+            // 첫 줄만 <p>로 감싸지 않음
             htmlContent = htmlContent.replaceFirst("^(<p>)(.*)(</p>)$", "$2");
-            return "<pre><code>" + htmlContent + "</code></pre>";
+            return htmlContent;
         }
     }
 }

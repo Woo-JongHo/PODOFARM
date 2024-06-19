@@ -6,6 +6,9 @@ import com.example.podofarm.vo.StudyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class StudyService {
 
@@ -51,5 +54,13 @@ public class StudyService {
 
     public Object getStudyMemberID(String s_code) {
         return repository.getStudyMemberID(s_code);
+    }
+
+    public List<Map<String, String>> getRecentActivity(String s_code) {
+        return repository.getRecentActivity(s_code);
+    }
+
+    public List<Map<String, String>> getSolvedRank(String s_code) {
+        return repository.getSolvedRank(s_code);
     }
 }

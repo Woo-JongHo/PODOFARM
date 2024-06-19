@@ -4,6 +4,9 @@ import com.example.podofarm.db.StudyDBManger;
 import com.example.podofarm.vo.StudyVO;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class StudyRepository {
 
@@ -47,5 +50,13 @@ public class StudyRepository {
 
     public Object getStudyMemberID(String s_code){
         return StudyDBManger.getStudyMemberID(s_code);
+    }
+
+    public List<Map<String, String>> getRecentActivity(String s_code) {
+        return StudyDBManger.getRecentActivity(s_code);
+    }
+
+    public List<Map<String, String>> getSolvedRank(String s_code) {
+        return StudyDBManger.getSolvedRank(s_code);
     }
 }

@@ -61,4 +61,51 @@
     <select id = "getStudyCode" resultType="java.lang.String">
         select s_code from study where id = #{id}
     </select>
+
+    <!-- 최근활동 업데이트 -->
+    <select id="getRecentActivity" resultType="map">
+        <![CDATA[
+        SELECT
+            c.c_filename,
+            c.c_problemid,
+            u.name,
+            CASE
+                WHEN (SYSDATE - c.c_Date) * 24 * 60 * 60 < 60 THEN 'few seconds ago'
+                WHEN (SYSDATE - c.c_Date) * 24 >= 1 THEN TO_CHAR(TRUNC((SYSDATE - c.c_Date) * 24), 'FM90') || ' hours ago'
+                ELSE TO_CHAR(TRUNC((SYSDATE - c.c_Date) * 24 * 60), 'FM90') || ' minutes ago'
+
+            END AS time_ago
+        FROM
+            code c
+        JOIN
+            users u ON c.id = u.id
+        JOIN
+            study s ON c.id = s.id
+        WHERE
+            c.c_Date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 1
+            AND s_code = #{s_code}
+        ORDER BY
+            c.c_Date DESC
+        ]]>
+    </select>
+
+
+    <select id = "getSolvedRank" resultType="map">
+        SELECT
+            u.NAME,
+            COUNT(c.C_NO) AS C_NO_COUNT
+        FROM
+            STUDY s
+            JOIN
+            USERS u ON s.ID = u.ID
+            LEFT JOIN
+            CODE c ON s.ID = c.ID
+        WHERE
+            s.s_code = #{s_code}
+        GROUP BY
+            u.NAME
+            ORDER BY
+        C_NO_COUNT DESC
+    </select>
+
 </mapper>

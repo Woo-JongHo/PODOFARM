@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class StudyDBManger extends DBManager{
 
@@ -108,5 +109,19 @@ public class StudyDBManger extends DBManager{
             names = session.selectList("study.getStudyMemberID", s_code);
             System.out.println(names + "스터디원아이디");
             return names;
+    }
+
+    public static List<Map<String, String>> getRecentActivity(String s_code) {
+        List<Map<String, String>> data;
+        SqlSession session = sqlSessionFactory.openSession();
+        data = session.selectList("study.getRecentActivity", s_code);
+        return data;
+    }
+
+    public static List<Map<String, String>> getSolvedRank(String s_code) {
+        List<Map<String, String>> data;
+        SqlSession session = sqlSessionFactory.openSession();
+        data = session.selectList("study.getSolvedRank", s_code);
+        return data;
     }
 }

@@ -19,6 +19,16 @@ public class StudyVO {
     private String s_name;
     private String s_start;
     private String s_end;
+    private Date s_enter;
+
+    public Date getS_enter() {
+        return s_enter;
+    }
+
+    public void setS_enter(Date s_enter) {
+        this.s_enter = s_enter;
+    }
+
 
     public int getS_no() {
         return s_no;

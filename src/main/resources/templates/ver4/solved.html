@@ -22,8 +22,9 @@
         <div class="solvedpage-title">
             <div class="solvedpage-title-left">
                 <div class="solvedpage-title-left-bookmark">
-                    <img src="../../images/bookmark-frame.svg" alt="icon">
-                </div>
+                    <button id="bookmark-button" class="bookmark-button">
+                        <img src="../../images/bookmark-frame.svg" alt="icon">
+                    </button>                </div>
                 <div th:text="${c_filename}"class="solvedpage-title-left-filename"></div>
             </div>
             <div th:text="${#dates.format(c_date, 'yyyy-MM-dd HH:mm:ss')}" class="solvedpage-title-right"></div>
