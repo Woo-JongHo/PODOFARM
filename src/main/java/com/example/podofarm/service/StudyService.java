@@ -67,4 +67,8 @@ public class StudyService {
     public String getStartDay(String s_code) {
         return repository.getStartDay(s_code);
     }
+
+    public Object getStudyMemberByMonth(String s_code, String s_start) {
+        return repository.getStudyMemberByMonth(s_code,s_start);
+    }
 }

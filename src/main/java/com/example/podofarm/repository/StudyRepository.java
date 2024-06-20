@@ -63,4 +63,8 @@ public class StudyRepository {
     public String getStartDay(String s_code) {
         return StudyDBManger.getStartDay(s_code);
     }
+
+    public Object getStudyMemberByMonth(String s_code, String s_start) {
+        return StudyDBManger.getStudyMemberByMonth(s_code,s_start);
+    }
 }

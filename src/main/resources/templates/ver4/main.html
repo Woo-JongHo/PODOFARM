@@ -68,7 +68,6 @@
             <div class = "dashboard-board"></div>
             <div class="dashboard-podofarm">
                 <div class="dashboard-podofarm-title">
-                    <div class="dashboard-podofarm-title-text">이번 달 포도농사</div>
                     <div class="dashboard-podofarm-title-users">포도농사원 :
                         <div th:each="member, index: ${getStudyMember}" th:text="${member}">
                             <div th:if="${!index.last},">, </div>

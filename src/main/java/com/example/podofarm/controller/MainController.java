@@ -128,7 +128,6 @@ public class MainController {
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         model.addAttribute("getDday",studyService.getDday(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
-
         //03 스터디 남은 일 수 계산기
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
@@ -179,7 +178,6 @@ public class MainController {
 
         //시작일부터, 매 달 루프를 돕니다
         for (int i = 0; i < monthDiff; i++) {
-
             //달에 멤버를 가져옵니다.
             List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code,s_start);
             int index = memberID.size();
@@ -187,10 +185,9 @@ public class MainController {
             for (int j = 0; j < index; j++) {
                 ArrayList<Map<String, String>> solvedList;
                 solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(j));
-                // solved 값만 가져온다
-                // 1. DayCheck만큼 배열을 생성합니다.
-                // for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+
                 int[] solvedMonth = new int[DayCheck];
+
                 for (Map<String, String> map : solvedList) {
                     String dataDay = map.get("C_DATE");
                     int day = Integer.parseInt(dataDay.substring(3, 5));
@@ -221,9 +218,7 @@ public class MainController {
                     }
                 }
                 String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
-                System.out.println(solvedDataConvertJson + " JSON 변환 확인");
 
-                // 고유한 키 설정 (예: solvedData_0_06, solvedData_1_06 등)
                 String key = "solvedData_" + j + "_"    ; // currentMonth를 현재 달로 설정
                 model.addAttribute(key, solvedDataTypeString);
             }
@@ -248,10 +243,12 @@ public class MainController {
 
 
         }
+        model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
         model.addAttribute("monthList",monthList);
         for (String test : monthList) {
             System.out.println(test + "monthList 값");
         }
+        model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
 
         return "ver4/main";
     }

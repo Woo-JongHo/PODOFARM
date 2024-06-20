@@ -147,4 +147,19 @@ public class StudyDBManger extends DBManager{
         session.close();
         return n;
     }
+
+    public static Object getStudyMemberByMonth(String s_code, String s_start) {
+        List<String> names;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("s_code", s_code);
+            params.put("s_start", s_start);
+
+            names = session.selectList("study.getStudyMemberID", params);
+        } finally {
+            session.close();
+        }
+        return names;
+    }
 }
