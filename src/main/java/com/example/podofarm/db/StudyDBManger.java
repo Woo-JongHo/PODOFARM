@@ -156,7 +156,7 @@ public class StudyDBManger extends DBManager{
             params.put("s_code", s_code);
             params.put("s_start", s_start);
 
-            names = session.selectList("study.getStudyMemberID", params);
+            names = session.selectList("study.getStudyMemberByMonth", params);
         } finally {
             session.close();
         }

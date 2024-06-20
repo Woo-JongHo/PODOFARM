@@ -7,6 +7,7 @@ import com.example.podofarm.service.UserService;
 import com.example.podofarm.vo.StudyVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.groupdocs.conversion.internal.c.a.w.internal.Se;
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,9 @@ public class MainController {
 
     //스터디가 없을 때 컨트롤러
     int DayCheck = DayCheck();
+    LocalDate currentDate = LocalDate.now();
+    String selectMonth = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+
 
     @GetMapping("/main")
     public String main(HttpSession session){
@@ -46,7 +51,6 @@ public class MainController {
 
         return "ver4/main2";
     }
-
     @PostMapping("/createStudy")
     public String createStudy(@RequestBody Map<String, String> data, Model model, HttpSession session){
 
@@ -102,14 +106,18 @@ public class MainController {
 
     //스터디가 있을 때 컨트롤러 MainPage와 연동
     @GetMapping("/{s_code}")
-    public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session) throws JsonProcessingException {
+    public String studyMainPage(Model model,
+                                @PathVariable("s_code") String s_code,
+                                @RequestParam(name = "month", required = false) String selectedMonth,
+                                HttpSession session) throws JsonProcessingException {
         String id = (String) session.getAttribute("id");
 
 
         //TEST CASE
         id = "104539211393038791047";
         s_code = "423XDF";
-
+        String s_start= studyService.getStartDay(s_code);
+        System.out.print(s_start + "start 봐바");
 
         //01 만약 s_code가 없는 url이면 에러 페이지를 뜬다.
         int findStudyCode = studyService.findStudyCode(s_code);
@@ -123,7 +131,6 @@ public class MainController {
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         model.addAttribute("getDday",studyService.getDday(s_code));
-        model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         //03 스터디 남은 일 수 계산기
         model.addAttribute("s_code", s_code); // 스터디 코드를 모델에 추가
         model.addAttribute("id",id);
@@ -144,10 +151,19 @@ public class MainController {
         model.addAttribute("DayCheck", DayCheck);
 
 
-        // 달을 처리하는 로직
-        String s_start = studyService.getStartDay(s_code);
-        LocalDate currentDate = LocalDate.now();
 
+
+        CalcDate(s_start,model);
+        Podofarm(s_code,selectMonth, model);
+
+
+        model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,selectMonth));
+
+        return "ver4/main";
+    }
+
+
+    public void CalcDate(String s_start, Model model){
         int s_years = Integer.parseInt(s_start.substring(0,4));
         int s_month = Integer.parseInt(s_start.substring(6));
 
@@ -182,21 +198,7 @@ public class MainController {
             s_start = yearString + "-" + monthString;
             model.addAttribute("monthList",monthList);
         }
-
-        Podofarm(s_code,s_start,model);
-
-        return "ver4/main";
     }
-
-
-    @GetMapping("/overview")
-    public String getStudyMembersByMonth(@RequestParam String s_code,
-                                         @RequestParam String month,
-                                         Model model) {
-
-        return "studyMembersOverview";
-    }
-
     private int getLastDayOfMonth(int year, int month) {
         // 각 월의 마지막 날을 반환합니다.
         return java.time.YearMonth.of(year, month).lengthOfMonth();
@@ -221,21 +223,23 @@ public class MainController {
         return monthName;
     }
 
-    public void Podofarm(String s_code, String s_start, Model model){
-        List<String> memberID = studyService.getStudyMemberId(s_code);
+    public void Podofarm(String s_code,String SelectMonth, Model model){
+        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,SelectMonth);
+
         int index = memberID.size();
 
         for (int i = 0 ; i < index ; i++ ){
             ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
+            solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), SelectMonth);
 
+            System.out.println(solvedList);
             //solved 값만 가져온다
             //1. DayCheck만큼 배열을 생성합니다.
             //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
             int [] solvedMonth = new int[DayCheck];
             for (Map<String, String> map : solvedList) {
                 String dataDay = map.get("C_DATE");
-                int day = Integer.parseInt(dataDay.substring(3,5));
+                int day = Integer.parseInt(dataDay.substring(5,7));
                 String solved = String.valueOf(map.get("SOLVED"));
                 solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
             }
@@ -273,4 +277,5 @@ public class MainController {
 
         model.addAttribute("solvedData",arr);
     }
+
 }

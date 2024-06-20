@@ -44,6 +44,14 @@
     </select>
 
     <!--스터디 멤버 이름 -->
+    <select id ="getStudyMemberByMonth" resultType = "java.lang.String" parameterType="java.lang.String">
+        SELECT u.name
+        FROM users u
+        JOIN study s ON u.id = s.id
+        WHERE s.s_code = #{s_code}
+        AND TO_DATE(#{s_start}, 'YYYY-MM') BETWEEN s.s_start AND s.s_end
+    </select>
+
     <select id ="getStudyMember" resultType = "java.lang.String" parameterType="java.lang.String">
         SELECT u.name
         FROM users u

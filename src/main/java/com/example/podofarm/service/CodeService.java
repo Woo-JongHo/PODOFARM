@@ -3,6 +3,8 @@ package com.example.podofarm.service;
 
 import com.example.podofarm.repository.CodeRepository;
 import com.example.podofarm.vo.CodeVO;
+import com.groupdocs.conversion.internal.c.a.w.internal.Se;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,8 @@ public class CodeService {
         return repository.syncRepo(s_code);
     }
 
-    public ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
-        return repository.getSolvedByDayCurrentMonth(id);
+    public ArrayList<Map<String, String>> getSolvedByDaySelectedMonth(String id, String SelectMonth) {
+        return repository.getSolvedByDaySelectedMonth(id, SelectMonth);
     }
 
     public int getTotalSolvedById(String id){

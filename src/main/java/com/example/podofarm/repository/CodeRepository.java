@@ -20,8 +20,8 @@ public class CodeRepository {
         return CodeDBManger.syncRepo(sCode);
     }
 
-    public ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
-        return CodeDBManger.getSolvedByDayCurrentMonth(id);
+    public ArrayList<Map<String, String>> getSolvedByDaySelectedMonth(String id, String SelectMonth) {
+        return CodeDBManger.getSolvedByDaySelectedMonth(id, SelectMonth);
     }
 
     public int getTotalSolvedById(String id) {

@@ -18,14 +18,24 @@ public class CodeDBManger extends DBManager{
         return re;
     }
 
-    public static ArrayList<Map<String, String>> getSolvedByDayCurrentMonth(String id) {
+    public static ArrayList<Map<String, String>> getSolvedByDaySelectedMonth(String id, String SelectMonth) {
         ArrayList<Map<String, String>> results = new ArrayList<>();
         SqlSession session = sqlSessionFactory.openSession();
-        List<Map<String, String>> rows = session.selectList("code.getSolvedByDayCurrentMonth", id);
-        session.close();
-        for (Map<String, String> row : rows) {
-            results.add(row);
+
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("c_date", SelectMonth);
+
+            List<Map<String, String>> rows = session.selectList("code.getSolvedByDaySelectedMonth", params);
+            session.close();
+            for (Map<String, String> row : rows) {
+                results.add(row);
+            }
+        } finally {
+            session.close();
         }
+
         return results;
     }
 
