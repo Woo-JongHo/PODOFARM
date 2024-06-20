@@ -4,6 +4,7 @@ import com.example.podofarm.vo.StudyVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -103,18 +104,30 @@ public class StudyDBManger extends DBManager{
         return n;
     }
 
-    public static List<String> getStudyMemberID(String s_code) {
+    public static List<String> getStudyMemberID(String s_code, String s_start) {
             List<String> names;
             SqlSession session = sqlSessionFactory.openSession();
-            names = session.selectList("study.getStudyMemberID", s_code);
+        try {
+            // 파라미터 맵 생성
+            Map<String, Object> params = new HashMap<>();
+            params.put("s_code", s_code);
+            params.put("s_start", s_start);
+
+            // 쿼리 실행
+            names = session.selectList("study.getStudyMemberID", params);
             System.out.println(names + "스터디원아이디");
-            return names;
+        } finally {
+            session.close();
+        }
+        return names;
     }
 
     public static List<Map<String, String>> getRecentActivity(String s_code) {
         List<Map<String, String>> data;
         SqlSession session = sqlSessionFactory.openSession();
         data = session.selectList("study.getRecentActivity", s_code);
+        session.close();
+
         return data;
     }
 
@@ -122,6 +135,16 @@ public class StudyDBManger extends DBManager{
         List<Map<String, String>> data;
         SqlSession session = sqlSessionFactory.openSession();
         data = session.selectList("study.getSolvedRank", s_code);
+        session.close();
+
         return data;
+    }
+
+    public static String getStartDay(String s_code) {
+        String n = "";
+        SqlSession session = sqlSessionFactory.openSession();
+        n = session.selectOne("study.getStartDay",s_code);
+        session.close();
+        return n;
     }
 }

@@ -13,6 +13,10 @@
         ORDER BY C_DATE ASC
     </select>
 
+    <select id ="" resultType="java.util.Map" parameterType="java.lang.String">
+
+    </select>
+
     <!-- 날짜별 푼 문제 -->
     <select id="getSolvedByDayCurrentMonth" resultType="java.util.Map" parameterType="java.lang.String">
         WITH DATE_COUNT AS (

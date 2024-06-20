@@ -53,8 +53,6 @@
         </div>
 
         <!-- 메인보드 -->
-
-
         <div class="dashboard-container">
             <div class ="dashboard-titlebar">
                 <div class ="dashboard-titlebar-left">
@@ -76,6 +74,9 @@
                             <div th:if="${!index.last},">, </div>
                         </div>
                     </div>
+                </div>
+                <div th:each ="month, index: ${monthList}" class = "">
+                    <a href="" class="month-link" th:text = "${month}" data-month="${month}"></a>
                 </div>
                 <div class="dashboard-podofarm-main-count">
                     <div>less</div>

@@ -52,8 +52,8 @@ public class StudyService {
         return repository.getStudyCode(id);
     }
 
-    public Object getStudyMemberID(String s_code) {
-        return repository.getStudyMemberID(s_code);
+    public Object getStudyMemberID(String s_code,String s_start) {
+        return repository.getStudyMemberID(s_code, s_start);
     }
 
     public List<Map<String, String>> getRecentActivity(String s_code) {
@@ -62,5 +62,9 @@ public class StudyService {
 
     public List<Map<String, String>> getSolvedRank(String s_code) {
         return repository.getSolvedRank(s_code);
+    }
+
+    public String getStartDay(String s_code) {
+        return repository.getStartDay(s_code);
     }
 }

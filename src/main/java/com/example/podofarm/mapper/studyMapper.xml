@@ -56,6 +56,7 @@
         FROM users u
         JOIN study s ON u.id = s.id
         WHERE s.s_code = #{s_code}
+        AND TO_DATE(#{s_start}, 'YYYY-MM') BETWEEN s.s_start AND s.s_end
     </select>
     <!-- 익스텐션 -->
     <select id = "getStudyCode" resultType="java.lang.String">
@@ -108,4 +109,9 @@
         C_NO_COUNT DESC
     </select>
 
+    <select id ="getStartDay" resultType="java.lang.String">
+        SELECT DISTINCT TO_CHAR(MIN(s_start), 'YYYY-MM') AS year_month
+        FROM study
+        WHERE s_code = #{s_code}
+    </select>
 </mapper>

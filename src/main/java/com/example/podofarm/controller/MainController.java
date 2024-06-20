@@ -126,7 +126,6 @@ public class MainController {
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
-
         model.addAttribute("getDday",studyService.getDday(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
 
@@ -153,65 +152,106 @@ public class MainController {
         //날짜마다 문제 푼 갯수 파악
         //스터디 멤버를 가져오고, 멤버의 id를 가지고 와서
         //getSolvedList로 가지고 온다
-        model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
-        System.out.println(studyService.getStudyMemberID(s_code));
-        List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code);
-        int index = memberID.size();
-
-        //멤버마다 푼 문제를 확인
-        for (int i = 0 ; i < index ; i++ ){
-            ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
-
-            //solved 값만 가져온다
-            //1. DayCheck만큼 배열을 생성합니다.
-            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
-
-            int [] solvedMonth = new int[DayCheck];
-            for (Map<String, String> map : solvedList) {
-                String dataDay = map.get("C_DATE");
-                int day = Integer.parseInt(dataDay.substring(3,5));
-                String solved = String.valueOf(map.get("SOLVED"));
-                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
-            }
+        //model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
+        //SSystem.out.println(studyService.getStudyMemberID(s_code));
 
 
-            ObjectMapper objectMapper = new ObjectMapper();
 
-            String[] solvedDataTypeString = new String[DayCheck];
-            for (int j = 0; j < DayCheck; j++) {
-                switch (solvedMonth[j]) {
-                    case 0:
-                        solvedDataTypeString[j] = "solved-0";
-                        break;
-                    case 1:
-                        solvedDataTypeString[j] = "solved-1";
-                        break;
-                    case 2:
-                        solvedDataTypeString[j] = "solved-2";
-                        break;
-                    case 3:
-                        solvedDataTypeString[j] = "solved-3";
-                        break;
-                    default:
-                        solvedDataTypeString[j] = "solved-4";
-                        break;
+        // 달을 처리하는 로직
+        String s_start = studyService.getStartDay(s_code);
+        LocalDate currentDate = LocalDate.now();
+        int currentMonth = currentDate.getMonthValue();
+
+        int s_years = Integer.parseInt(s_start.substring(0,4));
+        int s_month = Integer.parseInt(s_start.substring(6));
+
+        int c_years = currentDate.getYear();
+        int c_month = currentDate.getMonthValue();;
+
+        int yearDiff = c_years - s_years;
+        int monthDiff;
+        if (yearDiff == 0)
+            monthDiff = c_month - s_month;
+        else
+            monthDiff = (yearDiff * 12) + (c_month - s_month);
+
+        List<String> monthList = new ArrayList<>();
+
+        //시작일부터, 매 달 루프를 돕니다
+        for (int i = 0; i < monthDiff; i++) {
+
+            //달에 멤버를 가져옵니다.
+            List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code,s_start);
+            int index = memberID.size();
+
+            for (int j = 0; j < index; j++) {
+                ArrayList<Map<String, String>> solvedList;
+                solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(j));
+                // solved 값만 가져온다
+                // 1. DayCheck만큼 배열을 생성합니다.
+                // for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+                int[] solvedMonth = new int[DayCheck];
+                for (Map<String, String> map : solvedList) {
+                    String dataDay = map.get("C_DATE");
+                    int day = Integer.parseInt(dataDay.substring(3, 5));
+                    String solved = String.valueOf(map.get("SOLVED"));
+                    solvedMonth[day - 1] = Integer.parseInt(solvedMonth[day - 1] + solved);
                 }
+
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                String[] solvedDataTypeString = new String[DayCheck];
+                for (int k = 0; k < DayCheck; k++) {
+                    switch (solvedMonth[k]) {
+                        case 0:
+                            solvedDataTypeString[k] = "solved-0";
+                            break;
+                        case 1:
+                            solvedDataTypeString[k] = "solved-1";
+                            break;
+                        case 2:
+                            solvedDataTypeString[k] = "solved-2";
+                            break;
+                        case 3:
+                            solvedDataTypeString[k] = "solved-3";
+                            break;
+                        default:
+                            solvedDataTypeString[k] = "solved-4";
+                            break;
+                    }
+                }
+                String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
+                System.out.println(solvedDataConvertJson + " JSON 변환 확인");
+
+                // 고유한 키 설정 (예: solvedData_0_06, solvedData_1_06 등)
+                String key = "solvedData_" + j + "_"    ; // currentMonth를 현재 달로 설정
+                model.addAttribute(key, solvedDataTypeString);
             }
-            String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
-            System.out.println(solvedDataConvertJson + "JSON 변환 확인");
-            model.addAttribute("solvedData_"+i,solvedDataTypeString);
+
+            //달을 증가시키는 로직
+            monthList.add(s_start);
+
+            String [] parts = s_start.split("-");
+            int year = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+
+            month = month + 1;
+            if (month > 12) {
+                year++;
+                month = 1;
+            }
+
+            String monthString = String.format("%02d", month);
+            String yearString = String.valueOf(year);
+
+            s_start = yearString + "-" + monthString;
+
+
         }
-
-        //배열을 하나 더만들어서 이름을 그냥 동적으로 보내자
-        String [] arr = new String[index];
-
-        for(int k = 0; k < index ; k++)
-            arr[k] = "solvedData_"+k;
-
-
-        model.addAttribute("solvedData",arr);
-
+        model.addAttribute("monthList",monthList);
+        for (String test : monthList) {
+            System.out.println(test + "monthList 값");
+        }
 
         return "ver4/main";
     }
