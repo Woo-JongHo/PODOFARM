@@ -48,8 +48,8 @@ public class StudyRepository {
         return StudyDBManger.getDday(s_code);
     }
 
-    public Object getStudyMemberID(String s_code, String s_start){
-        return StudyDBManger.getStudyMemberID(s_code,s_start);
+    public Object getStudyMemberIdByMonth(String s_code, String s_start){
+        return StudyDBManger.getStudyMemberIdByMonth(s_code,s_start);
     }
 
     public List<Map<String, String>> getRecentActivity(String s_code) {
@@ -66,5 +66,9 @@ public class StudyRepository {
 
     public Object getStudyMemberByMonth(String s_code, String s_start) {
         return StudyDBManger.getStudyMemberByMonth(s_code,s_start);
+    }
+
+    public List<String> getStudyMemberId(String s_code) {
+        return StudyDBManger.getStudyMemberId(s_code);
     }
 }

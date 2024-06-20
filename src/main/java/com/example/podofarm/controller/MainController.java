@@ -12,10 +12,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -41,6 +38,7 @@ public class MainController {
     private CodeService codeService;
 
     //스터디가 없을 때 컨트롤러
+    int DayCheck = DayCheck();
 
     @GetMapping("/main")
     public String main(HttpSession session){
@@ -107,21 +105,19 @@ public class MainController {
     public String studyMainPage(Model model, @PathVariable("s_code") String s_code, HttpSession session) throws JsonProcessingException {
         String id = (String) session.getAttribute("id");
 
+
+        //TEST CASE
         id = "104539211393038791047";
         s_code = "423XDF";
 
-        System.out.println("세션값 확인" + " id 는 " + id + " 스터디 코드는 " + s_code);
 
         //01 만약 s_code가 없는 url이면 에러 페이지를 뜬다.
         int findStudyCode = studyService.findStudyCode(s_code);
 
-        if(findStudyCode == -1){
-            // 페이지 에러로 다시 home으로
+        if(findStudyCode == -1)
             return "redirect:/pf";
-        }
 
         //불러오는 데이터 목록
-
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
@@ -144,7 +140,6 @@ public class MainController {
         model.addAttribute("getMonthName", getMonthName);
 
         //해당 월 날짜
-        int DayCheck = DayCheck();
         System.out.println("이번달" + DayCheck);
         model.addAttribute("DayCheck", DayCheck);
 
@@ -159,7 +154,6 @@ public class MainController {
         // 달을 처리하는 로직
         String s_start = studyService.getStartDay(s_code);
         LocalDate currentDate = LocalDate.now();
-        int currentMonth = currentDate.getMonthValue();
 
         int s_years = Integer.parseInt(s_start.substring(0,4));
         int s_month = Integer.parseInt(s_start.substring(6));
@@ -176,8 +170,79 @@ public class MainController {
 
         List<String> monthList = new ArrayList<>();
 
-        //시작일부터, 매 달 루프를 돕니다
-        for (int i = 0; i < monthDiff; i++) {
+        for(int i = 0 ; i <monthDiff ; i++){
+            monthList.add(s_start);
+
+            String [] parts = s_start.split("-");
+            int year = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+
+            month = month + 1;
+            if (month > 12) {
+                year++;
+                month = 1;
+            }
+
+            String monthString = String.format("%02d", month);
+            String yearString = String.valueOf(year);
+
+            s_start = yearString + "-" + monthString;
+            model.addAttribute("monthList",monthList);
+        }
+
+
+        List<String> memberID = studyService.getStudyMemberId(s_code);
+        int index = memberID.size();
+
+        for (int i = 0 ; i < index ; i++ ){
+            ArrayList<Map<String, String>> solvedList;
+            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
+
+            //solved 값만 가져온다
+            //1. DayCheck만큼 배열을 생성합니다.
+            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+
+            int [] solvedMonth = new int[DayCheck];
+            for (Map<String, String> map : solvedList) {
+                String dataDay = map.get("C_DATE");
+                int day = Integer.parseInt(dataDay.substring(3,5));
+                String solved = String.valueOf(map.get("SOLVED"));
+                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
+            }
+
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String[] solvedDataTypeString = new String[DayCheck];
+            for (int j = 0; j < DayCheck; j++) {
+                switch (solvedMonth[j]) {
+                    case 0:
+                        solvedDataTypeString[j] = "solved-0";
+                        break;
+                    case 1:
+                        solvedDataTypeString[j] = "solved-1";
+                        break;
+                    case 2:
+                        solvedDataTypeString[j] = "solved-2";
+                        break;
+                    case 3:
+                        solvedDataTypeString[j] = "solved-3";
+                        break;
+                    default:
+                        solvedDataTypeString[j] = "solved-4";
+                        break;
+                }
+            }
+            model.addAttribute("solvedData_"+i,solvedDataTypeString);
+        }
+
+        //01 처음화면은 가장 최근 멤버의 가장최근 날짜를 기준으로 생성
+        //02 생성할때 링크생성은 s_start부터 쭉 하나씩 나오게끔 그걸 클릭시 ajax로 보내고, ajax GETMapping으로 링크처리하고 그 로직을 거기다가 구현
+
+
+        //첫 화면은 가장 최근 달로 입력
+        /*for (int i = 0; i < monthDiff; i++) {
+
             //달에 멤버를 가져옵니다.
             List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code,s_start);
             int index = memberID.size();
@@ -217,9 +282,7 @@ public class MainController {
                             break;
                     }
                 }
-                String solvedDataConvertJson = objectMapper.writeValueAsString(solvedDataTypeString);
-
-                String key = "solvedData_" + j + "_"    ; // currentMonth를 현재 달로 설정
+                String key = "solvedData_" + j; // currentMonth를 현재 달로 설정
                 model.addAttribute(key, solvedDataTypeString);
             }
 
@@ -242,17 +305,82 @@ public class MainController {
             s_start = yearString + "-" + monthString;
 
 
-        }
-        model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
-        model.addAttribute("monthList",monthList);
-        for (String test : monthList) {
-            System.out.println(test + "monthList 값");
-        }
-        model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
+            model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
+            model.addAttribute("monthList",monthList);
+            model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
+
+         */
+        String [] arr = new String[index];
+
+        for(int k = 0; k < index ; k++)
+            arr[k] = "solvedData_"+k;
+
+        model.addAttribute("solvedData",arr);
 
         return "ver4/main";
     }
 
+
+    @GetMapping("/{s_code}/overview")
+    public String getStudyMembersByMonth(@RequestParam String s_code,
+                                         @RequestParam String month,
+                                         Model model) {
+        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,month);
+
+        int index = memberID.size();
+
+        for (int i = 0 ; i < index ; i++){
+            ArrayList<Map<String, String>> solvedList;
+            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
+
+            //solved 값만 가져온다
+            //1. DayCheck만큼 배열을 생성합니다.
+            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+
+            int [] solvedMonth = new int[DayCheck];
+            for (Map<String, String> map : solvedList) {
+                String dataDay = map.get("C_DATE");
+                int day = Integer.parseInt(dataDay.substring(3,5));
+                String solved = String.valueOf(map.get("SOLVED"));
+                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
+            }
+
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String[] solvedDataTypeString = new String[DayCheck];
+            for (int j = 0; j < DayCheck; j++) {
+                switch (solvedMonth[j]) {
+                    case 0:
+                        solvedDataTypeString[j] = "solved-0";
+                        break;
+                    case 1:
+                        solvedDataTypeString[j] = "solved-1";
+                        break;
+                    case 2:
+                        solvedDataTypeString[j] = "solved-2";
+                        break;
+                    case 3:
+                        solvedDataTypeString[j] = "solved-3";
+                        break;
+                    default:
+                        solvedDataTypeString[j] = "solved-4";
+                        break;
+                }
+            }
+            model.addAttribute("solvedData_"+i,solvedDataTypeString);
+
+            System.out.println("overview가 실행되었다");
+        }
+
+
+        return "studyMembersOverview";
+    }
+
+    private int getLastDayOfMonth(int year, int month) {
+        // 각 월의 마지막 날을 반환합니다.
+        return java.time.YearMonth.of(year, month).lengthOfMonth();
+    }
 
     //날짜 입력란. 이번달의 일수를 확인
     public int DayCheck(){

@@ -51,7 +51,14 @@
         WHERE s.s_code = #{s_code}
     </select>
 
-    <select id ="getStudyMemberID" resultType = "java.lang.String" parameterType="java.lang.String">
+    <select id ="getStudyMemberId" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT u.id
+        FROM users u
+        JOIN study s ON u.id = s.id
+        WHERE s.s_code = #{s_code}
+    </select>
+
+    <select id ="getStudyMemberIdByMonth" resultType = "java.lang.String" parameterType="java.lang.String">
         SELECT u.id
         FROM users u
         JOIN study s ON u.id = s.id

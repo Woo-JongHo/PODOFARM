@@ -74,8 +74,11 @@
                         </div>
                     </div>
                 </div>
-                <div th:each ="month, index: ${monthList}" class = "">
-                    <a href="" class="month-link" th:text = "${month}" data-month="${month}"></a>
+                <div th:each="month : ${monthList}" class="">
+                    <a th:href="'/' + ${s_code} + '?tab=overview&month=' + ${month}"
+                       class="month-link"
+                       th:text="${month}"
+                       data-month="${month}"></a>
                 </div>
                 <div class="dashboard-podofarm-main-count">
                     <div>less</div>

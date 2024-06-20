@@ -104,7 +104,7 @@ public class StudyDBManger extends DBManager{
         return n;
     }
 
-    public static List<String> getStudyMemberID(String s_code, String s_start) {
+    public static List<String> getStudyMemberIdByMonth(String s_code, String s_start) {
             List<String> names;
             SqlSession session = sqlSessionFactory.openSession();
         try {
@@ -114,7 +114,7 @@ public class StudyDBManger extends DBManager{
             params.put("s_start", s_start);
 
             // 쿼리 실행
-            names = session.selectList("study.getStudyMemberID", params);
+            names = session.selectList("study.getStudyMemberIdByMonth", params);
             System.out.println(names + "스터디원아이디");
         } finally {
             session.close();
@@ -162,4 +162,12 @@ public class StudyDBManger extends DBManager{
         }
         return names;
     }
+
+    public static List<String> getStudyMemberId(String s_code) {
+        List<String> names;
+        SqlSession session = sqlSessionFactory.openSession();
+        names = session.selectList("study.getStudyMemberId", s_code);
+        return names;
+    }
+
 }
