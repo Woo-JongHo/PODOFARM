@@ -143,13 +143,6 @@ public class MainController {
         System.out.println("이번달" + DayCheck);
         model.addAttribute("DayCheck", DayCheck);
 
-        //날짜마다 문제 푼 갯수 파악
-        //스터디 멤버를 가져오고, 멤버의 id를 가지고 와서
-        //getSolvedList로 가지고 온다
-        //model.addAttribute("getStudyMemberID", studyService.getStudyMemberID(s_code));
-        //SSystem.out.println(studyService.getStudyMemberID(s_code));
-
-
 
         // 달을 처리하는 로직
         String s_start = studyService.getStartDay(s_code);
@@ -190,189 +183,16 @@ public class MainController {
             model.addAttribute("monthList",monthList);
         }
 
-
-        List<String> memberID = studyService.getStudyMemberId(s_code);
-        int index = memberID.size();
-
-        for (int i = 0 ; i < index ; i++ ){
-            ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
-
-            //solved 값만 가져온다
-            //1. DayCheck만큼 배열을 생성합니다.
-            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
-
-            int [] solvedMonth = new int[DayCheck];
-            for (Map<String, String> map : solvedList) {
-                String dataDay = map.get("C_DATE");
-                int day = Integer.parseInt(dataDay.substring(3,5));
-                String solved = String.valueOf(map.get("SOLVED"));
-                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
-            }
-
-
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            String[] solvedDataTypeString = new String[DayCheck];
-            for (int j = 0; j < DayCheck; j++) {
-                switch (solvedMonth[j]) {
-                    case 0:
-                        solvedDataTypeString[j] = "solved-0";
-                        break;
-                    case 1:
-                        solvedDataTypeString[j] = "solved-1";
-                        break;
-                    case 2:
-                        solvedDataTypeString[j] = "solved-2";
-                        break;
-                    case 3:
-                        solvedDataTypeString[j] = "solved-3";
-                        break;
-                    default:
-                        solvedDataTypeString[j] = "solved-4";
-                        break;
-                }
-            }
-            model.addAttribute("solvedData_"+i,solvedDataTypeString);
-        }
-
-        //01 처음화면은 가장 최근 멤버의 가장최근 날짜를 기준으로 생성
-        //02 생성할때 링크생성은 s_start부터 쭉 하나씩 나오게끔 그걸 클릭시 ajax로 보내고, ajax GETMapping으로 링크처리하고 그 로직을 거기다가 구현
-
-
-        //첫 화면은 가장 최근 달로 입력
-        /*for (int i = 0; i < monthDiff; i++) {
-
-            //달에 멤버를 가져옵니다.
-            List<String> memberID = (List<String>) studyService.getStudyMemberID(s_code,s_start);
-            int index = memberID.size();
-
-            for (int j = 0; j < index; j++) {
-                ArrayList<Map<String, String>> solvedList;
-                solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(j));
-
-                int[] solvedMonth = new int[DayCheck];
-
-                for (Map<String, String> map : solvedList) {
-                    String dataDay = map.get("C_DATE");
-                    int day = Integer.parseInt(dataDay.substring(3, 5));
-                    String solved = String.valueOf(map.get("SOLVED"));
-                    solvedMonth[day - 1] = Integer.parseInt(solvedMonth[day - 1] + solved);
-                }
-
-                ObjectMapper objectMapper = new ObjectMapper();
-
-                String[] solvedDataTypeString = new String[DayCheck];
-                for (int k = 0; k < DayCheck; k++) {
-                    switch (solvedMonth[k]) {
-                        case 0:
-                            solvedDataTypeString[k] = "solved-0";
-                            break;
-                        case 1:
-                            solvedDataTypeString[k] = "solved-1";
-                            break;
-                        case 2:
-                            solvedDataTypeString[k] = "solved-2";
-                            break;
-                        case 3:
-                            solvedDataTypeString[k] = "solved-3";
-                            break;
-                        default:
-                            solvedDataTypeString[k] = "solved-4";
-                            break;
-                    }
-                }
-                String key = "solvedData_" + j; // currentMonth를 현재 달로 설정
-                model.addAttribute(key, solvedDataTypeString);
-            }
-
-            //달을 증가시키는 로직
-            monthList.add(s_start);
-
-            String [] parts = s_start.split("-");
-            int year = Integer.parseInt(parts[0]);
-            int month = Integer.parseInt(parts[1]);
-
-            month = month + 1;
-            if (month > 12) {
-                year++;
-                month = 1;
-            }
-
-            String monthString = String.format("%02d", month);
-            String yearString = String.valueOf(year);
-
-            s_start = yearString + "-" + monthString;
-
-
-            model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
-            model.addAttribute("monthList",monthList);
-            model.addAttribute("",studyService.getStudyMemberByMonth(s_code,s_start));
-
-         */
-        String [] arr = new String[index];
-
-        for(int k = 0; k < index ; k++)
-            arr[k] = "solvedData_"+k;
-
-        model.addAttribute("solvedData",arr);
+        Podofarm(s_code,s_start,model);
 
         return "ver4/main";
     }
 
 
-    @GetMapping("/{s_code}/overview")
+    @GetMapping("/overview")
     public String getStudyMembersByMonth(@RequestParam String s_code,
                                          @RequestParam String month,
                                          Model model) {
-        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,month);
-
-        int index = memberID.size();
-
-        for (int i = 0 ; i < index ; i++){
-            ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
-
-            //solved 값만 가져온다
-            //1. DayCheck만큼 배열을 생성합니다.
-            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
-
-            int [] solvedMonth = new int[DayCheck];
-            for (Map<String, String> map : solvedList) {
-                String dataDay = map.get("C_DATE");
-                int day = Integer.parseInt(dataDay.substring(3,5));
-                String solved = String.valueOf(map.get("SOLVED"));
-                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
-            }
-
-
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            String[] solvedDataTypeString = new String[DayCheck];
-            for (int j = 0; j < DayCheck; j++) {
-                switch (solvedMonth[j]) {
-                    case 0:
-                        solvedDataTypeString[j] = "solved-0";
-                        break;
-                    case 1:
-                        solvedDataTypeString[j] = "solved-1";
-                        break;
-                    case 2:
-                        solvedDataTypeString[j] = "solved-2";
-                        break;
-                    case 3:
-                        solvedDataTypeString[j] = "solved-3";
-                        break;
-                    default:
-                        solvedDataTypeString[j] = "solved-4";
-                        break;
-                }
-            }
-            model.addAttribute("solvedData_"+i,solvedDataTypeString);
-
-            System.out.println("overview가 실행되었다");
-        }
-
 
         return "studyMembersOverview";
     }
@@ -399,5 +219,58 @@ public class MainController {
         String monthName = yearMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
 
         return monthName;
+    }
+
+    public void Podofarm(String s_code, String s_start, Model model){
+        List<String> memberID = studyService.getStudyMemberId(s_code);
+        int index = memberID.size();
+
+        for (int i = 0 ; i < index ; i++ ){
+            ArrayList<Map<String, String>> solvedList;
+            solvedList = codeService.getSolvedByDayCurrentMonth(memberID.get(i));
+
+            //solved 값만 가져온다
+            //1. DayCheck만큼 배열을 생성합니다.
+            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
+            int [] solvedMonth = new int[DayCheck];
+            for (Map<String, String> map : solvedList) {
+                String dataDay = map.get("C_DATE");
+                int day = Integer.parseInt(dataDay.substring(3,5));
+                String solved = String.valueOf(map.get("SOLVED"));
+                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
+            }
+
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String[] solvedDataTypeString = new String[DayCheck];
+            for (int j = 0; j < DayCheck; j++) {
+                switch (solvedMonth[j]) {
+                    case 0:
+                        solvedDataTypeString[j] = "solved-0";
+                        break;
+                    case 1:
+                        solvedDataTypeString[j] = "solved-1";
+                        break;
+                    case 2:
+                        solvedDataTypeString[j] = "solved-2";
+                        break;
+                    case 3:
+                        solvedDataTypeString[j] = "solved-3";
+                        break;
+                    default:
+                        solvedDataTypeString[j] = "solved-4";
+                        break;
+                }
+            }
+            model.addAttribute("solvedData_"+i,solvedDataTypeString);
+        }
+
+        String [] arr = new String[index];
+
+        for(int k = 0; k < index ; k++)
+            arr[k] = "solvedData_"+k;
+
+        model.addAttribute("solvedData",arr);
     }
 }
