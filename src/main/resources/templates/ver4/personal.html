@@ -53,7 +53,7 @@
                 </div>
                 <a th:href="@{/ps/{code}(code=${code.c_problemid})}" th:each="code : ${code}" class="personalpage-container-list-area">
                     <div th:text="${#dates.format(code.c_date, 'yyyy-MM-dd')}" class="personalpage-container-list-area-day"></div>
-                    <div th:text="${code.c_filename}" class="personalpage-container-list-area-problemtitle">강원도에 위치한 생산공장 목록 출력하기</div>
+                    <div th:text="${code.c_filename}" class="personalpage-container-list-area-problemtitle"></div>
                     <div class="personalpage-container-list-area-level">Lv 1</div>
                     <div class="personalpage-container-list-area-time">120</div>
                 </a>

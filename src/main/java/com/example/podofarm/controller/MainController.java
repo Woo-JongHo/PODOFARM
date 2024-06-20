@@ -108,7 +108,6 @@ public class MainController {
     @GetMapping("/{s_code}")
     public String studyMainPage(Model model,
                                 @PathVariable("s_code") String s_code,
-                                @RequestParam(name = "month", required = false) String selectedMonth,
                                 HttpSession session) throws JsonProcessingException {
         String id = (String) session.getAttribute("id");
 
@@ -151,16 +150,14 @@ public class MainController {
         model.addAttribute("DayCheck", DayCheck);
 
 
+        Podofarm(s_code,s_start, model);
 
 
-        CalcDate(s_start,model);
-        Podofarm(s_code,selectMonth, model);
-
-
-        model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,selectMonth));
+        model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,s_start));
 
         return "ver4/main";
     }
+
 
 
     public void CalcDate(String s_start, Model model){
@@ -223,14 +220,18 @@ public class MainController {
         return monthName;
     }
 
-    public void Podofarm(String s_code,String SelectMonth, Model model){
-        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,SelectMonth);
+    public void Podofarm(String s_code,String s_start, Model model){
+
+        //01 s_start를 돌면서 만들고 변수를 통해서 각각 저장을하자.
+        CalcDate(s_start,model);
+
+        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,s_start);
 
         int index = memberID.size();
 
         for (int i = 0 ; i < index ; i++ ){
             ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), SelectMonth);
+            solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), s_start);
 
             System.out.println(solvedList);
             //solved 값만 가져온다

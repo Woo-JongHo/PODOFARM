@@ -49,7 +49,7 @@
         FROM users u
         JOIN study s ON u.id = s.id
         WHERE s.s_code = #{s_code}
-        AND TO_DATE(#{s_start}, 'YYYY-MM') BETWEEN s.s_start AND s.s_end
+        AND TO_DATE(CONCAT(#{s_start}, '-31'), 'YYYY-MM-DD') between s.s_start and s.s_end
     </select>
 
     <select id ="getStudyMember" resultType = "java.lang.String" parameterType="java.lang.String">
