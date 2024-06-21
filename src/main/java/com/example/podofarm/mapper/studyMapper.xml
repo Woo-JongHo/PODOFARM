@@ -71,7 +71,7 @@
         FROM users u
         JOIN study s ON u.id = s.id
         WHERE s.s_code = #{s_code}
-        AND TO_DATE(#{s_start}, 'YYYY-MM') BETWEEN s.s_start AND s.s_end
+        AND #{s_start} BETWEEN TO_CHAR(s.s_start, 'YYYY-MM') AND TO_CHAR(s.s_end, 'YYYY-MM')
     </select>
     <!-- 익스텐션 -->
     <select id = "getStudyCode" resultType="java.lang.String">
@@ -108,19 +108,19 @@
 
     <select id = "getSolvedRank" resultType="map">
         SELECT
-            u.NAME,
-            COUNT(c.C_NO) AS C_NO_COUNT
+        u.NAME,
+        COUNT(c.C_NO) AS C_NO_COUNT
         FROM
-            STUDY s
-            JOIN
-            USERS u ON s.ID = u.ID
-            LEFT JOIN
-            CODE c ON s.ID = c.ID
+        STUDY s
+        JOIN
+        USERS u ON s.ID = u.ID
+        LEFT JOIN
+        CODE c ON s.ID = c.ID
         WHERE
-            s.s_code = #{s_code}
+        s.s_code = #{s_code}
         GROUP BY
-            u.NAME
-            ORDER BY
+        u.NAME
+        ORDER BY
         C_NO_COUNT DESC
     </select>
 

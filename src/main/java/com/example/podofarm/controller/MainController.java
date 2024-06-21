@@ -160,26 +160,27 @@ public class MainController {
 
 
 
-    public void CalcDate(String s_start, Model model){
-        int s_years = Integer.parseInt(s_start.substring(0,4));
-        int s_month = Integer.parseInt(s_start.substring(6));
+    public List<String> CalcDate(String s_start, Model model) {
+        int s_years = Integer.parseInt(s_start.substring(0, 4));
+        int s_month = Integer.parseInt(s_start.substring(5));
 
         int c_years = currentDate.getYear();
-        int c_month = currentDate.getMonthValue();;
+        int c_month = currentDate.getMonthValue();
 
         int yearDiff = c_years - s_years;
         int monthDiff;
-        if (yearDiff == 0)
+        if (yearDiff == 0) {
             monthDiff = c_month - s_month;
-        else
+        } else {
             monthDiff = (yearDiff * 12) + (c_month - s_month);
+        }
 
         List<String> monthList = new ArrayList<>();
 
-        for(int i = 0 ; i <monthDiff ; i++){
+        for (int i = 0; i <= monthDiff; i++) {
             monthList.add(s_start);
 
-            String [] parts = s_start.split("-");
+            String[] parts = s_start.split("-");
             int year = Integer.parseInt(parts[0]);
             int month = Integer.parseInt(parts[1]);
 
@@ -193,8 +194,11 @@ public class MainController {
             String yearString = String.valueOf(year);
 
             s_start = yearString + "-" + monthString;
-            model.addAttribute("monthList",monthList);
+            System.out.print(s_start + "루프도는 s_start가 몇번이야");
+            model.addAttribute("monthList", monthList);
         }
+
+        return monthList;
     }
     private int getLastDayOfMonth(int year, int month) {
         // 각 월의 마지막 날을 반환합니다.
@@ -222,61 +226,65 @@ public class MainController {
 
     public void Podofarm(String s_code,String s_start, Model model){
 
-        //01 s_start를 돌면서 만들고 변수를 통해서 각각 저장을하자.
-        CalcDate(s_start,model);
-
-        List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,s_start);
-
-        int index = memberID.size();
-
-        for (int i = 0 ; i < index ; i++ ){
-            ArrayList<Map<String, String>> solvedList;
-            solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), s_start);
-
-            System.out.println(solvedList);
-            //solved 값만 가져온다
-            //1. DayCheck만큼 배열을 생성합니다.
-            //for 루프를 돌면서, C_DATE 값이 없으면 SUBSTRING으로 날짜를 추출하여 배열에다가 값을 더합니다
-            int [] solvedMonth = new int[DayCheck];
-            for (Map<String, String> map : solvedList) {
-                String dataDay = map.get("C_DATE");
-                int day = Integer.parseInt(dataDay.substring(5,7));
-                String solved = String.valueOf(map.get("SOLVED"));
-                solvedMonth[day-1] = Integer.parseInt(solvedMonth[day-1] + solved);
-            }
+        List<String> monthList = CalcDate(s_start,model);
 
 
-            ObjectMapper objectMapper = new ObjectMapper();
+        for (String month : monthList) {
+            System.out.println("Processing month: " + month); // 월 확인 로그
+            List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code,month);
 
-            String[] solvedDataTypeString = new String[DayCheck];
-            for (int j = 0; j < DayCheck; j++) {
-                switch (solvedMonth[j]) {
-                    case 0:
-                        solvedDataTypeString[j] = "solved-0";
-                        break;
-                    case 1:
-                        solvedDataTypeString[j] = "solved-1";
-                        break;
-                    case 2:
-                        solvedDataTypeString[j] = "solved-2";
-                        break;
-                    case 3:
-                        solvedDataTypeString[j] = "solved-3";
-                        break;
-                    default:
-                        solvedDataTypeString[j] = "solved-4";
-                        break;
+            int index = memberID.size();
+
+            for (int i = 0; i < index; i++) {
+                ArrayList<Map<String, String>> solvedList;
+                solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
+
+                System.out.println("Member ID: " + memberID.get(i)); // 멤버 ID 확인 로그
+                System.out.println("Solved list size: " + solvedList.size()); // solvedList 크기 확인 로그
+
+                int[] solvedMonth = new int[DayCheck];
+                for (Map<String, String> map : solvedList) {
+                    String dataDay = map.get("C_DATE");
+                    int day = Integer.parseInt(dataDay.substring(5, 7));
+                    String solved = String.valueOf(map.get("SOLVED"));
+                    solvedMonth[day - 1] = Integer.parseInt(solvedMonth[day - 1] + solved);
+
+                    System.out.println("Data day: " + dataDay + ", Solved: " + solved); // 데이터 일자와 풀이 확인 로그
+
+                    String[] solvedDataTypeString = new String[DayCheck];
+
+                    for (int j = 0; j < DayCheck; j++) {
+                        switch (solvedMonth[j]) {
+                            case 0:
+                                solvedDataTypeString[j] = "solved-0";
+                                break;
+                            case 1:
+                                solvedDataTypeString[j] = "solved-1";
+                                break;
+                            case 2:
+                                solvedDataTypeString[j] = "solved-2";
+                                break;
+                            case 3:
+                                solvedDataTypeString[j] = "solved-3";
+                                break;
+                            default:
+                                solvedDataTypeString[j] = "solved-4";
+                                break;
+                        }
+                        System.out.println("Day: " + j + ", solvedMonth: " + solvedMonth[j] + ", solvedDataTypeString: " + solvedDataTypeString[j]); // 각 일자의 상태 확인 로그
+                    }
+                    System.out.println(month + "-solvedData_" + i + " 이거몇번찍히나혹인해봐");
+                    model.addAttribute(month + "-solvedData_" + i, solvedDataTypeString);
                 }
+
+                String[] arr = new String[index];
+                for (int k = 0; k < index; k++)
+                    arr[k] = month + "-solvedData_" + k;
+
+                model.addAttribute("solvedData", arr);
             }
-            model.addAttribute("solvedData_"+i,solvedDataTypeString);
         }
 
-        String [] arr = new String[index];
-
-        for(int k = 0; k < index ; k++)
-            arr[k] = "solvedData_"+k;
-
-        model.addAttribute("solvedData",arr);
     }
 
 }

@@ -104,14 +104,14 @@ public class StudyDBManger extends DBManager{
         return n;
     }
 
-    public static List<String> getStudyMemberIdByMonth(String s_code, String s_start) {
+    public static List<String> getStudyMemberIdByMonth(String s_code, String month) {
             List<String> names;
             SqlSession session = sqlSessionFactory.openSession();
         try {
             // 파라미터 맵 생성
             Map<String, Object> params = new HashMap<>();
             params.put("s_code", s_code);
-            params.put("s_start", s_start);
+            params.put("s_start", month);
 
             // 쿼리 실행
             names = session.selectList("study.getStudyMemberIdByMonth", params);
