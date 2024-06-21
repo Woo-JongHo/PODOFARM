@@ -66,7 +66,7 @@
             </div>
 
             <div class = "dashboard-board"></div>
-            <div class="dashboard-podofarm">
+            <div th:each="month : ${monthList}" class="dashboard-podofarm">
                 <div class="dashboard-podofarm-title">
                     <div class="dashboard-podofarm-title-users">포도농사원 :
                         <div th:each="member, index: ${getStudyMemberByMonth}" th:text="${member}">
@@ -74,10 +74,8 @@
                         </div>
                     </div>
                 </div>
-                <div th:each="month : ${monthList}" class="">
-                    <a class="month-link"
-                       th:text="${month}"
-                       th:id="${month}"></a>
+                <div>
+                    <a th:each ="month : ${monthList}" class="month-link" th:text="${month}" th:id="${month}"> </a>
                 </div>
                 <div class="dashboard-podofarm-main-count">
                     <div>less</div>
@@ -92,22 +90,22 @@
                 <div class="dashboard-podofarm-grape">
                     <div class="dashboard-podofarm-grape-title">
                         <div class="dashboard-podofarm-grape-title-month"></div>
-                        <div th:each="day:${#numbers.sequence(1,DayCheck)}"class="dashboard-podofarm-grape-title-days">
+                        <div th:each="day : ${#numbers.sequence(1, DayCheck)}" class="dashboard-podofarm-grape-title-days">
                             <span th:text="${day}">1</span>
                         </div>
                     </div>
-                    <!-- 멤버마다 잔디심기를 하려고함-->
-                    <div  class="dashboard-podofarm-grape-month">
-                        <div class = "dashbaord-podofarm-grape-month-user-area">
-                            <div th:each="member, m-index : ${getStudyMemberByMonth}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
+                    <div class="dashboard-podofarm-grape-month">
+                        <div class="dashbaord-podofarm-grape-month-user-area">
+                            <div th:each="member, mIndex : ${getStudyMemberByMonth}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
                         </div>
-                        <div class = "dashbaord-podofarm-grape-days-area">
-                            <div class="test2" th:each="solved, s-index : ${solvedData}">
-                                <div th:each="data, d-index : ${__${solved}__}">
-                                    <div th:class="${data}" ></div>
+                        <div class="dashbaord-podofarm-grape-days-area">
+                            <div class="test2" th:each="member, mIndex : ${getStudyMemberByMonth}">
+                                <div th:each="solvedData : ${__${month + '-solvedData'}__}">
+                                    <div th:each="data : ${__${solvedData}__}">
+                                        <div th:class="${data}"></div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
