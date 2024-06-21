@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div>
-                    <a th:each ="month : ${monthList}" class="month-link" th:text="${month}" th:id="${month}"> </a>
+                    <a th:each="month : ${monthList}" class="month-link" th:text="${month}" th:id="${month}"> </a>
                 </div>
                 <div class="dashboard-podofarm-main-count">
                     <div>less</div>
@@ -100,8 +100,8 @@
                         </div>
                         <div class="dashbaord-podofarm-grape-days-area">
                             <div class="test2" th:each="member, mIndex : ${getStudyMemberByMonth}">
-                                <div th:each="solvedData : ${__${month + '-solvedData'}__}">
-                                    <div th:each="data : ${__${solvedData}__}">
+                                <div th:each="solvedData : ${month + '-solvedData'}">
+                                    <div th:each="data : ${solvedData}">
                                         <div th:class="${data}"></div>
                                     </div>
                                 </div>

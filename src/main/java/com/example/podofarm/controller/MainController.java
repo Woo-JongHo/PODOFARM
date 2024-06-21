@@ -146,14 +146,11 @@ public class MainController {
         model.addAttribute("getMonthName", getMonthName);
 
         //해당 월 날짜
-        System.out.println("이번달" + DayCheck);
-        model.addAttribute("DayCheck", DayCheck);
 
 
         Podofarm(s_code,s_start, model);
 
 
-        model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,s_start));
 
         return "ver4/main";
     }
@@ -234,7 +231,6 @@ public class MainController {
         List<String> monthList = CalcDate(s_start, model);
 
         for (String month : monthList) {
-            System.out.println("Processing month: " + month); // 월 확인 로그
             List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code, month);
 
             int index = memberID.size();
@@ -242,8 +238,9 @@ public class MainController {
             for (int i = 0; i < index; i++) {
                 ArrayList<Map<String, String>> solvedList;
                 solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
-                System.out.println("solvedList >>>>>>" + solvedList);
                 int[] solvedMonth = new int[DayCheck(month)];
+                model.addAttribute("DayCheck", DayCheck(month));
+
                 for (Map<String, String> map : solvedList) {
                     String dataDay = map.get("C_DATE");
                     int day = Integer.parseInt(dataDay.substring(8, 10)); // 일(day)을 가져와야 하므로 8, 10 인덱스 사용
@@ -277,11 +274,12 @@ public class MainController {
             String[] arr = new String[index];
             for (int k = 0; k < index; k++) {
                 arr[k] = month + "-solvedData_" + k;
-                System.out.println(arr[k] + "<<<<<<<<<<,K값");
             }
             model.addAttribute(month + "-solvedData", arr); // month별 solvedData를 저장
+                model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,month));
         }
         model.addAttribute("monthList", monthList); // monthList를 모델에 추가
+
     }
 
 }
