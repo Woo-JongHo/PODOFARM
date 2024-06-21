@@ -227,8 +227,57 @@ public class MainController {
         return monthName;
     }
 
-    public void Podofarm(String s_code, String s_start, Model model) {
-        List<String> monthList = CalcDate(s_start, model);
+
+
+    //01 STUDY에 생성일자를 가지고 와서 몇 개월동안 지속되었는지확인
+    //02 month에 따라, Day 설정
+    //03 month에 따라, 인원수 확인 및, 인원수가 푼 문제 확인
+    //04 삼중배열 도전 [yyyy-mm][멤버][dd의 푼 문제]
+     public void Podofarm(String s_code, String s_start, Model model) {
+
+        List<String> Month = CalcDate(s_start,model);
+        int Members;
+        int DayCheck;
+
+        for( String month : Month){
+            List<String> memberID = (List<String>)  studyService.getStudyMemberIdByMonth(s_code,month);
+            List<String> memberName = (List<String>) studyService.getStudyMemberByMonth(s_code,month);
+
+            // '2024-03' 에 멤버 사이즈는 N명
+            int MonthMember = memberID.size();
+
+
+
+            //멤버마다 푼 문제를 리스트가져옵니다
+            int [] MonthDay = new int [DayCheck(month)];
+            System.out.println (MonthDay + "이번달은 몇일까지있는가");
+
+            //후에 달마다 기본적으로 날짜를 세주는 칸을 생성하기 위해서
+            model.addAttribute(month+"-DayCheck" , DayCheck(month));
+
+            System.out.println(month +"-Members" +  memberName + "가지고온 멤버이름들");
+            model.addAttribute(month+"_Members", memberName);
+
+            for(int i = 0 ;  i < MonthMember ; i++){
+                ArrayList<Map<String, String>> solvedList;
+                solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
+
+                for (Map<String, String> map : solvedList) {
+                    String dataDay = map.get("C_DATE");
+                    int day = Integer.parseInt(dataDay.substring(8, 10)); // 일(day)을 가져와야 하므로 8, 10 인덱스 사용
+                    String solved = String.valueOf(map.get("SOLVED"));
+                    MonthDay[day - 1] += Integer.parseInt(solved); // 합산하기 위해 += 사용
+
+                }
+            }
+
+        }
+
+        model.addAttribute("month",Month);
+
+
+
+        /*    List<String> monthList = CalcDate(s_start, model);
 
         for (String month : monthList) {
             List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code, month);
@@ -279,7 +328,7 @@ public class MainController {
                 model.addAttribute("getStudyMemberByMonth", studyService.getStudyMemberByMonth(s_code,month));
         }
         model.addAttribute("monthList", monthList); // monthList를 모델에 추가
-
+            */
     }
 
 }

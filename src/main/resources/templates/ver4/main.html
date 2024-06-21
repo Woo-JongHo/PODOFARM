@@ -69,9 +69,11 @@
             <div th:each="month : ${monthList}" class="dashboard-podofarm">
                 <div class="dashboard-podofarm-title">
                     <div class="dashboard-podofarm-title-users">포도농사원 :
-                        <div th:each="member, index: ${getStudyMemberByMonth}" th:text="${member}">
-                            <div th:if="${!index.last},">, </div>
+                        <div th:each="member : ${__${month}__+'-Members'}">
+                            <span th:text="${member}"></span>
                         </div>
+
+
                     </div>
                 </div>
                 <div>
