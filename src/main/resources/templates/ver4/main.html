@@ -66,14 +66,13 @@
             </div>
 
             <div class = "dashboard-board"></div>
-            <div th:each="month : ${monthList}" class="dashboard-podofarm">
+            <div th:each="entry : ${membersMap.entrySet()}" class="dashboard-podofarm">
                 <div class="dashboard-podofarm-title">
-                    <div class="dashboard-podofarm-title-users">포도농사원 :
-                        <div th:each="member : ${__${month}__+'-Members'}">
+                    <div class="dashboard-podofarm-title-users">
+                        <span th:text="${entry.key}"> 포도 농사원 : </span>
+                        <div th:each="member : ${entry.value}">
                             <span th:text="${member}"></span>
                         </div>
-
-
                     </div>
                 </div>
                 <div>
@@ -92,7 +91,7 @@
                 <div class="dashboard-podofarm-grape">
                     <div class="dashboard-podofarm-grape-title">
                         <div class="dashboard-podofarm-grape-title-month"></div>
-                        <div th:each="day : ${#numbers.sequence(1, DayCheck)}" class="dashboard-podofarm-grape-title-days">
+                        <div th:each="day : ${#numbers.sequence(1, dayByMonth.get(entry.key))}" class="dashboard-podofarm-grape-title-days">
                             <span th:text="${day}">1</span>
                         </div>
                     </div>

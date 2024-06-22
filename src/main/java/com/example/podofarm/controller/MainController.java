@@ -19,11 +19,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -232,14 +228,16 @@ public class MainController {
     //01 STUDY에 생성일자를 가지고 와서 몇 개월동안 지속되었는지확인
     //02 month에 따라, Day 설정
     //03 month에 따라, 인원수 확인 및, 인원수가 푼 문제 확인
-    //04 삼중배열 도전 [yyyy-mm][멤버][dd의 푼 문제]
      public void Podofarm(String s_code, String s_start, Model model) {
 
         List<String> Month = CalcDate(s_start,model);
         int Members;
         int DayCheck;
 
-        for( String month : Month){
+        Map<String, List<String>> membersMap = new LinkedHashMap<>();
+        Map<String, Integer> dayMap = new LinkedHashMap<>();
+
+         for( String month : Month){
             List<String> memberID = (List<String>)  studyService.getStudyMemberIdByMonth(s_code,month);
             List<String> memberName = (List<String>) studyService.getStudyMemberByMonth(s_code,month);
 
@@ -247,16 +245,22 @@ public class MainController {
             int MonthMember = memberID.size();
 
 
-
             //멤버마다 푼 문제를 리스트가져옵니다
             int [] MonthDay = new int [DayCheck(month)];
-            System.out.println (MonthDay + "이번달은 몇일까지있는가");
+
 
             //후에 달마다 기본적으로 날짜를 세주는 칸을 생성하기 위해서
-            model.addAttribute(month+"-DayCheck" , DayCheck(month));
+            membersMap.put(month, memberName);
+            dayMap.put(month,DayCheck(month));
 
-            System.out.println(month +"-Members" +  memberName + "가지고온 멤버이름들");
-            model.addAttribute(month+"_Members", memberName);
+            for (Map.Entry<String, List<String>> entry : membersMap.entrySet()) {
+                System.out.println("Month: " + entry.getKey() + ", Members: " + entry.getValue());
+            }
+
+            //2024-03 [조현주] , 2024-04[우종호]
+            model.addAttribute("dayByMonth" , dayMap);
+            model.addAttribute("membersMap", membersMap);
+
 
             for(int i = 0 ;  i < MonthMember ; i++){
                 ArrayList<Map<String, String>> solvedList;
