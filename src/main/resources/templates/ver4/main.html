@@ -56,7 +56,7 @@
         <div class="dashboard-container">
             <div class ="dashboard-titlebar">
                 <div class ="dashboard-titlebar-left">
-                    <div class ="dashboard-titlebar-left-studyname">스터디명 : 진짜 괜히 시작했다</div>
+                    <div class ="dashboard-titlebar-left-studyname">스터디명 : <span th:text="${getStudyName}" ></span></div>
 
                 </div>
                 <div class ="dashboard-titlebar-right">
@@ -96,17 +96,15 @@
                         </div>
                     </div>
                     <div class="dashboard-podofarm-grape-month">
-                        <div class="dashbaord-podofarm-grape-month-user-area">
-                            <div th:each="member, mIndex : ${getStudyMemberByMonth}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
+                        <div th:each = "member : ${entry.value}"class="dashbaord-podofarm-grape-month-user-area">
+                            <div th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
                         </div>
                         <div class="dashbaord-podofarm-grape-days-area">
-                            <div class="test2" th:each="member, mIndex : ${getStudyMemberByMonth}">
                                 <div th:each="solvedData : ${month + '-solvedData'}">
                                     <div th:each="data : ${solvedData}">
                                         <div th:class="${data}"></div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
