@@ -792,7 +792,7 @@ localbar-item:hover{
 
 
 .dashboard-podofarm-grape-month {
-    display: block;
+    display: flex;
     padding: 4px 0px 4px 2px;
     align-items: center;
     gap: 2px;
@@ -817,7 +817,7 @@ localbar-item:hover{
 }
 
 .dashbaord-podofarm-grape-days-area{
-    display: block;
+    display: flex;
 }
 
 .test2{

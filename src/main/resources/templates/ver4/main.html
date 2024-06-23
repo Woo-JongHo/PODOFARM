@@ -96,16 +96,19 @@
                         </div>
                     </div>
                     <div class="dashboard-podofarm-grape-month">
-                        <div th:each = "member : ${entry.value}"class="dashbaord-podofarm-grape-month-user-area">
-                            <div th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
+                        <div class="dashbaord-podofarm-grape-month-user-area">
+                            <div th:each = "member : ${entry.value}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
                         </div>
                         <div class="dashbaord-podofarm-grape-days-area">
-                                <div th:each="solvedData : ${month + '-solvedData'}">
-                                    <div th:each="data : ${solvedData}">
-                                        <div th:class="${data}"></div>
-                                    </div>
+                            <div th:with = "month=${entry.key}" th:text="${entry.key}">
+
+                                <div th:with = "solvedList =${memberSolvedMap.get(month)}" th:text = "${memberSolvedMap.get(month)}">
+
                                 </div>
-                        </div>
+
+                            </div>
+
+
                     </div>
                 </div>
             </div>

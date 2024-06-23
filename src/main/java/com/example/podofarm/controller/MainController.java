@@ -264,7 +264,6 @@ public class MainController {
             model.addAttribute("membersMap", membersMap);
 
 
-
             for(int i = 0 ;  i < MonthMember ; i++){
                 ArrayList<Map<String, String>> solvedList;
                 List<String> solvedDataTypeList = new ArrayList<>();
@@ -302,6 +301,7 @@ public class MainController {
                 memberData.put(memberName.get(i), solvedDataTypeList);
                     memberSolvedMap.put(month, memberData);
 
+                model.addAttribute("memberSolvedMap",memberSolvedMap);
 
                 }
             }
