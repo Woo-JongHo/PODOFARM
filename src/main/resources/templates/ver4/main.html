@@ -69,7 +69,6 @@
                             <div class="dashboard-podofarm-title-users">
                                 <span th:text = "${month}"></span>
                                 <span th:each ="member : ${entry.value.entrySet()}" th:text = "${member.key}"></span>
-
                             </div>
                         </div>
                     </div>
@@ -99,8 +98,8 @@
                                 <div th:each ="member : ${entry.value.entrySet()}" th:text ="${member.key}" class="dashboard-podofarm-grape-month-user-member"></div>
                             </div>
                             <div class="dashbaord-podofarm-grape-days-area">
-                                <div th:each="nameMap : ${entry.value.values()}">
-                                    <div th:each="data : ${nameMap}" class="test2">
+                                <div th:each="nameMap : ${entry.value.values()}" class="test2">
+                                    <div th:each="data : ${nameMap}" >
                                         <div th:class="${data}"></div>
                                     </div>
                                 </div>

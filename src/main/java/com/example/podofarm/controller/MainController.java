@@ -283,7 +283,7 @@ public class MainController {
                  }
 
                  //데이터를 내 방식대로 바꾸기위한 배열을 선언하고
-                 for (int j = 0; j < 2; j++) {
+                 for (int j = 0; j < DayCheck(month); j++) {
                      switch (MonthDay[j]) {
                          case 0:
                              solvedDataTypeList.add("solved-0");

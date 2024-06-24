@@ -817,7 +817,7 @@ localbar-item:hover{
 }
 
 .dashbaord-podofarm-grape-days-area{
-    display: flex;
+    display: block;
 }
 
 .test2{
