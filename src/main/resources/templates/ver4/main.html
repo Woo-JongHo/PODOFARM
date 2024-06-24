@@ -3,47 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-
     <!-- css 공간-->
     <link rel="stylesheet" href="/css/ver4/style.css">
-
 </head>
 
 <body>
-<header><div th:include="/ver4/header/header-globalbar-ver4.html"></div> </header>
+<header>
+    <div th:include="/ver4/header/header-globalbar-ver4.html"></div>
+</header>
 
 <main>
     <!--
     <div class ="makestudy-main">
         <div th:include="/ver4/side/left-side.html"></div>
-        <div id = "noStudy" th:include="/ver4/main/main-makestudy.html"></div>
+        <div id="noStudy" th:include="/ver4/main/main-makestudy.html"></div>
     </div>
     -->
     <div class="dashboard-main">
         <div class="dashboard-sidebar">
-
             <div class="dashboard-sidebar-navbar">
                 <div class="dashboard-sidbar-navbar-title">포도 농사원</div>
                 <a th:each="member, index: ${getStudyMember}" href="" class="dashboard-sidbar-navbar-members">
                     <div class="dashboard-sidbar-navbar-members-icon">
                         <img src="../images/person-circle.svg">
                     </div>
-                    <div th:text ="${member}" class="dashboard-sidbar-navbar-members-name">
-                    </div>
+                    <div th:text="${member}" class="dashboard-sidbar-navbar-members-name"></div>
                 </a>
             </div>
 
             <div class="dashboard-sidebar-recentactionbar">
                 <div class="dashboard-sidebar-recentactionbar-title">최근활동</div>
                 <div class="dashboard-sidebar-recentactionbar-main">
-                    <div th:each="activity : ${activity}"class="dashboard-sidebar-recentactionbar-alaram">
+                    <div th:each="activity : ${activity}" class="dashboard-sidebar-recentactionbar-alaram">
                         <!-- 여기 타임리프 적용할 것-->
-                        <div class="dashboard-sidebar-recentactionbar-alaram-time" th:text ="${activity['TIME_AGO']}"></div>
-                        <div class="dashboard-sidebar-recentactionbar-alaram-content" >
+                        <div class="dashboard-sidebar-recentactionbar-alaram-time" th:text="${activity['TIME_AGO']}"></div>
+                        <div class="dashboard-sidebar-recentactionbar-alaram-content">
                             <p th:text="${activity['NAME']} + '님이 '"></p>
                             <p th:text="${activity['C_FILENAME']} + '문제를 풀었습니다!'"></p>
                         </div>
@@ -54,82 +50,82 @@
 
         <!-- 메인보드 -->
         <div class="dashboard-container">
-            <div class ="dashboard-titlebar">
-                <div class ="dashboard-titlebar-left">
-                    <div class ="dashboard-titlebar-left-studyname">스터디명 : <span th:text="${getStudyName}" ></span></div>
-
+            <div class="dashboard-titlebar">
+                <div class="dashboard-titlebar-left">
+                    <div class="dashboard-titlebar-left-studyname">스터디명 : <span th:text="${getStudyName}"></span></div>
                 </div>
-                <div class ="dashboard-titlebar-right">
-                    <div class ="dashboard-titlebar-right-studycode">스터디 코드 : 423XDF</div>
-                    <div class ="dashboard-titlebar-right-id">회원아이디 : 12354358768</div>
+                <div class="dashboard-titlebar-right">
+                    <div class="dashboard-titlebar-right-studycode">스터디 코드 : 423XDF</div>
+                    <div class="dashboard-titlebar-right-id">회원아이디 : 12354358768</div>
                 </div>
             </div>
 
-            <div class = "dashboard-board"></div>
-            <div th:each="entry : ${membersMap.entrySet()}" class="dashboard-podofarm">
-                <div class="dashboard-podofarm-title">
-                    <div class="dashboard-podofarm-title-users">
-                        <span th:text="${entry.key}"> 포도 농사원 : </span>
-                        <div th:each="member : ${entry.value}">
-                            <span th:text="${member}"></span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a th:each="month : ${monthList}" class="month-link" th:text="${month}" th:id="${month}"> </a>
-                </div>
-                <div class="dashboard-podofarm-main-count">
-                    <div>less</div>
-                    <div class="dashboard-podofarm-main-count-grape0"></div>
-                    <div class="dashboard-podofarm-main-count-grape1"></div>
-                    <div class="dashboard-podofarm-main-count-grape2"></div>
-                    <div class="dashboard-podofarm-main-count-grape3"></div>
-                    <div class="dashboard-podofarm-main-count-grape4"></div>
-                    <div>more</div>
-                </div>
+            <div class="dashboard-board"></div>
 
-                <div class="dashboard-podofarm-grape">
-                    <div class="dashboard-podofarm-grape-title">
-                        <div class="dashboard-podofarm-grape-title-month"></div>
-                        <div th:each="day : ${#numbers.sequence(1, dayByMonth.get(entry.key))}" class="dashboard-podofarm-grape-title-days">
-                            <span th:text="${day}">1</span>
-                        </div>
-                    </div>
-                    <div class="dashboard-podofarm-grape-month">
-                        <div class="dashbaord-podofarm-grape-month-user-area">
-                            <div th:each = "member : ${entry.value}" th:text="${member}" class="dashboard-podofarm-grape-month-user-member"></div>
-                        </div>
-                        <div class="dashbaord-podofarm-grape-days-area">
-                            <div th:with = "month=${entry.key}" th:text="${entry.key}">
-
-                                <div th:with = "solvedList =${memberSolvedMap.get(month)}" th:text = "${memberSolvedMap.get(month)}">
-
-                                </div>
+            <div th:each="entry : ${memberSolvedMap.entrySet()}" class="dashboard-podofarm">
+                <div th:each="month : ${entry.key}">
+                    <div >
+                        <div class="dashboard-podofarm-title">
+                            <div class="dashboard-podofarm-title-users">
+                                <span th:text = "${month}"></span>
+                                <span th:each ="member : ${entry.value.entrySet()}" th:text = "${member.key}"></span>
 
                             </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a th:each="month : ${monthList}" class="month-link" th:text="${month}" th:id="${month}"></a>
+                    </div>
 
+                    <div class="dashboard-podofarm-main-count">
+                        <div>less</div>
+                        <div class="dashboard-podofarm-main-count-grape0"></div>
+                        <div class="dashboard-podofarm-main-count-grape1"></div>
+                        <div class="dashboard-podofarm-main-count-grape2"></div>
+                        <div class="dashboard-podofarm-main-count-grape3"></div>
+                        <div class="dashboard-podofarm-main-count-grape4"></div>
+                        <div>more</div>
+                    </div>
 
+                    <div class="dashboard-podofarm-grape">
+                        <div class="dashboard-podofarm-grape-title">
+                            <div class="dashboard-podofarm-grape-title-month"></div>
+                            <div th:each="day : ${#numbers.sequence(1, dayByMonth.get(entry.key))}" class="dashboard-podofarm-grape-title-days">
+                                <span th:text="${day}">1</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-podofarm-grape-month">
+                            <div class="dashbaord-podofarm-grape-month-user-area">
+                                <div th:each ="member : ${entry.value.entrySet()}" th:text ="${member.key}" class="dashboard-podofarm-grape-month-user-member"></div>
+                            </div>
+                            <div class="dashbaord-podofarm-grape-days-area">
+                                <div th:each="nameMap : ${entry.value.values()}">
+                                    <div th:each="data : ${nameMap}" class="test2">
+                                        <div th:class="${data}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- right-side-->
-
+        <!-- right-side -->
         <div class="dashboard-ranking">
             <div class="dashboard-ranking-toprank">
                 <div class="dashboard-ranking-toprank-title">가장 많이 푼 사람</div>
                 <div class="dashboard-ranking-toprank-area">
-                    <div th:each ="rank : ${rank}"class="dashboard-ranking-toprank-member" th:text="${rank['NAME']}"></div>
-                    <div th:each ="rank : ${rank}"class="dashboard-ranking-toprank-member" th:text="${rank['C_NO_COUNT']}"></div>
+                    <div th:each="rank : ${rank}" class="dashboard-ranking-toprank-member" th:text="${rank['NAME']}"></div>
+                    <div th:each="rank : ${rank}" class="dashboard-ranking-toprank-member" th:text="${rank['C_NO_COUNT']}"></div>
                 </div>
             </div>
             <div class="dashboard-ranking-monthrank"></div>
-
         </div>
-
     </div>
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>

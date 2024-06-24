@@ -228,87 +228,88 @@ public class MainController {
     //03 month에 따라, 인원수 확인 및, 인원수가 푼 문제 확인
      public void Podofarm(String s_code, String s_start, Model model) {
 
-        List<String> Month = CalcDate(s_start,model);
+        //01 배열 생성
+        Map<String, Map<String,List<String>>> memberSolvedMap = new LinkedHashMap<>();
+        List<String> Data = new ArrayList<>();
 
-        Map<String, List<String>> membersMap = new LinkedHashMap<>();
+         //02 배열에 일단 키 값을 지정,
+
+         //03 키 값에 대한 멤버 지정
+         //04 멤버에 대한 solved 지정
+        List<String> Month = CalcDate(s_start,model);
         Map<String, Integer> dayMap = new LinkedHashMap<>();
 
-        Map<String, Map<String,List<String>>> memberSolvedMap = new LinkedHashMap<>();
-        Map<String,List<String>> memberData = new LinkedHashMap<>();
+        // 달을 돌면서 member가져오기
+         for( String month : Month) {
+             List<String> memberID = (List<String>) studyService.getStudyMemberIdByMonth(s_code, month);
+
+             //이번달 멤버 이름
+             List<String> memberName = (List<String>) studyService.getStudyMemberByMonth(s_code, month);
 
 
+             // '2024-03' 에 멤버 사이즈는 N명
+             int MonthMember = memberID.size();
+             System.out.println("MontMember : " + MonthMember);
+
+             //멤버마다 푼 문제를 리스트가져옵니다
+             int[] MonthDay = new int[DayCheck(month)];
 
 
-         for( String month : Month){
-            List<String> memberID = (List<String>)  studyService.getStudyMemberIdByMonth(s_code,month);
-            List<String> memberName = (List<String>) studyService.getStudyMemberByMonth(s_code,month);
+             //후에 달마다 기본적으로 날짜를 세주는 칸을 생성하기 위해서
+
+             Map<String, List<String>> memberData = new LinkedHashMap<>();
+            memberSolvedMap.put(month,memberData);
+
+            System.out.println("01, 날짜와 memberData 변수 생성확인 " + memberSolvedMap);
+            dayMap.put(month, DayCheck(month));
 
 
-            // '2024-03' 에 멤버 사이즈는 N명
-            int MonthMember = memberID.size();
-
-            //멤버마다 푼 문제를 리스트가져옵니다
-            int [] MonthDay = new int [DayCheck(month)];
+             //2024-03 [조현주] , 2024-04[우종호]
+             model.addAttribute("dayByMonth", dayMap);
+             model.addAttribute("membersMap", memberData);
 
 
-            //후에 달마다 기본적으로 날짜를 세주는 칸을 생성하기 위해서
-            membersMap.put(month, memberName);
-            dayMap.put(month,DayCheck(month));
+             for (int i = 0; i < MonthMember; i++) {
+                 ArrayList<Map<String, String>> solvedList;
+                 List<String> solvedDataTypeList = new ArrayList<>();
+                 solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
 
-            for (Map.Entry<String, List<String>> entry : membersMap.entrySet()) {
-                System.out.println("Month: " + entry.getKey() + ", Members: " + entry.getValue());
-            }
+                 //리스트를 일단 가져옵니다 아예없을수도있음.
+                 for (Map<String, String> map : solvedList) {
+                     String dataDay = map.get("C_DATE");
+                     int day = Integer.parseInt(dataDay.substring(8, 10)); // 일(day)을 가져와야 하므로 8, 10 인덱스 사용
+                     String solved = String.valueOf(map.get("SOLVED"));
+                     MonthDay[day - 1] += Integer.parseInt(solved); // 합산하기 위해 += 사용
+                 }
 
-            //2024-03 [조현주] , 2024-04[우종호]
-            model.addAttribute("dayByMonth" , dayMap);
-            model.addAttribute("membersMap", membersMap);
+                 //데이터를 내 방식대로 바꾸기위한 배열을 선언하고
+                 for (int j = 0; j < 2; j++) {
+                     switch (MonthDay[j]) {
+                         case 0:
+                             solvedDataTypeList.add("solved-0");
+                             break;
+                         case 1:
+                             solvedDataTypeList.add("solved-1");
+                             break;
+                         case 2:
+                             solvedDataTypeList.add("solved-2");
+                             break;
+                         case 3:
+                             solvedDataTypeList.add("solved-3");
+                             break;
+                         default:
+                             solvedDataTypeList.add("solved-4");
+                             break;
+                     }
+                 memberData.put(memberName.get(i),solvedDataTypeList);
+                 System.out.println("02. month에 관한 멤버의 solvedList를 만들었는가? " + memberData);
+                 }
+             }
 
-
-            for(int i = 0 ;  i < MonthMember ; i++){
-                ArrayList<Map<String, String>> solvedList;
-                List<String> solvedDataTypeList = new ArrayList<>();
-                solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
-
-
-
-                //리스트를 일단 가져옵니다 아예없을수도있음.
-                for (Map<String, String> map : solvedList) {
-                    String dataDay = map.get("C_DATE");
-                    int day = Integer.parseInt(dataDay.substring(8, 10)); // 일(day)을 가져와야 하므로 8, 10 인덱스 사용
-                    String solved = String.valueOf(map.get("SOLVED"));
-                    MonthDay[day - 1] += Integer.parseInt(solved); // 합산하기 위해 += 사용
-                }
-
-                //데이터를 내 방식대로 바꾸기위한 배열을 선언하고
-                for (int j = 0; j < DayCheck(month); j++) {
-                    switch (MonthDay[j]) {
-                        case 0:
-                            solvedDataTypeList.add("solved-0");
-                            break;
-                        case 1:
-                            solvedDataTypeList.add("solved-1");
-                            break;
-                        case 2:
-                            solvedDataTypeList.add("solved-2");
-                            break;
-                        case 3:
-                            solvedDataTypeList.add("solved-3");
-                            break;
-                        default:
-                            solvedDataTypeList.add("solved-4");
-                            break;
-                    }
-                memberData.put(memberName.get(i), solvedDataTypeList);
-                    memberSolvedMap.put(month, memberData);
-
-                model.addAttribute("memberSolvedMap",memberSolvedMap);
-
-                }
-            }
-            System.out.println(membersMap);
-        }
-        model.addAttribute("month",Month);
-
+             memberSolvedMap.put(month,memberData);
+             System.out.println("03 month에 맞게 memberData가 들어갔는가?" + memberSolvedMap);
+             model.addAttribute("memberSolvedMap", memberSolvedMap);
+         }// month
     }
 
 }
