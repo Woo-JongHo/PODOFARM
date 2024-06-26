@@ -159,16 +159,14 @@ public class PersonalController {
         System.out.println(problemId + " problemId?");
         //problemId 에 관한 내용 가져오기 VO로 다가져오자
         CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
-        System.out.println("SOLVED 값은? " + SOLVED.getC_source());
+
+
 
         model.addAttribute("c_filename",htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_filename()));
         model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
         model.addAttribute("c_readme", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_readme()));
         model.addAttribute("c_date",SOLVED.getC_date());
 
-        System.out.println("마크다운 변환 확인" +htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_filename()) );
-        System.out.println("마크다운 변환 확인" +htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
-        System.out.println("마크다운 변환 확인" +htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_readme()) );
 
 
         return "ver4/solved";
