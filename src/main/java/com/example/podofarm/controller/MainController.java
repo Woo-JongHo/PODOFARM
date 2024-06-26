@@ -6,8 +6,6 @@ import com.example.podofarm.service.StudyService;
 import com.example.podofarm.service.UserService;
 import com.example.podofarm.vo.StudyVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.groupdocs.conversion.internal.c.a.w.internal.Se;
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -187,9 +185,9 @@ public class MainController {
             String yearString = String.valueOf(year);
 
             s_start = yearString + "-" + monthString;
-            model.addAttribute("monthList", monthList);
         }
-
+        Collections.reverse(monthList); // 리스트를 역순으로 정렬
+        model.addAttribute("monthList", monthList);
         return monthList;
     }
     private int getLastDayOfMonth(int year, int month) {
@@ -302,12 +300,10 @@ public class MainController {
                              break;
                      }
                  memberData.put(memberName.get(i),solvedDataTypeList);
-                 System.out.println("02. month에 관한 멤버의 solvedList를 만들었는가? " + memberData);
                  }
              }
 
              memberSolvedMap.put(month,memberData);
-             System.out.println("03 month에 맞게 memberData가 들어갔는가?" + memberSolvedMap);
              model.addAttribute("memberSolvedMap", memberSolvedMap);
          }// month
     }

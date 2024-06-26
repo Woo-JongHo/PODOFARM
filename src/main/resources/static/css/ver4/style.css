@@ -557,6 +557,7 @@ localbar-item:hover{
     border-radius: 20px;
     border: 3px solid #30363D;
     background: #0D1117;
+    margin-bottom: 20px;
 }
 
 .dashboard-podofarm-title {
@@ -820,6 +821,9 @@ localbar-item:hover{
     display: block;
 }
 
+.month-link{
+    padding : 10px;
+}
 .test2{
     display:flex;
     gap : 2px;
