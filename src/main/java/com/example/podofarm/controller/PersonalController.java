@@ -149,8 +149,8 @@ public class PersonalController {
         return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
     }*/
 
-    @GetMapping("/ps/{problemid}")
-    public String solved(Model model, @PathVariable("problemid") String problemId, HttpSession session){
+    @GetMapping("/ps/view/{problemId}")
+    public String solved(Model model, @PathVariable("problemId") String problemId, HttpSession session){
         String id = (String) session.getAttribute("id");
         String s_code = "423XDF";
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
@@ -160,18 +160,28 @@ public class PersonalController {
         //problemId 에 관한 내용 가져오기 VO로 다가져오자
         CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
 
-
-
         model.addAttribute("c_filename",htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_filename()));
         model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
         model.addAttribute("c_readme", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_readme()));
         model.addAttribute("c_date",SOLVED.getC_date());
 
-
-
         return "ver4/solved";
     }
 
+
+    @GetMapping("/ps/edit/{problemId}")
+    public String editProblem(@PathVariable("problemId") String problemId, Model model) {
+        CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
+        model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
+        model.addAttribute("problemId", problemId);
+        return "ver4/edit";
+    }
+
+    @PostMapping("/ps/edit/{problemId}")
+    public String updateProblem(@PathVariable("problemId") String problemId, @RequestParam("c_source") String cSource) {
+        //codeService.updateCSourceByProblemId(problemId, cSource);
+        return "redirect:/ps/view/" + problemId;
+    }
 }
 
 

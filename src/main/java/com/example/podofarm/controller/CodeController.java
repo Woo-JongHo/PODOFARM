@@ -79,7 +79,7 @@ public class CodeController {
             * sourceText - 답안
             * readme - 문제설명
             * filename - 문제명
-            * commitMessage - 시간초 매모리.
+            * commitMessage - 시간초 매모리.USERNO
             * */
 
             System.out.println("sourceText는 다음과 같습니다 : " + sourceText);
