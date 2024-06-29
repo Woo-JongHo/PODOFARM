@@ -164,23 +164,18 @@ public class PersonalController {
         model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
         model.addAttribute("c_readme", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_readme()));
         model.addAttribute("c_date",SOLVED.getC_date());
+        model.addAttribute("problemId", problemId);
 
         return "ver4/solved";
     }
 
 
     @GetMapping("/ps/edit/{problemId}")
-    public String editProblem(@PathVariable("problemId") String problemId, Model model) {
-        CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
-        model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
-        model.addAttribute("problemId", problemId);
-        return "ver4/edit";
-    }
-
-    @PostMapping("/ps/edit/{problemId}")
     public String updateProblem(@PathVariable("problemId") String problemId, @RequestParam("c_source") String cSource) {
         //codeService.updateCSourceByProblemId(problemId, cSource);
-        return "redirect:/ps/view/" + problemId;
+
+        System.out.println(problemId + "그래서 뭔데");
+        return "ver4/solved";
     }
 }
 
