@@ -130,26 +130,7 @@ public class PersonalController {
     }
 
 
-    /*오류코드
-    *     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/ps")
-    public ResponseEntity<String> upload(@RequestBody UploadRequest request) {
-        // 요청에서 필요한 데이터 추출
-        String id = request.getId();
-        String studyCode = request.getStudyCode();
-        String sourceText = request.getSourceText();
-        String readmeText = request.getReadmeText();
-        String filename = request.getFilename();
-        String commitMessage = request.getCommitMessage();
-
-        // 요청 처리 로직 추가
-        // 예를 들어, 서비스를 호출하거나 데이터베이스에 저장하는 등의 작업을 수행할 수 있습니다.
-
-        // 응답 생성
-        return ResponseEntity.ok("Upload successful"); // 성공적으로 처리되었을 경우 응답
-    }*/
-
-    @GetMapping("/ps/view/{problemId}")
+    @GetMapping("/ps/view/{problemId}"  )
     public String solved(Model model, @PathVariable("problemId") String problemId, HttpSession session){
         String id = (String) session.getAttribute("id");
         String s_code = "423XDF";
@@ -169,14 +150,24 @@ public class PersonalController {
         return "ver4/solved";
     }
 
-
     @GetMapping("/ps/edit/{problemId}")
-    public String updateProblem(@PathVariable("problemId") String problemId, @RequestParam("c_source") String cSource) {
+    public String edit(Model model, @PathVariable("problemId") String problemId, HttpSession session) {
         //codeService.updateCSourceByProblemId(problemId, cSource);
+        String id = (String) session.getAttribute("id");
+        String s_code = "423XDF";
+        model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
 
-        System.out.println(problemId + "그래서 뭔데");
-        return "ver4/solved";
+
+        System.out.println(problemId + " problemId?");
+        //problemId 에 관한 내용 가져오기 VO로 다가져오자
+        CodeVO SOLVED = codeService.getCodeByProblemId(problemId);
+
+        model.addAttribute("c_filename",htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_filename()));
+        model.addAttribute("c_source", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_source()));
+        model.addAttribute("c_readme", htmlToMarkdownService.convertHtmlToMarkdown(SOLVED.getC_readme()));
+        model.addAttribute("c_date",SOLVED.getC_date());
+        model.addAttribute("problemId", problemId);
+
+        return "ver4/edit";
     }
 }
-
-

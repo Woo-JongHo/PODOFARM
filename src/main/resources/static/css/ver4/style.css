@@ -1355,6 +1355,14 @@ localbar-item:hover{
     align-items: center;
 }
 
+.pesrsonalpage-markdown-title{
+    display:flex;
+}
+
+.personalpage-markdown-body{
+    font-size: 20px;
+}
+
 /* **************************** */
 /* **************************** */
 /* ********SOLVED PAGE******* */
