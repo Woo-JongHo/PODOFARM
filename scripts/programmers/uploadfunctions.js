@@ -15,14 +15,13 @@
 async function uploadOneSolveProblemOnPodo(PodoData) {
   const id = await getId();
   const studyCode = await getStudyCode();
-  console.log("PodoDate.dateInfo" + PodoData.dateInfo)
   if (isNull(id) || isNull(studyCode)) {
     console.error('id, studtyCode Null', id, studyCode);
     return;
   }
 
   //cb 삭제 
-  return upload(id, studyCode, PodoData.code, PodoData.readme, PodoData.fileName, PodoData.message,PodoData.dateInfo);
+  return upload(id, studyCode, PodoData.code, PodoData.readme, PodoData.fileName, PodoData.message,PodoData.dateInfo, PodoData.problemId, PodoData.level);
 }
 
 /*
@@ -36,7 +35,7 @@ async function uploadOneSolveProblemOnPodo(PodoData) {
  * @param {function} cb - 콜백 함수 (ex. 업로드 후 로딩 아이콘 처리 등)
  */
 
-async function upload(id, studyCode, sourceText, readmeText, filename, commitMessage, dateInfo) {
+async function upload(id, studyCode, sourceText, readmeText, filename, commitMessage, dateInfo, problemId, level) {
   try {
     console.log("dateInfo" + dateInfo);
     console.log("-----------------------");
@@ -47,6 +46,10 @@ async function upload(id, studyCode, sourceText, readmeText, filename, commitMes
     console.log("readmeText : " + readmeText);
     console.log("filename :" + filename);
     console.log("commitMessage :" + commitMessage);
+    console.log("problemId" + problemId);
+    console.log("level" + level);
+
+
     /* 업로드 후 서버로 보내기 */
     const response = await fetch('http://localhost:8080/ps', {
       method: 'POST',
@@ -60,7 +63,9 @@ async function upload(id, studyCode, sourceText, readmeText, filename, commitMes
         readmeText: readmeText,
         filename: filename,
         commitMessage: commitMessage,
-        dateInfo: dateInfo
+        dateInfo: dateInfo,
+        problemId : problemId,
+        level : level
       })
     });
 

@@ -44,7 +44,6 @@
         "https://school.programmers.co.kr/*"
       ],
         "css": [
-          //"css/programmers/inject.css"
         ],
         "js": [
           "scripts/programmers/variables.js",

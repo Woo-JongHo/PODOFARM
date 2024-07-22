@@ -37,6 +37,7 @@ async function parseData() {
   console.log("runtime + " + runtime);
   console.log("memory + " + memory);
   */
+ 
   return makeData({ link, problemId, level, title, problem_description, division, language_extension, code, result_message, runtime, memory });
 }
 
