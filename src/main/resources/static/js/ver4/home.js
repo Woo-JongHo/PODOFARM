@@ -34,7 +34,11 @@ function handleCredentialResponse(response) {
 
     })
         .then(response => response.text()) // response.json() 대신 response.text()를 사용합니다.
-
+        .then(result => {
+            console.log('Success:', result);
+            // 요청이 성공하면 페이지를 새로고침합니다.
+            window.location.reload(true);
+        })
         .catch(error => console.error('Error:', error));
 
 //02 구글로그인 토큰 변환 작업

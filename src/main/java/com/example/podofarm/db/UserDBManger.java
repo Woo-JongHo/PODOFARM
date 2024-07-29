@@ -32,8 +32,8 @@ public class UserDBManger extends DBManager{
         int re = -1; // 기본값 설정
         SqlSession session = sqlSessionFactory.openSession();
         String result = session.selectOne("user.checkStudy", id); // Integer로 받기
-        System.out.println(result);
-        if (!result.equals("0")) { // null 체크
+        System.out.println(result + "result 결과");
+        if (result != null) { // null 체크
             re = 1;
         }
 

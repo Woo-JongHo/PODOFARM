@@ -22,32 +22,31 @@ public class HomeController {
 
     @Autowired
     private StudyService studyService;
-
-    //01 로그인시 DB와 매치해서 값이 있나 확인
-    //02 없으면 DB 생성 후 nostudy로 넘어가기
-    //03 DB가 있으면 study 유무에 따라 study nostudy로 넘기기
-
-
-
     //podofarm 으로 도메인 변경할 것
+
     @GetMapping("/pf")
     public String home(HttpSession session){
 
         String id = (String)session.getAttribute("id");
+        //String id = "123456";
+
+        System.out.println("pf 도메인에서 id는 현재 : " + id);
 
         if (id == null)
             return "ver4/home";
         else{
             String s_code = studyService.getStudyCode(id);
 
-            if (s_code.equals("id"))
+            if (s_code.equals("id")) {
+                System.out.println("여기왔는가?");
                 return "redirect:/main";
-            else
-                return "redirect:/"+s_code;
+            }
+            else {
+                System.out.println("s_code redirect");
+                return "redirect:/" + s_code;
+            }
         }
     }
-
-
 
     @PostMapping("/login")
     public String checkUser(@RequestBody Map<String, String> data, HttpSession session) {
@@ -56,10 +55,11 @@ public class HomeController {
 
         // DATA의 값을 DB와 비교합니다
         // 회원이 등록되어있는지, 스터디가 있는지에 따라 login 화면을 다르게 합니다.
-
         //세션에 저장할 유저정보
         String id = data.get("id");
         String s_code = studyService.checkStudyCode(id);
+
+        System.out.println(id + " id를 가지고오는가?");
         session.setAttribute("id", id);
         session.setAttribute("s_code", s_code);
 
@@ -70,9 +70,10 @@ public class HomeController {
             //DB를 생성할 필요가 없으니 스터디 유무를 확인합니다.
             if(checkStudy == 1){
                 session.setAttribute("s_code",s_code);
-                return "redirect:/pf";
-            }else{
                 return "redirect:/main";
+            }else{
+                System.out.println("스터디가없어서 이곳으로 들어오는가");
+                return "redirect:ver4/main2";
             }
         }else{
             user.setId(data.get("id"));
@@ -85,7 +86,7 @@ public class HomeController {
             user.setEmail(data.get("email"));
             int insertUser = userService.insertUser(user);
             System.out.println("회원등록완료");
-            return "";
+            return "ver4/main2";
         }
     }
     //회원 등록

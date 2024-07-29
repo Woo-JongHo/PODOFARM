@@ -118,8 +118,12 @@
             <div class="dashboard-ranking-toprank">
                 <div class="dashboard-ranking-toprank-title">가장 많이 푼 사람</div>
                 <div class="dashboard-ranking-toprank-area">
-                    <div th:each="rank : ${rank}" class="dashboard-ranking-toprank-member" th:text="${rank['NAME']}"></div>
-                    <div th:each="rank : ${rank}" class="dashboard-ranking-toprank-member" th:text="${rank['C_NO_COUNT']}"></div>
+                    <div class="dashboard-ranking-toprank-member">
+                        <div th:each="rank : ${rank}"  th:text="${rank['NAME']}"></div>
+                    </div>
+                    <div class = "dashboard-ranking-toprank-count">
+                        <div th:each="rank : ${rank}"  th:text="${rank['C_NO_COUNT']}"></div>
+                    </div>
                 </div>
             </div>
             <div class="dashboard-ranking-monthrank"></div>

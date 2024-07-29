@@ -50,8 +50,8 @@ public class MainController {
 
         StudyVO study = new StudyVO();
 
-        String id = "123456";
-        //  String id = (String)session.getAttribute("id");
+        //String id = "123456";
+        String id = (String)session.getAttribute("id");
 
 
         String StudyCode = StudyCode();
@@ -105,10 +105,9 @@ public class MainController {
                                 HttpSession session) throws JsonProcessingException {
         String id = (String) session.getAttribute("id");
 
-
         //TEST CASE
-        id = "104539211393038791047";
-        s_code = "423XDF";
+        //id = "104539211393038791047";
+        //s_code = "423XDF";
         String s_start= studyService.getStartDay(s_code);
         System.out.print(s_start + "start 봐바");
 
@@ -141,10 +140,7 @@ public class MainController {
 
         //해당 월 날짜
 
-
         Podofarm(s_code,s_start, model);
-
-
 
         return "ver4/main";
     }
