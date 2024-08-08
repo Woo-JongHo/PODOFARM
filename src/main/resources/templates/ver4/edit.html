@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-codehighlight@1/codehighlight.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/ver4/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- Line Number 적용 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+    <script>hljs.initLineNumbersOnLoad();</script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+    <style>
+        .edit-area {
+            display: none;
+        }
+        .code-editor {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div th:include="/ver4/header/header-globalbar-localbar-ver4.html" class="personal-header "></div>
+</header>
+<div class="solvedpage-container">
+    <div class="solvedpage-title">
+        <div class="solvedpage-title-left">
+            <div class="solvedpage-title-left-bookmark">
+                <button id="bookmark-button" class="bookmark-button">
+                    <img src="../../images/bookmark-frame.svg" alt="icon">
+                </button>
+            </div>
+            <div th:utext="${c_filename}" class="solvedpage-title-left-filename"></div>
+        </div>
+        <div th:text="${#dates.format(c_date, 'yyyy-MM-dd HH:mm:ss')}" class="solvedpage-title-right"></div>
+    </div>
+    <div class="solvedpage-main">
+        <div th:utext="${c_readme}" class="solvedpage-main-reademe"></div>
+        <div class="solvedpage-main-source">
+            <div id="read-mode">
+                <div class="pesrsonalpage-markdown-title">
+                    <div>
+                        TITLE
+                    </div>
+                    <button id="edit-button" class="btn btn-primary">수정</button>
+                    <div></div>
+                </div>
+                <div id="source-container" th:utext="${c_source}" class="personalpage-markdown-body"></div>
+            </div>
+            <div id="edit-mode" class="edit-area">
+                <textarea id="source-editor" class="code-editor"></textarea>
+                <button id="save-button" class="btn btn-success">저장</button>
+            </div>
+        </div>
+        <div class="solvedpage-memo"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+</script>
+<script th:attr="data-problem-id=${problemId}" src="/js/ver4/solved.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const editButton = document.getElementById('edit-button');
+        const saveButton = document.getElementById('save-button');
+        const readMode = document.getElementById('read-mode');
+        const editMode = document.getElementById('edit-mode');
+        const sourceContainer = document.getElementById('source-container');
+        const sourceEditor = document.getElementById('source-editor');
+
+        editButton.addEventListener('click', function () {
+            sourceEditor.value = sourceContainer.textContent.trim();
+            readMode.style.display = 'none';
+            editMode.style.display = 'block';
+        });
+
+        saveButton.addEventListener('click', function () {
+            sourceContainer.textContent = sourceEditor.value;
+            hljs.highlightAll();
+            hljs.initLineNumbersOnLoad();
+            readMode.style.display = 'block';
+            editMode.style.display = 'none';
+        });
+    });
+</script>
+</body>
+</html>
