@@ -30,7 +30,6 @@ public class CodeController {
         try {
 
             /* 연동하기 눌렀을 때 ID, 와 STUDYCODE 확인 후, 연동하는 작업 */
-
             ObjectMapper sync = new ObjectMapper();
             JsonNode convertSync = sync.readTree(data);
 
@@ -62,7 +61,6 @@ public class CodeController {
         try {
 
             /* 파싱된 데이터를 옮기는 작업*/
-
             ObjectMapper Data = new ObjectMapper();
             JsonNode convertData = Data.readTree(data);
 
@@ -90,7 +88,6 @@ public class CodeController {
 
             // DB에 데이터가 있는지 확인
             String getStudyCode = studyService.getStudyCode(id);
-
             if (getStudyCode.equals(studyCode)){
                 return ResponseEntity.ok("success");
             }else{

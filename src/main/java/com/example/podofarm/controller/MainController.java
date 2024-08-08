@@ -246,15 +246,11 @@ public class MainController {
              System.out.println("MontMember : " + MonthMember);
 
              //멤버마다 푼 문제를 리스트가져옵니다
-             int[] MonthDay = new int[DayCheck(month)];
-
 
              //후에 달마다 기본적으로 날짜를 세주는 칸을 생성하기 위해서
-
              Map<String, List<String>> memberData = new LinkedHashMap<>();
-            memberSolvedMap.put(month,memberData);
+             memberSolvedMap.put(month,memberData);
 
-            System.out.println("01, 날짜와 memberData 변수 생성확인 " + memberSolvedMap);
             dayMap.put(month, DayCheck(month));
 
 
@@ -267,6 +263,7 @@ public class MainController {
                  ArrayList<Map<String, String>> solvedList;
                  List<String> solvedDataTypeList = new ArrayList<>();
                  solvedList = codeService.getSolvedByDaySelectedMonth(memberID.get(i), month);
+                 int[] MonthDay = new int[DayCheck(month)];
 
                  //리스트를 일단 가져옵니다 아예없을수도있음.
                  for (Map<String, String> map : solvedList) {
@@ -295,10 +292,9 @@ public class MainController {
                              solvedDataTypeList.add("solved-4");
                              break;
                      }
-                 memberData.put(memberName.get(i),solvedDataTypeList);
                  }
+                 memberData.put(memberName.get(i),solvedDataTypeList);
              }
-
              memberSolvedMap.put(month,memberData);
              model.addAttribute("memberSolvedMap", memberSolvedMap);
          }// month

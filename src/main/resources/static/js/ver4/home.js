@@ -23,8 +23,6 @@ function handleCredentialResponse(response) {
         name: responsePayload.name
     }
 
-    console.log("data가 객체가 되었는가?"+data);
-
     fetch('/login', {
         method: 'POST',
         headers: {
@@ -50,7 +48,7 @@ function handleCredentialResponse(response) {
         }).join(''));
         return JSON.parse(jsonPayload)
     }
-
+    //스터디 찾기
 
 }
 
