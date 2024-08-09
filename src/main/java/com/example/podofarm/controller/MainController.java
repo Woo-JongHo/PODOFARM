@@ -120,6 +120,8 @@ public class MainController {
         //불러오는 데이터 목록
         //  1. 스터디 명, 스터디 코드, 스터디 비밀번호 2. 남은 스터디 일 수 * 스터디 인원
         model.addAttribute("getStudyName", studyService.getStudyName(s_code));
+        model.addAttribute("getStudyCode", s_code);
+        model.addAttribute("getUserId", id);
         model.addAttribute("getTotalMember", studyService.getTotalMember(s_code));
         model.addAttribute("getStudyMember", studyService.getStudyMember(s_code));
         model.addAttribute("getDday",studyService.getDday(s_code));

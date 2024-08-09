@@ -52,10 +52,9 @@ public class PersonalController {
     //personal로 변경할 것
     @CrossOrigin(origins = "https://school.programmers.co.kr")
     @RequestMapping(method = RequestMethod.GET, value = "/{s_code}/ps")
-    public String personal(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
-        //String id = (String) session.getAttribute("id");
-        String id = "1234";
-        String s_code = "423XDF";
+    public String personal(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page,
+                           @PathVariable("s_code") String s_code) {
+        String id = (String) session.getAttribute("id");
 
         // 페이지당 결과 수
         int pageSize = 10;

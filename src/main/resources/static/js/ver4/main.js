@@ -22,4 +22,7 @@ function updateSelectMonth(selectMonth) {
             document.getElementById('content').innerHTML = data;
         })
         .catch(error => console.error('Error:', error));
+
+
 }
+
